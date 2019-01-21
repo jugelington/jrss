@@ -11,8 +11,8 @@ const NavigationBar = ({ feeds, tags }) => {
       id="NavigationBar"
       variant="dark"
       bg="dark"
-      border="secondary"
       fixed="top"
+      style={{ borderBottom: '1px solid grey' }}
     >
       <Container>
         <Navbar.Brand>jrss</Navbar.Brand>
