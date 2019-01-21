@@ -1,8 +1,9 @@
 body {
   background: rgb(68, 86, 104);
-  width: 80%;
+  width: fit-content;
   position: absolute;
   margin: 0 auto;
+  top: 60px;
   left: 0;
   right: 0;
 }

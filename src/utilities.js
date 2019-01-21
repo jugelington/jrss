@@ -15,7 +15,6 @@ export const rssParser = async (feeds, feedName) => {
 };
 
 export const imageExtractor = article => {
-  console.log(article);
   const imageArr = Object.keys(article).reduce((acc, key) => {
     const srcRegex = /src="(\S+)"/;
     const result = srcRegex.exec(article[key]);
