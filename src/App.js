@@ -35,7 +35,7 @@ class App extends Component {
         <header className="App-header" />
         <NavigationBar feeds={this.state.feeds} tags={this.state.tags} />
         <Router>
-          <FrontPage path="/" tag={this.state.tag} feed={this.state.feed} />
+          <FrontPage path="/" feeds={this.state.feeds} />
           <Settings
             path="/settings"
             feeds={this.state.feeds}
