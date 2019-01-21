@@ -2,10 +2,11 @@ import React from 'react';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
+import '../CSS/NavigationBar.css';
 
 const NavigationBar = ({ feeds, tags }) => {
   return (
-    <Navbar id="NavBar">
+    <Navbar id="NavigationBar">
       <Navbar.Brand>jrss</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

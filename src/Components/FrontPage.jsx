@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ArticleDetails from './ArticleDetails';
 import { rssParser } from '../utilities';
 import _ from 'lodash';
+import '../CSS/cards.css';
 
 class FrontPage extends Component {
   state = {
@@ -11,7 +12,7 @@ class FrontPage extends Component {
   render() {
     const { articles, loading } = this.state;
     return (
-      <div>
+      <section className="article-container">
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -19,7 +20,7 @@ class FrontPage extends Component {
             <ArticleDetails key={article.guid} article={article} />
           ))
         )}
-      </div>
+      </section>
     );
   }
 

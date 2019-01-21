@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/lib/Card';
 import Button from 'react-bootstrap/lib/Button';
+import '../CSS/cards.css';
 
 const ArticleDetails = ({
   article: { title, creator, author, pubDate, contentSnippet, link },

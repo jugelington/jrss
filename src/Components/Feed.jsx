@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FeedDetails from './FeedDetails';
 import ArticleDetails from './ArticleDetails';
 import { rssParser } from '../utilities';
+import '../CSS/cards.css';
 
 class Feed extends Component {
   state = {
@@ -15,7 +16,7 @@ class Feed extends Component {
     return (
       <div>
         <FeedDetails key={feedName} feed={feeds[feedName.toLowerCase()]} />
-        <section>
+        <section className="card-container">
           {loading ? (
             <p>Loading</p>
           ) : (
