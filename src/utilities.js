@@ -15,11 +15,9 @@ export const rssParser = async (feeds, feedName) => {
 };
 
 export const imageExtractor = article => {
-  const imageArr = Object.keys(article).reduce((acc, key) => {
-    const srcRegex = /src="(\S+)"/;
-    const result = srcRegex.exec(article[key]);
-    if (result && result[1]) acc.push(result[1]);
-    return acc;
-  }, []);
-  return imageArr[0];
+  const srcRegex = /src="(\S+)"/;
+  for (let key in article) {
+    if (typeof article[key] === 'string' && article[key].match(srcRegex))
+      return article[key].match(srcRegex)[1];
+  }
 };
