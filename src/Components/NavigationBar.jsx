@@ -2,17 +2,25 @@ import React from 'react';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
-import '../CSS/NavigationBar.css';
+import Container from 'react-bootstrap/lib/Container';
+// import '../CSS/NavigationBar.css';
 
 const NavigationBar = ({ feeds, tags }) => {
   return (
-    <Navbar id="NavigationBar">
-      <Navbar.Brand>jrss</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
+    <Navbar
+      id="NavigationBar"
+      variant="dark"
+      bg="dark"
+      border="secondary"
+      fixed="top"
+    >
+      <Container>
+        <Navbar.Brand>jrss</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Nav className="mr-auto">
-          <Nav.Link href="/">Front Page</Nav.Link>
-          <Nav.Link href="/settings">Settings</Nav.Link>
+          <Nav.Link href="/">front page</Nav.Link>
+          <Nav.Link href="/settings">settings</Nav.Link>
           <NavDropdown title="tags" id="tagsDropdown">
             {tags.map(tag => (
               <NavDropdown.Item key={tag} href={`/tags/${tag}`}>
@@ -20,7 +28,7 @@ const NavigationBar = ({ feeds, tags }) => {
               </NavDropdown.Item>
             ))}
           </NavDropdown>
-          <NavDropdown title="Feeds" id="FeedsDropdown">
+          <NavDropdown title="feeds" id="FeedsDropdown">
             {Object.keys(feeds).map(feed => (
               <NavDropdown.Item key={feed} href={`/feeds/${feed}`}>
                 {feeds[feed].displayName}
@@ -28,7 +36,8 @@ const NavigationBar = ({ feeds, tags }) => {
             ))}
           </NavDropdown>
         </Nav>
-      </Navbar.Collapse>
+        {/* </Navbar.Collapse> */}
+      </Container>
     </Navbar>
   );
 };

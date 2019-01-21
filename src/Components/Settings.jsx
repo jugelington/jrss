@@ -1,6 +1,5 @@
 import React from 'react';
 import FeedDetails from './FeedDetails';
-import '../CSS/Settings.css';
 
 const Settings = ({ feeds, tags }) => {
   const feedsArr = Object.keys(feeds).sort((a, b) => {

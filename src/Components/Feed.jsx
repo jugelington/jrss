@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import FeedDetails from './FeedDetails';
 import ArticleDetails from './ArticleDetails';
 import { rssParser } from '../utilities';
-import '../CSS/cards.css';
 
 class Feed extends Component {
   state = {
@@ -36,7 +35,7 @@ class Feed extends Component {
   fetchFeed = () => {
     const { feeds, feedName } = this.props;
     rssParser(feeds, feedName).then(articles => {
-      this.setState({ articles: articles.items, loading: false });
+      this.setState({ articles, loading: false });
     });
   };
 }

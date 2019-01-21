@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ArticleDetails from './ArticleDetails';
 import { rssParser } from '../utilities';
 import _ from 'lodash';
-import '../CSS/cards.css';
 
 class FrontPage extends Component {
   state = {
@@ -17,7 +16,7 @@ class FrontPage extends Component {
           <p>Loading...</p>
         ) : (
           articles.map(article => (
-            <ArticleDetails key={article.guid} article={article} />
+            <ArticleDetails key={article.link} article={article} />
           ))
         )}
       </section>
@@ -32,11 +31,19 @@ class FrontPage extends Component {
     const { feeds } = this.props;
     return Promise.all(
       Object.keys(feeds).map(feedName => {
-        return rssParser(feeds, feedName).then(obj => obj.items);
+        return rssParser(feeds, feedName).then(articles => {
+          return articles;
+        });
       }),
-    ).then(articles =>
-      this.setState({ articles: _.flatten(articles), loading: false }),
-    );
+    ).then(articles => {
+      const flattenedArticles = _.flatten(articles).sort((a, b) =>
+        a.isoDate < b.isoDate ? 1 : -1,
+      );
+      return this.setState({
+        articles: flattenedArticles,
+        loading: false,
+      });
+    });
   };
 }
 
