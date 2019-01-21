@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FeedDetails from './FeedDetails';
 import ArticleDetails from './ArticleDetails';
-import Parser from 'rss-parser';
+import { rssParser } from '../utilities';
 
 class Feed extends Component {
   state = {
@@ -33,15 +33,10 @@ class Feed extends Component {
   }
 
   fetchFeed = () => {
-    const { feedName, feeds } = this.props;
-    const parser = new Parser();
-    (async () => {
-      const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
-      let articles = await parser.parseURL(
-        CORS_PROXY + feeds[feedName.toLowerCase()].url,
-      );
+    const { feeds, feedName } = this.props;
+    rssParser(feeds, feedName).then(articles => {
       this.setState({ articles: articles.items, loading: false });
-    })();
+    });
   };
 }
 
