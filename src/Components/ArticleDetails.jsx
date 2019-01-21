@@ -10,7 +10,7 @@ const ArticleDetails = ({
   const image = imageExtractor(article);
   return (
     <Card
-      style={{ width: '50rem', margin: '5px', textAlign: 'center' }}
+      style={{ width: '90vw', margin: '5px', textAlign: 'center' }}
       className="feed-card"
       variant="dark"
       bg="dark"
@@ -18,16 +18,19 @@ const ArticleDetails = ({
       border="secondary"
     >
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Header>
+          <Card.Title>{title}</Card.Title>
+          <Card.Subtitle>{source}</Card.Subtitle>
+        </Card.Header>
+        <Card.Img
+          src={image}
+          style={{
+            maxHeight: '200px',
+            width: 'auto',
+            margin: '10px',
+          }}
+        />
         <Card.Text>
-          <Card.Img
-            src={image}
-            style={{
-              width: '10rem',
-              float: 'right',
-              margin: '10px',
-            }}
-          />
           {contentSnippet.substring(0, contentSnippet.indexOf('.', 500) + 1) ||
             contentSnippet}
         </Card.Text>
@@ -39,8 +42,6 @@ const ArticleDetails = ({
         {creator || author}
         <br />
         {pubDate}
-        <br />
-        {source}
       </Card.Footer>
     </Card>
   );

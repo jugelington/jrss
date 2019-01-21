@@ -17,7 +17,6 @@ const NavigationBar = ({ feeds, tags }) => {
       <Container>
         <Navbar.Brand>jrss</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         <Nav className="mr-auto">
           <Nav.Link href="/">front page</Nav.Link>
           <Nav.Link href="/settings">settings</Nav.Link>

@@ -1,7 +1,11 @@
 import Parser from 'rss-parser';
 
 export const rssParser = async (feeds, feedName) => {
-  const parser = new Parser();
+  const parser = new Parser({
+    customFields: {
+      item: [['media:content', 'media:content', { keepArray: true }]],
+    },
+  });
   const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
   const obj = await parser.parseURL(
     CORS_PROXY + feeds[feedName.toLowerCase()].url,
@@ -15,6 +19,8 @@ export const rssParser = async (feeds, feedName) => {
 };
 
 export const imageExtractor = article => {
+  if (article['media:content']) return article['media:content'][1]['$'].url;
+
   const srcRegex = /src="(\S+)"/;
   for (let key in article) {
     if (typeof article[key] === 'string' && article[key].match(srcRegex))
