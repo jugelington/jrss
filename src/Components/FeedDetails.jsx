@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/lib/Button';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import Form from 'react-bootstrap/lib/Form';
+import Alert from 'react-bootstrap/lib/Alert';
 
 const FeedDetails = ({
   feed,
@@ -32,29 +34,49 @@ const FeedDetails = ({
         </Card.Subtitle>
       </Card.Header>
       <Card.Body>
-        <Card.Subtitle>Tags:</Card.Subtitle>
+        <Form
+          style={{
+            margin: '0 auto',
+            width: '25%',
+          }}
+        >
+          <Form.Group controlId="formTag">
+            <Form.Label>New Tag:</Form.Label>
+            <Form.Control column type="text" placeholder="enter a tag!" />
+            <Button variant="secondary" type="submit" style={{ margin: '5px' }}>
+              Add Tag
+            </Button>
+          </Form.Group>
+        </Form>
+        <Card.Subtitle>Current Tags:</Card.Subtitle>
         {tags ? (
           <ButtonToolbar>
-            {tags.map(t => (
-              <OverlayTrigger
-                key={t}
-                placement="top"
-                overlay={
-                  <Tooltip id={`tooltip-${t}`}>
-                    remove <strong>{t}</strong> tag
-                  </Tooltip>
-                }
-              >
-                <Button
-                  variant="outline-danger"
-                  size="sm"
-                  style={{ margin: '1px' }}
-                  onClick={() => deleteTag(feedName, t)}
+            {tags.length > 0 ? (
+              tags.map(t => (
+                <OverlayTrigger
+                  key={t}
+                  placement="top"
+                  overlay={
+                    <Tooltip id={`tooltip-${t}`}>
+                      remove <strong>{t}</strong> tag
+                    </Tooltip>
+                  }
                 >
-                  {t}
-                </Button>
-              </OverlayTrigger>
-            ))}
+                  <Button
+                    variant="outline-danger"
+                    size="sm"
+                    style={{ margin: '1px' }}
+                    onClick={() => deleteTag(feedName, t)}
+                  >
+                    {t}
+                  </Button>
+                </OverlayTrigger>
+              ))
+            ) : (
+              <Alert variant="dark" style={{ margin: '0 auto' }}>
+                You haven't added any tags to this feed yet!
+              </Alert>
+            )}
           </ButtonToolbar>
         ) : (
           'f'
