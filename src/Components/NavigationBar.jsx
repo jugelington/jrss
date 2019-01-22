@@ -3,7 +3,6 @@ import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
-// import '../CSS/NavigationBar.css';
 
 const NavigationBar = ({ feeds, tags }) => {
   return (
@@ -19,7 +18,15 @@ const NavigationBar = ({ feeds, tags }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav className="mr-auto">
           <Nav.Link href="/">front page</Nav.Link>
-          <Nav.Link href="/settings">settings</Nav.Link>
+          {/* <Nav.Link href="/settings">settings</Nav.Link> */}
+          <NavDropdown title="settings" id="settingsDropdown">
+            <NavDropdown.Item key="manageFeeds" href="/settings/managefeeds">
+              manage feeds
+            </NavDropdown.Item>
+            <NavDropdown.Item key="addFeed" href="/settings/addfeed">
+              add feed
+            </NavDropdown.Item>
+          </NavDropdown>
           <NavDropdown title="tags" id="tagsDropdown">
             {tags.map(tag => (
               <NavDropdown.Item key={tag} href={`/tags/${tag}`}>

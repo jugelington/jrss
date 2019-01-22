@@ -19,7 +19,10 @@ export const rssParser = async (feeds, feedName) => {
 };
 
 export const imageExtractor = article => {
-  if (article['media:content']) return article['media:content'][1]['$'].url;
+  if (article['media:content'])
+    return article['media:content'][1]
+      ? article['media:content'][1]['$'].url
+      : article['media:content'][0].url;
 
   const srcRegex = /src="(\S+)"/;
   for (let key in article) {

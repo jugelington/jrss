@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Router } from '@reach/router';
 import NavigationBar from './Components/NavigationBar';
 import FrontPage from './Components/FrontPage';
-import Settings from './Components/Settings';
+import ManageFeeds from './Components/ManageFeeds';
 import Feed from './Components/Feed';
+import AddFeed from './Components/AddFeed';
 
 class App extends Component {
   state = {
@@ -29,6 +30,7 @@ class App extends Component {
     tag: 'ALL',
     tags: ['Music', 'Culture', 'Tech', 'Politics'],
   };
+
   render() {
     return (
       <div className="App">
@@ -36,16 +38,52 @@ class App extends Component {
         <NavigationBar feeds={this.state.feeds} tags={this.state.tags} />
         <Router>
           <FrontPage path="/" feeds={this.state.feeds} />
-          <Settings
-            path="/settings"
+          <ManageFeeds
+            path="/settings/managefeeds"
             feeds={this.state.feeds}
             tags={this.state.tags}
+          />
+          <AddFeed
+            path="/settings/addfeed"
+            subscribeToFeed={this.subscribeToFeed}
           />
           <Feed path="/feeds/:feedName" feeds={this.state.feeds} />
         </Router>
       </div>
     );
   }
+
+  componentDidUpdate() {
+    this.saveState();
+  }
+
+  componentDidMount() {
+    const savedState = localStorage.getItem('savedState');
+    if (savedState) {
+      this.setState(JSON.parse(savedState));
+    }
+  }
+
+  saveState = () => {
+    localStorage.setItem('savedState', JSON.stringify(this.state));
+  };
+
+  subscribeToFeed = (name, url, tags = []) => {
+    const obj = {
+      displayName: name,
+      url: url,
+      tags: tags,
+    };
+    const formattedName = name
+      .split(' ')
+      .join('')
+      .toLowerCase();
+    const newFeeds = JSON.parse(JSON.stringify(this.state.feeds));
+    newFeeds[formattedName] = obj;
+    this.setState({
+      feeds: newFeeds,
+    });
+  };
 }
 
 export default App;

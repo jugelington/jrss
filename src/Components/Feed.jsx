@@ -10,11 +10,11 @@ class Feed extends Component {
   };
 
   render() {
-    const { feedName, feeds } = this.props;
+    // const { feedName, feeds } = this.props;
     const { loading, articles } = this.state;
     return (
       <div>
-        <FeedDetails key={feedName} feed={feeds[feedName.toLowerCase()]} />
+        {/* <FeedDetails key={feedName} feed={feeds[feedName.toLowerCase()]} /> */}
         <section className="card-container">
           {loading ? (
             <p>Loading</p>
@@ -29,7 +29,12 @@ class Feed extends Component {
   }
 
   componentDidMount() {
-    this.fetchFeed();
+    console.log(this.props);
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.props);
+    if (prevProps !== this.props) this.fetchFeed();
   }
 
   fetchFeed = () => {
