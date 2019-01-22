@@ -20,11 +20,15 @@ class App extends Component {
         url: 'https://www.theverge.com/rss/index.xml',
         tags: ['Tech'],
       },
-      jezebel: { displayName: 'Jezebel', url: 'https://jezebel.com/rss' },
+      jezebel: {
+        displayName: 'Jezebel',
+        url: 'https://jezebel.com/rss',
+        tags: ['bar'],
+      },
       stereogum: {
         displayName: 'Stereogum',
         url: 'https://www.stereogum.com/feed/',
-        tags: ['Music, Culture'],
+        tags: ['Music', 'Culture'],
       },
     },
     tag: 'ALL',

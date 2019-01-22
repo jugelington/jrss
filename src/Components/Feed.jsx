@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FeedDetails from './FeedDetails';
+// import FeedDetails from './FeedDetails';
 import ArticleDetails from './ArticleDetails';
 import { rssParser } from '../utilities';
 
