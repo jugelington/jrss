@@ -14,8 +14,6 @@ const ArticleDetails = ({
         width: '90vw',
         margin: '5px',
         textAlign: 'center',
-        display: 'grid',
-        gridTemplateColumns: '20% 80%',
       }}
       className="feed-card"
       variant="dark"
@@ -23,31 +21,39 @@ const ArticleDetails = ({
       text="light"
       border="secondary"
     >
-      <Card.Img
-        src={image}
-        style={{
-          maxHeight: 'auto',
-          maxWidth: '80%',
-          gridColumnStart: '1',
-          position: 'relative',
-          top: '25%',
-          padding: '5px',
-        }}
-      />
-      <Card.Body style={{ gridColumnStart: '2' }}>
-        <Card.Header>
-          <Card.Title>{title}</Card.Title>
-          <Card.Subtitle>{source}</Card.Subtitle>
-        </Card.Header>
-        <Card.Text>
-          {contentSnippet.substring(0, contentSnippet.indexOf('.', 500) + 1) ||
-            contentSnippet}
-        </Card.Text>
-        <Button href={link} variant="secondary">
-          Read More
-        </Button>
+      <Card.Header style={{ gridColumnStart: '1', gridColumnEnd: '3' }}>
+        <Card.Title style={{ fontSize: '2rem' }}>{title}</Card.Title>
+        <Card.Subtitle>{source}</Card.Subtitle>
+      </Card.Header>
+      <Card.Body>
+        <section style={{ display: 'grid', gridTemplateColumns: '20% 80%' }}>
+          <Card.Img
+            src={image}
+            style={{
+              maxHeight: 'auto',
+              maxWidth: '80%',
+              gridColumnStart: '1',
+              padding: '5px',
+            }}
+          />
+          <Card.Text style={{ gridColumnStart: '2' }}>
+            {contentSnippet.substring(
+              0,
+              contentSnippet.indexOf('.', 500) + 1,
+            ) || contentSnippet}
+          </Card.Text>
+          <Button
+            href={link}
+            variant="secondary"
+            style={{
+              gridColumnStart: '2',
+            }}
+          >
+            Read More
+          </Button>
+        </section>
       </Card.Body>
-      <Card.Footer style={{ gridColumnStart: '2' }}>
+      <Card.Footer>
         {creator || author}
         <br />
         {pubDate}
