@@ -42,6 +42,7 @@ class App extends Component {
             path="/settings/managefeeds"
             feeds={this.state.feeds}
             tags={this.state.tags}
+            unsubscribeFromFeed={this.unsubscribeFromFeed}
           />
           <AddFeed
             path="/settings/addfeed"
@@ -83,6 +84,12 @@ class App extends Component {
     this.setState({
       feeds: newFeeds,
     });
+  };
+
+  unsubscribeFromFeed = feedName => {
+    const newFeeds = JSON.parse(JSON.stringify(this.state.feeds));
+    delete newFeeds[feedName];
+    this.setState({ feeds: newFeeds });
   };
 }
 

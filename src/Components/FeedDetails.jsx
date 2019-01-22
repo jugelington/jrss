@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from 'react-bootstrap/lib/Card';
+import Button from 'react-bootstrap/lib/Button';
 
-const FeedDetails = ({ feed }) => {
-  console.log(feed);
+const FeedDetails = ({ feed, unsubscribeFromFeed, feedName }) => {
   return (
     <Card
       style={{
@@ -25,6 +25,14 @@ const FeedDetails = ({ feed }) => {
       <Card.Body>
         <Card.Subtitle>Tags:</Card.Subtitle>
         <Card.Text>{feed.tags}</Card.Text>
+        <Button
+          variant="danger"
+          onClick={() => {
+            return unsubscribeFromFeed(feedName);
+          }}
+        >
+          Unsubscribe
+        </Button>
       </Card.Body>
     </Card>
   );

@@ -42,16 +42,16 @@ const ArticleDetails = ({
               contentSnippet.indexOf('.', 500) + 1,
             ) || contentSnippet}
           </Card.Text>
-          <Button
-            href={link}
-            variant="secondary"
-            style={{
-              gridColumnStart: '2',
-            }}
-          >
-            Read More
-          </Button>
         </section>
+        <Button
+          href={link}
+          variant="secondary"
+          style={{
+            gridColumnStart: '2',
+          }}
+        >
+          Read More
+        </Button>
       </Card.Body>
       <Card.Footer>
         {creator || author}

@@ -28,12 +28,7 @@ class Feed extends Component {
     );
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   componentDidUpdate(prevProps) {
-    console.log(this.props);
     if (prevProps !== this.props) this.fetchFeed();
   }
 
