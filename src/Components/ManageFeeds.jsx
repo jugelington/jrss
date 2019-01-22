@@ -1,7 +1,7 @@
 import React from 'react';
 import FeedDetails from './FeedDetails';
 
-const ManageFeeds = ({ feeds, tags, unsubscribeFromFeed }) => {
+const ManageFeeds = ({ feeds, tags, unsubscribeFromFeed, deleteTag }) => {
   const feedsArr = Object.keys(feeds).sort((a, b) => {
     return a.displayName > b.displayName ? 1 : -1;
   });
@@ -16,6 +16,7 @@ const ManageFeeds = ({ feeds, tags, unsubscribeFromFeed }) => {
             feedName={feed}
             feed={feeds[feed]}
             unsubscribeFromFeed={unsubscribeFromFeed}
+            deleteTag={deleteTag}
           />
         ))}
       </div>

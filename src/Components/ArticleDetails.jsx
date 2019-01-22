@@ -33,7 +33,8 @@ const ArticleDetails = ({
               maxHeight: 'auto',
               maxWidth: '80%',
               gridColumnStart: '1',
-              padding: '5px',
+              border: '1px solid grey',
+              borderRadius: '5px',
             }}
           />
           <Card.Text style={{ gridColumnStart: '2' }}>

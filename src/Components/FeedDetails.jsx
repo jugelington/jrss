@@ -9,6 +9,7 @@ const FeedDetails = ({
   feed,
   feed: { displayName, url, tags },
   unsubscribeFromFeed,
+  deleteTag,
   feedName,
 }) => {
   return (
@@ -37,9 +38,9 @@ const FeedDetails = ({
             {tags.map(t => (
               <OverlayTrigger
                 key={t}
-                // placement={t}
+                placement="top"
                 overlay={
-                  <Tooltip id={`tooltip-${t}`} placement="right">
+                  <Tooltip id={`tooltip-${t}`}>
                     remove <strong>{t}</strong> tag
                   </Tooltip>
                 }
@@ -48,6 +49,7 @@ const FeedDetails = ({
                   variant="outline-danger"
                   size="sm"
                   style={{ margin: '1px' }}
+                  onClick={() => deleteTag(feedName, t)}
                 >
                   {t}
                 </Button>
