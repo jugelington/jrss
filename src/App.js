@@ -48,6 +48,7 @@ class App extends Component {
             tags={this.state.tags}
             unsubscribeFromFeed={this.unsubscribeFromFeed}
             deleteTag={this.deleteTag}
+            addTag={this.addTag}
           />
           <AddFeed
             path="/settings/addfeed"
@@ -84,7 +85,7 @@ class App extends Component {
       .split(' ')
       .join('')
       .toLowerCase();
-    const newFeeds = JSON.parse(JSON.stringify(this.state.feeds));
+    const newFeeds = this.cloneFeeds();
     newFeeds[formattedName] = obj;
     this.setState({
       feeds: newFeeds,
@@ -92,15 +93,31 @@ class App extends Component {
   };
 
   unsubscribeFromFeed = feedName => {
-    const newFeeds = JSON.parse(JSON.stringify(this.state.feeds));
+    const newFeeds = this.cloneFeeds();
     delete newFeeds[feedName];
     this.setState({ feeds: newFeeds });
   };
 
   deleteTag = (feed, tag) => {
-    const newFeeds = JSON.parse(JSON.stringify(this.state.feeds));
+    const newFeeds = this.cloneFeeds();
     newFeeds[feed].tags = newFeeds[feed].tags.filter(el => el !== tag);
     this.setState({ feeds: newFeeds });
+  };
+
+  addTag = (feed, tag) => {
+    const newFeeds = this.cloneFeeds();
+    const newTags = this.cloneTags();
+    if (!newTags.includes(tag)) newTags.push(tag);
+    newFeeds[feed].tags.push(tag);
+    this.setState({ feeds: newFeeds, tags: newTags });
+  };
+
+  cloneFeeds = () => {
+    return JSON.parse(JSON.stringify(this.state.feeds));
+  };
+
+  cloneTags = () => {
+    return JSON.parse(JSON.stringify(this.state.tags));
   };
 }
 
