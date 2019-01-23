@@ -26,11 +26,19 @@ class FrontPage extends Component {
   componentDidMount() {
     this.fetchFeeds();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) this.fetchFeeds();
+  }
 
   fetchFeeds = () => {
-    const { feeds } = this.props;
+    const { feeds, tagName } = this.props;
+    console.log(feeds);
+    const feedsKeys = tagName
+      ? Object.keys(feeds).filter(feed => feeds[feed].tags.includes(tagName))
+      : Object.keys(feeds);
+
     return Promise.all(
-      Object.keys(feeds).map(feedName => {
+      feedsKeys.map(feedName => {
         return rssParser(feeds, feedName).then(articles => {
           return articles;
         });

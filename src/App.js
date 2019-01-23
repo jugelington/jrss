@@ -47,6 +47,7 @@ class App extends Component {
         />
         <Router>
           <FrontPage path="/" feeds={this.state.feeds} />
+          <FrontPage path="/tags/:tagName" feeds={this.state.feeds} />
           <ManageFeeds
             path="/settings/managefeeds"
             feeds={this.state.feeds}
