@@ -22,7 +22,7 @@ const ArticleDetails = ({
       border="secondary"
     >
       <Card.Header style={{ gridColumnStart: '1', gridColumnEnd: '3' }}>
-        <Card.Title style={{ fontSize: '2rem' }}>{title}</Card.Title>
+        <Card.Title style={{ fontSize: '1.5rem' }}>{title}</Card.Title>
         <Card.Subtitle>{source}</Card.Subtitle>
       </Card.Header>
       <Card.Body>
