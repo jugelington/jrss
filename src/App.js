@@ -5,6 +5,7 @@ import FrontPage from './Components/FrontPage';
 import ManageFeeds from './Components/ManageFeeds';
 import Feed from './Components/Feed';
 import AddFeed from './Components/AddFeed';
+import _ from 'lodash';
 
 class App extends Component {
   state = {
@@ -39,7 +40,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header" />
-        <NavigationBar feeds={this.state.feeds} tags={this.state.tags} />
+        <NavigationBar
+          feeds={this.state.feeds}
+          tags={this.state.tags}
+          removeRedundantTags={this.removeRedundantTags}
+        />
         <Router>
           <FrontPage path="/" feeds={this.state.feeds} />
           <ManageFeeds
@@ -118,6 +123,16 @@ class App extends Component {
 
   cloneTags = () => {
     return JSON.parse(JSON.stringify(this.state.tags));
+  };
+
+  removeRedundantTags = () => {
+    const currentlyUsedTags = _.flatten(
+      Object.keys(this.state.feeds).map(feed => this.state.feeds[feed].tags),
+    );
+    const filteredTags = this.cloneTags().filter(tag =>
+      currentlyUsedTags.includes(tag),
+    );
+    this.setState({ tags: filteredTags });
   };
 }
 

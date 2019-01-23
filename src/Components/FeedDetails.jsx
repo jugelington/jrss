@@ -14,12 +14,10 @@ class FeedDetails extends Component {
 
   render() {
     const {
-      feed,
       feed: { displayName, url, tags },
       unsubscribeFromFeed,
       deleteTag,
       feedName,
-      addTag,
     } = this.props;
     return (
       <Card

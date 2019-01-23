@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
 
-const NavigationBar = ({ feeds, tags }) => {
+const NavigationBar = ({ feeds, tags, removeRedundantTags }) => {
   return (
     <Navbar
       id="NavigationBar"
@@ -25,6 +25,12 @@ const NavigationBar = ({ feeds, tags }) => {
             </NavDropdown.Item>
             <NavDropdown.Item key="addFeed" href="/settings/addfeed">
               add feed
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              key="removeRedundantTags"
+              onClick={removeRedundantTags}
+            >
+              tidy tags
             </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="tags" id="tagsDropdown">
