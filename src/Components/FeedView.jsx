@@ -3,7 +3,7 @@ import ArticleDetails from './ArticleDetails';
 import { rssParser } from '../utilities';
 import _ from 'lodash';
 
-class FrontPage extends Component {
+class FeedView extends Component {
   state = {
     articles: [],
     loading: true,
@@ -16,7 +16,11 @@ class FrontPage extends Component {
           <p>Loading...</p>
         ) : (
           articles.map(article => (
-            <ArticleDetails key={article.link} article={article} />
+            <ArticleDetails
+              key={article.link}
+              article={article}
+              openArticleModal={this.openArticleModal}
+            />
           ))
         )}
       </section>
@@ -31,10 +35,12 @@ class FrontPage extends Component {
   }
 
   fetchFeeds = () => {
-    const { feeds, tagName } = this.props;
+    const { feeds, tagName, feedName } = this.props;
     console.log(feeds);
     const feedsKeys = tagName
       ? Object.keys(feeds).filter(feed => feeds[feed].tags.includes(tagName))
+      : feedName
+      ? [feedName]
       : Object.keys(feeds);
 
     return Promise.all(
@@ -55,4 +61,4 @@ class FrontPage extends Component {
   };
 }
 
-export default FrontPage;
+export default FeedView;

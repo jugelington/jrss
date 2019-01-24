@@ -5,7 +5,17 @@ import { imageExtractor } from '../utilities';
 
 const ArticleDetails = ({
   article,
-  article: { title, creator, author, pubDate, contentSnippet, link, source },
+  article: {
+    title,
+    creator,
+    author,
+    pubDate,
+    content,
+    contentSnippet,
+    link,
+    source,
+  },
+  openArticleModal,
 }) => {
   const image = imageExtractor(article);
   return (
@@ -44,14 +54,8 @@ const ArticleDetails = ({
             ) || contentSnippet}
           </Card.Text>
         </section>
-        <Button
-          href={link}
-          variant="secondary"
-          style={{
-            gridColumnStart: '2',
-          }}
-        >
-          Read More
+        <Button href={link} variant="secondary">
+          visit site
         </Button>
       </Card.Body>
       <Card.Footer>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
 import NavigationBar from './Components/NavigationBar';
-import FrontPage from './Components/FrontPage';
+import FeedView from './Components/FeedView';
 import ManageFeeds from './Components/ManageFeeds';
-import Feed from './Components/Feed';
 import AddFeed from './Components/AddFeed';
 import _ from 'lodash';
 
@@ -46,8 +45,9 @@ class App extends Component {
           removeRedundantTags={this.removeRedundantTags}
         />
         <Router>
-          <FrontPage path="/" feeds={this.state.feeds} />
-          <FrontPage path="/tags/:tagName" feeds={this.state.feeds} />
+          <FeedView path="/" feeds={this.state.feeds} />
+          <FeedView path="/feeds/:feedName" feeds={this.state.feeds} />
+          <FeedView path="/tags/:tagName" feeds={this.state.feeds} />
           <ManageFeeds
             path="/settings/managefeeds"
             feeds={this.state.feeds}
@@ -60,7 +60,6 @@ class App extends Component {
             path="/settings/addfeed"
             subscribeToFeed={this.subscribeToFeed}
           />
-          <Feed path="/feeds/:feedName" feeds={this.state.feeds} />
         </Router>
       </div>
     );
