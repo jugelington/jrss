@@ -32,7 +32,8 @@ class FeedView extends Component {
     this.fetchFeeds();
   }
   componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) this.fetchFeeds();
+    if (JSON.stringify(prevProps) !== JSON.stringify(this.props))
+      this.fetchFeeds();
   }
 
   fetchFeeds = () => {

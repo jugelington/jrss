@@ -7,9 +7,7 @@ export const rssParser = async (feeds, feedName) => {
     },
   });
   const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
-  const obj = await parser.parseURL(
-    CORS_PROXY + feeds[feedName.toLowerCase()].url,
-  );
+  const obj = await parser.parseURL(CORS_PROXY + feeds[feedName].url);
   const articles = obj.items;
   return articles.map(article => {
     article.source = obj.title;
