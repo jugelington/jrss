@@ -8,31 +8,29 @@ import _ from 'lodash';
 
 class App extends Component {
   state = {
-    feed: 'ALL',
     feeds: {
       guardian: {
         displayName: 'Guardian',
         url: 'https://www.theguardian.com/world/rss',
-        tags: ['Politics'],
+        tags: ['politics'],
       },
       verge: {
         displayName: 'Verge',
         url: 'https://www.theverge.com/rss/index.xml',
-        tags: ['Tech'],
+        tags: ['tech'],
       },
       jezebel: {
         displayName: 'Jezebel',
         url: 'https://jezebel.com/rss',
-        tags: ['bar'],
+        tags: ['culture'],
       },
       stereogum: {
         displayName: 'Stereogum',
         url: 'https://www.stereogum.com/feed/',
-        tags: ['Music', 'Culture'],
+        tags: ['music', 'culture'],
       },
     },
-    tag: 'ALL',
-    tags: ['Music', 'Culture', 'Tech', 'Politics'],
+    tags: ['music', 'culture', 'tech', 'politics'],
   };
 
   render() {
@@ -86,10 +84,7 @@ class App extends Component {
       url: url,
       tags: tags,
     };
-    const formattedName = name
-      .split(' ')
-      .join('')
-      .toLowerCase();
+    const formattedName = name.replace(/\s/g, '_');
     const newFeeds = this.cloneFeeds();
     newFeeds[formattedName] = obj;
     this.setState({

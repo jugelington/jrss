@@ -36,7 +36,6 @@ class FeedView extends Component {
 
   fetchFeeds = () => {
     const { feeds, tagName, feedName } = this.props;
-    console.log(feeds);
     const feedsKeys = tagName
       ? Object.keys(feeds).filter(feed => feeds[feed].tags.includes(tagName))
       : feedName
