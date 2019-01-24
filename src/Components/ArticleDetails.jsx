@@ -5,17 +5,7 @@ import { imageExtractor } from '../utilities';
 
 const ArticleDetails = ({
   article,
-  article: {
-    title,
-    creator,
-    author,
-    pubDate,
-    content,
-    contentSnippet,
-    link,
-    source,
-  },
-  openArticleModal,
+  article: { title, creator, author, pubDate, contentSnippet, link, source },
 }) => {
   const image = imageExtractor(article);
   return (

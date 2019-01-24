@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactLoading from 'react-loading';
 import ArticleDetails from './ArticleDetails';
 import { rssParser } from '../utilities';
 import _ from 'lodash';
@@ -13,7 +14,7 @@ class FeedView extends Component {
     return (
       <section className="article-container">
         {loading ? (
-          <p>Loading...</p>
+          <ReactLoading type={'spin'} color={'gray'} height={100} width={100} />
         ) : (
           articles.map(article => (
             <ArticleDetails

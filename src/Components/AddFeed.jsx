@@ -13,7 +13,6 @@ class AddFeed extends Component {
     const { validated } = this.state;
     return (
       <section>
-        <h1>Add Feed</h1>
         <Form
           noValidate
           validated={validated}

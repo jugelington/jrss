@@ -13,20 +13,17 @@ const ManageFeeds = ({
   });
 
   return (
-    <div>
-      <h1>ManageFeeds</h1>
-      <div id="settingsCards">
-        {feedsArr.map(feed => (
-          <FeedDetails
-            key={feed}
-            feedName={feed}
-            feed={feeds[feed]}
-            unsubscribeFromFeed={unsubscribeFromFeed}
-            deleteTag={deleteTag}
-            addTag={addTag}
-          />
-        ))}
-      </div>
+    <div id="settingsCards">
+      {feedsArr.map(feed => (
+        <FeedDetails
+          key={feed}
+          feedName={feed}
+          feed={feeds[feed]}
+          unsubscribeFromFeed={unsubscribeFromFeed}
+          deleteTag={deleteTag}
+          addTag={addTag}
+        />
+      ))}
     </div>
   );
 };
