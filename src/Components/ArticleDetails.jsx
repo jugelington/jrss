@@ -55,7 +55,7 @@ const ArticleDetails = ({
           </Card.Text>
         </section>
         <Button href={link} variant="secondary">
-          visit site
+          read more
         </Button>
       </Card.Body>
       <Card.Footer>
