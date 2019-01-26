@@ -1,7 +1,6 @@
 import Parser from 'rss-parser';
 
 export const rssParser = async (feeds, feedName) => {
-  console.log(feeds);
   const parser = new Parser({
     customFields: {
       item: [['media:content', 'media:content', { keepArray: true }]],
