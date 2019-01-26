@@ -24,13 +24,6 @@ const NavigationBar = ({ feeds, tags, removeRedundantTags }) => {
                 {tag}
               </NavDropdown.Item>
             ))}
-            <NavDropdown.Divider />
-            <NavDropdown.Item
-              key="removeRedundantTags"
-              onClick={removeRedundantTags}
-            >
-              remove unused tags
-            </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown title="feeds" id="FeedsDropdown">
             {Object.keys(feeds).map(feed => (

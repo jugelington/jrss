@@ -46,11 +46,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header" />
-        <NavigationBar
-          feeds={feeds}
-          tags={tags}
-          removeRedundantTags={this.removeRedundantTags}
-        />
+        <NavigationBar feeds={feeds} tags={tags} />
         <Router>
           <FeedView path="/" articles={articles} loading={loading} />
           <FeedView
@@ -140,10 +136,11 @@ class App extends Component {
     this.setState({ feeds: newFeeds, articles: filteredArticles });
   };
 
-  deleteTag = (feed, tag) => {
+  deleteTag = async (feed, tag) => {
     const newFeeds = this.cloneFeeds();
     newFeeds[feed].tags = newFeeds[feed].tags.filter(el => el !== tag);
-    this.setState({ feeds: newFeeds });
+    await this.setState({ feeds: newFeeds });
+    this.removeRedundantTags();
   };
 
   addTag = (feed, tag) => {
