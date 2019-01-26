@@ -36,26 +36,37 @@ class App extends Component {
         tags: ['music', 'culture'],
       },
     },
+    articles: [],
+    loading: true,
     tags: ['music', 'culture', 'tech', 'politics'],
   };
 
   render() {
+    const { feeds, tags, articles, loading } = this.state;
     return (
       <div className="App">
         <header className="App-header" />
         <NavigationBar
-          feeds={this.state.feeds}
-          tags={this.state.tags}
+          feeds={feeds}
+          tags={tags}
           removeRedundantTags={this.removeRedundantTags}
         />
         <Router>
-          <FeedView path="/" feeds={this.state.feeds} />
-          <FeedView path="/feeds/:feedName" feeds={this.state.feeds} />
-          <FeedView path="/tags/:tagName" feeds={this.state.feeds} />
+          <FeedView path="/" articles={articles} loading={loading} />
+          <FeedView
+            path="/feeds/:feedName"
+            articles={articles}
+            loading={loading}
+          />
+          <FeedView
+            path="/tags/:tagName"
+            articles={articles}
+            loading={loading}
+          />
           <ManageFeeds
             path="/settings/managefeeds"
-            feeds={this.state.feeds}
-            tags={this.state.tags}
+            feeds={feeds}
+            tags={tags}
             unsubscribeFromFeed={this.unsubscribeFromFeed}
             deleteTag={this.deleteTag}
             addTag={this.addTag}
@@ -78,7 +89,7 @@ class App extends Component {
     if (savedState) {
       this.setState(JSON.parse(savedState));
     }
-    console.log(this.fetchFeeds());
+    this.fetchFeeds();
   }
 
   saveState = () => {
@@ -93,7 +104,15 @@ class App extends Component {
           return (newFeeds[feed].articles = articles);
         });
       }),
-    ).then(() => this.setState({ feeds: newFeeds }));
+    ).then(articles => {
+      const flattenedArticles = _.flatten(articles).sort((a, b) =>
+        a.isoDate < b.isoDate ? 1 : -1,
+      );
+      return this.setState({
+        articles: flattenedArticles,
+        loading: false,
+      });
+    });
   };
 
   subscribeToFeed = (name, url, tags = []) => {

@@ -12,7 +12,8 @@ export const rssParser = async (feeds, feedName) => {
   const articles = obj.items;
   return articles.map(article => {
     article.source = obj.title;
-
+    article.feedName = feedName;
+    article.feedTags = feeds[feedName].tags;
     return article;
   });
 };
