@@ -82,6 +82,8 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.saveState();
+    if (JSON.stringify(this.state) !== JSON.stringify(prevState))
+      this.fetchFeeds();
   }
 
   componentDidMount() {
@@ -132,7 +134,10 @@ class App extends Component {
   unsubscribeFromFeed = feedName => {
     const newFeeds = this.cloneFeeds();
     delete newFeeds[feedName];
-    this.setState({ feeds: newFeeds });
+    const filteredArticles = this.state.articles.filter(
+      article => article.feedName !== feedName,
+    );
+    this.setState({ feeds: newFeeds, articles: filteredArticles });
   };
 
   deleteTag = (feed, tag) => {
