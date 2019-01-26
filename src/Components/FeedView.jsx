@@ -29,35 +29,35 @@ class FeedView extends Component {
   }
 
   componentDidMount() {
-    this.fetchFeeds();
+    // this.fetchFeeds();
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps !== this.props || prevState !== this.state) this.fetchFeeds();
+    // if (JSON.stringify(prevProps) !== JSON.stringify(this.props))
+    //   this.fetchFeeds();
   }
 
   fetchFeeds = () => {
-    const { feeds, tagName, feedName } = this.props;
-    const feedsKeys = tagName
-      ? Object.keys(feeds).filter(feed => feeds[feed].tags.includes(tagName))
-      : feedName
-      ? [feedName]
-      : Object.keys(feeds);
-
-    return Promise.all(
-      feedsKeys.map(feedName => {
-        return rssParser(feeds, feedName).then(articles => {
-          return articles;
-        });
-      }),
-    ).then(articles => {
-      const flattenedArticles = _.flatten(articles).sort((a, b) =>
-        a.isoDate < b.isoDate ? 1 : -1,
-      );
-      return this.setState({
-        articles: flattenedArticles,
-        loading: false,
-      });
-    });
+    // const { feeds, tagName, feedName } = this.props;
+    // const feedsKeys = tagName
+    //   ? Object.keys(feeds).filter(feed => feeds[feed].tags.includes(tagName))
+    //   : feedName
+    //   ? [feedName]
+    //   : Object.keys(feeds);
+    // return Promise.all(
+    //   feedsKeys.map(feedName => {
+    //     return rssParser(feeds, feedName).then(articles => {
+    //       return articles;
+    //     });
+    //   }),
+    // ).then(articles => {
+    //   const flattenedArticles = _.flatten(articles).sort((a, b) =>
+    //     a.isoDate < b.isoDate ? 1 : -1,
+    //   );
+    //   return this.setState({
+    //     articles: flattenedArticles,
+    //     loading: false,
+    //   });
+    // });
   };
 }
 

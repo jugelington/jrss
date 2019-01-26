@@ -5,6 +5,7 @@ import FeedView from './Components/FeedView';
 import ManageFeeds from './Components/ManageFeeds';
 import AddFeed from './Components/AddFeed';
 import _ from 'lodash';
+import { rssParser } from './utilities';
 
 class App extends Component {
   state = {
@@ -77,10 +78,22 @@ class App extends Component {
     if (savedState) {
       this.setState(JSON.parse(savedState));
     }
+    console.log(this.fetchFeeds());
   }
 
   saveState = () => {
     localStorage.setItem('savedState', JSON.stringify(this.state));
+  };
+
+  fetchFeeds = () => {
+    const newFeeds = this.cloneFeeds();
+    return Promise.all(
+      Object.keys(this.state.feeds).map(feed => {
+        return rssParser(this.state.feeds, feed).then(articles => {
+          return (newFeeds[feed].articles = articles);
+        });
+      }),
+    ).then(() => this.setState({ feeds: newFeeds }));
   };
 
   subscribeToFeed = (name, url, tags = []) => {
