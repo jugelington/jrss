@@ -3,11 +3,11 @@ import ReactLoading from 'react-loading';
 import ArticleDetails from './ArticleDetails';
 
 const FeedView = ({ articles, loading, feedName, tagName }) => {
-  const filteredArticles = feedName
-    ? articles.filter(a => a.feedName === feedName)
-    : tagName
-    ? articles.filter(a => a.feedTags.includes(tagName))
-    : articles;
+  const filteredArticles = articles.filter(article => {
+    if (tagName) return article.feedTags.includes(tagName);
+    if (feedName) return article.feedName === feedName;
+    return true;
+  });
 
   return (
     <section className="article-container">
