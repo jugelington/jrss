@@ -62,7 +62,6 @@ class App extends Component {
           <ManageFeeds
             path="/settings/managefeeds"
             feeds={feeds}
-            tags={tags}
             unsubscribeFromFeed={this.unsubscribeFromFeed}
             deleteTag={this.deleteTag}
             addTag={this.addTag}
@@ -95,11 +94,11 @@ class App extends Component {
   };
 
   fetchFeeds = () => {
-    const newFeeds = this.cloneFeeds();
+    const feeds = this.cloneFeeds();
     return Promise.all(
-      Object.keys(this.state.feeds).map(feed => {
-        return rssParser(this.state.feeds, feed).then(articles => {
-          return (newFeeds[feed].articles = articles);
+      Object.keys(feeds).map(feedName => {
+        return rssParser(feeds, feedName).then(articles => {
+          return (feeds[feedName].articles = articles);
         });
       }),
     ).then(articles => {
@@ -120,11 +119,9 @@ class App extends Component {
       tags: tags,
     };
     const formattedName = name.replace(/\s/g, '_');
-    const newFeeds = this.cloneFeeds();
-    newFeeds[formattedName] = obj;
-    this.setState({
-      feeds: newFeeds,
-    });
+    const feeds = this.cloneFeeds();
+    feeds[formattedName] = obj;
+    this.setState({ feeds });
   };
 
   unsubscribeFromFeed = feedName => {
@@ -136,19 +133,25 @@ class App extends Component {
     this.setState({ feeds: newFeeds, articles: filteredArticles });
   };
 
-  deleteTag = async (feed, tag) => {
-    const newFeeds = this.cloneFeeds();
-    newFeeds[feed].tags = newFeeds[feed].tags.filter(el => el !== tag);
-    await this.setState({ feeds: newFeeds });
+  deleteTag = async (feedName, deletedTag) => {
+    const feeds = this.cloneFeeds();
+    feeds[feedName].tags = feeds[feedName].tags.filter(
+      tag => tag !== deletedTag,
+    );
+    await this.setState({ feeds });
     this.removeRedundantTags();
   };
 
-  addTag = (feed, tag) => {
-    const newFeeds = this.cloneFeeds();
-    const newTags = this.cloneTags();
-    if (!newTags.includes(tag)) newTags.push(tag);
-    newFeeds[feed].tags.push(tag);
-    this.setState({ feeds: newFeeds, tags: newTags });
+  addTag = (feedName, newTag) => {
+    const feeds = this.cloneFeeds();
+    const tags = this.cloneTags();
+    if (!tags.includes(newTag)) {
+      tags.push(newTag);
+    }
+    if (!feeds[feedName].tags.includes(newTag)) {
+      feeds[feedName].tags.push(newTag);
+    }
+    this.setState({ feeds, tags });
   };
 
   cloneFeeds = () => {

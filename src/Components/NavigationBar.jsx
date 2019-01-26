@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
 
-const NavigationBar = ({ feeds, tags, removeRedundantTags }) => {
+const NavigationBar = ({ feeds, tags }) => {
   return (
     <Navbar
       id="NavigationBar"
