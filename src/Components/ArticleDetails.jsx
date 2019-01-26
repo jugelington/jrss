@@ -27,16 +27,20 @@ const ArticleDetails = ({
       </Card.Header>
       <Card.Body>
         <section style={{ display: 'grid', gridTemplateColumns: '20% 80%' }}>
-          <Card.Img
-            src={image}
-            style={{
-              maxHeight: 'auto',
-              maxWidth: '80%',
-              gridColumnStart: '1',
-              border: '1px solid grey',
-              borderRadius: '5px',
-            }}
-          />
+          {image ? (
+            <Card.Img
+              src={image}
+              style={{
+                maxHeight: 'auto',
+                maxWidth: '80%',
+                gridColumnStart: '1',
+                border: '1px solid grey',
+                borderRadius: '5px',
+              }}
+            />
+          ) : (
+            <></>
+          )}
           <Card.Text style={{ gridColumnStart: '2' }}>
             {contentSnippet.substring(
               0,

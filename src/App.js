@@ -9,6 +9,11 @@ import _ from 'lodash';
 class App extends Component {
   state = {
     feeds: {
+      time: {
+        displayName: 'time',
+        url: 'https://feeds.feedburner.com/time/topstories?format=xml',
+        tags: ['politics'],
+      },
       guardian: {
         displayName: 'Guardian',
         url: 'https://www.theguardian.com/world/rss',
@@ -63,7 +68,7 @@ class App extends Component {
     );
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     this.saveState();
   }
 
