@@ -44,7 +44,7 @@ class App extends Component {
   render() {
     const { feeds, tags, articles, loading } = this.state;
     return (
-      <div className="App">
+      <main className="App">
         <header className="App-header" />
         <NavigationBar feeds={feeds} tags={tags} />
         <Router>
@@ -71,7 +71,7 @@ class App extends Component {
             subscribeToFeed={this.subscribeToFeed}
           />
         </Router>
-      </div>
+      </main>
     );
   }
 

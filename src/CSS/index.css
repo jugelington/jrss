@@ -3,4 +3,8 @@ body {
   width: fit-content;
   margin: 0 auto;
   margin-top: 70px;
+  background-image: url('../Images/cloud_bkgd.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
