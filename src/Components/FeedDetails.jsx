@@ -19,6 +19,7 @@ class FeedDetails extends Component {
       deleteTag,
       feedName,
     } = this.props;
+    tags.sort();
     return (
       <Card
         style={{

@@ -123,7 +123,7 @@ class App extends Component {
     feeds[formattedName] = newFeed;
     const newTags = this.cloneTags();
     feedTags.forEach(tag => {
-      if (!newTags.includes(tag)) newTags.push(tag);
+      if (!newTags.includes(tag.trim())) newTags.push(tag.trim());
     });
     this.setState({ feeds, tags: newTags });
   };

@@ -2,9 +2,7 @@ import React from 'react';
 import FeedDetails from './FeedDetails';
 
 const ManageFeeds = ({ feeds, unsubscribeFromFeed, deleteTag, addTag }) => {
-  const feedsArr = Object.keys(feeds).sort((a, b) => {
-    return a.displayName > b.displayName ? 1 : -1;
-  });
+  const feedsArr = Object.keys(feeds).sort();
 
   return (
     <div id="settingsCards">

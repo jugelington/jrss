@@ -5,6 +5,8 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
 
 const NavigationBar = ({ feeds, tags }) => {
+  const feedsArr = Object.keys(feeds).sort();
+  tags.sort();
   return (
     <Navbar
       id="NavigationBar"
@@ -26,7 +28,7 @@ const NavigationBar = ({ feeds, tags }) => {
             ))}
           </NavDropdown>
           <NavDropdown title="feeds" id="FeedsDropdown">
-            {Object.keys(feeds).map(feed => (
+            {feedsArr.map(feed => (
               <NavDropdown.Item key={feed} href={`/feeds/${feed}`}>
                 {feeds[feed].displayName}
               </NavDropdown.Item>
