@@ -19,6 +19,8 @@ const ArticleDetails = ({
         width: '90vw',
         margin: '5px',
         textAlign: 'center',
+        maxHeight: '25vw',
+        overflowY: 'auto',
       }}
       className="feed-card"
       variant="dark"
@@ -31,7 +33,12 @@ const ArticleDetails = ({
         <Card.Subtitle>{source}</Card.Subtitle>
       </Card.Header>
       <Card.Body>
-        <section style={{ display: 'grid', gridTemplateColumns: '20% 80%' }}>
+        <section
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '20% 80%',
+          }}
+        >
           {image ? (
             <Card.Img
               src={image}
@@ -46,7 +53,12 @@ const ArticleDetails = ({
           ) : (
             <></>
           )}
-          <Card.Text style={{ gridColumnStart: '2', textAlign: 'left' }}>
+          <Card.Text
+            style={{
+              gridColumnStart: '2',
+              textAlign: 'left',
+            }}
+          >
             {Parser(content, {
               replace: domNode => {
                 if (domNode.name && domNode.name === 'a')
