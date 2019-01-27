@@ -128,13 +128,14 @@ class App extends Component {
     this.setState({ feeds, tags: newTags });
   };
 
-  unsubscribeFromFeed = feedName => {
+  unsubscribeFromFeed = async feedName => {
     const newFeeds = this.cloneFeeds();
     delete newFeeds[feedName];
     const filteredArticles = this.state.articles.filter(
       article => article.feedName !== feedName,
     );
-    this.setState({ feeds: newFeeds, articles: filteredArticles });
+    await this.setState({ feeds: newFeeds, articles: filteredArticles });
+    this.removeRedundantTags();
   };
 
   deleteTag = async (feedName, deletedTag) => {
