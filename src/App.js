@@ -149,11 +149,12 @@ class App extends Component {
   addTag = (feedName, newTag) => {
     const feeds = this.cloneFeeds();
     const tags = this.cloneTags();
-    if (!tags.includes(newTag)) {
-      tags.push(newTag);
+    const tag = newTag.toLowerCase();
+    if (!tags.includes(tag)) {
+      tags.push(tag);
     }
-    if (!feeds[feedName].tags.includes(newTag)) {
-      feeds[feedName].tags.push(newTag);
+    if (!feeds[feedName].tags.includes(tag)) {
+      feeds[feedName].tags.push(tag);
     }
     this.setState({ feeds, tags });
   };
