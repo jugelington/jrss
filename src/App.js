@@ -102,26 +102,30 @@ class App extends Component {
         });
       }),
     ).then(articles => {
-      const flattenedArticles = _.flatten(articles).sort((a, b) =>
+      const flattenedAndSortedArticles = _.flatten(articles).sort((a, b) =>
         a.isoDate < b.isoDate ? 1 : -1,
       );
       return this.setState({
-        articles: flattenedArticles,
+        articles: flattenedAndSortedArticles,
         loading: false,
       });
     });
   };
 
-  subscribeToFeed = (name, url, tags = []) => {
-    const obj = {
-      displayName: name,
-      url: url,
-      tags: tags,
+  subscribeToFeed = (feedName, feedUrl, feedTags = []) => {
+    const newFeed = {
+      displayName: feedName,
+      url: feedUrl,
+      tags: feedTags,
     };
-    const formattedName = name.replace(/\s/g, '_');
+    const formattedName = feedName.replace(/\s/g, '_');
     const feeds = this.cloneFeeds();
-    feeds[formattedName] = obj;
-    this.setState({ feeds });
+    feeds[formattedName] = newFeed;
+    const newTags = this.cloneTags();
+    feedTags.forEach(tag => {
+      if (!newTags.includes(tag)) newTags.push(tag);
+    });
+    this.setState({ feeds, tags: newTags });
   };
 
   unsubscribeFromFeed = feedName => {

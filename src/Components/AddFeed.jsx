@@ -1,67 +1,92 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
+import Card from 'react-bootstrap/lib/Card';
 
 class AddFeed extends Component {
   state = {
-    url: '',
-    displayName: '',
+    formGroupFeedUrl: '',
+    formGroupDisplayName: '',
+    formGroupFeedTags: '',
     validated: false,
   };
 
   render() {
     const { validated } = this.state;
     return (
-      <section>
+      <Card
+        bg="dark"
+        text="light"
+        border="secondary"
+        style={{
+          textAlign: 'center',
+          padding: '5px',
+          width: '30vw',
+        }}
+      >
         <Form
           noValidate
           validated={validated}
           onSubmit={e => this.handleSubmit(e)}
         >
+          <Form.Group controlId="formGroupDisplayName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="enter name of feed"
+              onChange={e => this.handleChange(e)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please enter a valid name.
+            </Form.Control.Feedback>
+          </Form.Group>
           <Form.Group controlId="formGroupFeedUrl">
-            <Form.Label>RSS URL</Form.Label>
+            <Form.Label>URL</Form.Label>
             <Form.Control
               required
               type="url"
-              placeholder="enter rss url"
-              defaultValue="http://feeds2.feedburner.com/time/topstories"
+              placeholder="enter url of rss feed"
               onChange={e => this.handleChange(e)}
             />
             <Form.Control.Feedback type="invalid">
               Please enter a valid url.
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group controlId="formGroupDisplayName">
-            <Form.Label>Display Name</Form.Label>
+          <Form.Group controlId="formGroupFeedTags">
+            <Form.Label>Tags</Form.Label>
             <Form.Control
-              required
               type="text"
-              placeholder="enter display name"
-              defaultValue="Time Top Stories"
+              placeholder="enter tags to categorise feed"
               onChange={e => this.handleChange(e)}
             />
-            <Form.Control.Feedback type="invalid">
-              Please choose a display name.
-            </Form.Control.Feedback>
+            <Form.Text>Optional. Seperate tags with commas</Form.Text>
           </Form.Group>
           <Button variant="secondary" type="submit">
             Submit
           </Button>
         </Form>
-      </section>
+      </Card>
     );
   }
 
   handleSubmit(e) {
     const form = e.currentTarget;
+    e.preventDefault();
     if (form.checkValidity() === false) {
-      e.preventDefault();
       e.stopPropagation();
     }
-    const name = e.currentTarget[1].value;
-    const url = e.currentTarget[0].value;
+    const {
+      formGroupDisplayName,
+      formGroupFeedUrl,
+      formGroupFeedTags,
+    } = this.state;
     this.setState({ validated: true });
-    this.props.subscribeToFeed(name, url);
+    this.props.subscribeToFeed(
+      formGroupDisplayName,
+      formGroupFeedUrl,
+      formGroupFeedTags.split(','),
+    );
   }
 
   handleChange(e) {
