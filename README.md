@@ -1,13 +1,13 @@
 # jrss
 
-jrss is an RSS reader webapp built in [React](https://reactjs.org/) using [React Bootstrap](https://react-bootstrap.netlify.com/) components and [rss-parser](https://www.npmjs.com/package/rss-parser) to fetch RSS feeds.
+jrss is an RSS reader webapp built in [React](https://reactjs.org/) using [React Bootstrap](https://react-bootstrap.netlify.com/), [rss-parser](https://www.npmjs.com/package/rss-parser) and [html-react-parser](https://www.npmjs.com/package/html-react-parser).
 
 Features include:
 
-- Subscribing / unsubscribing to feeds
-- Tagging feeds
-- View articles from all feeds at once
-- View an individual feed's articles
-- View all feeds with the same tag
+- Subscribing / unsubscribing to RSS feeds
+- Assigning tags to feeds
+- View all articles from all feeds at once
+- View all articles from an individual feed
+- View all articles from feeds with a particular tag.
 
 A live version is hosted available at [jrss.netlify.com](https://jrss.netlify.com/).

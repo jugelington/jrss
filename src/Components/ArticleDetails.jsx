@@ -2,10 +2,20 @@ import React from 'react';
 import Card from 'react-bootstrap/lib/Card';
 import Button from 'react-bootstrap/lib/Button';
 import { imageExtractor } from '../utilities';
+import Parser from 'html-react-parser';
 
 const ArticleDetails = ({
   article,
-  article: { title, creator, author, pubDate, contentSnippet, link, source },
+  article: {
+    title,
+    creator,
+    author,
+    pubDate,
+    contentSnippet,
+    link,
+    source,
+    content,
+  },
 }) => {
   const image = imageExtractor(article);
   return (
@@ -41,11 +51,14 @@ const ArticleDetails = ({
           ) : (
             <></>
           )}
-          <Card.Text style={{ gridColumnStart: '2' }}>
-            {contentSnippet.substring(
-              0,
-              contentSnippet.indexOf('.', 500) + 1,
-            ) || contentSnippet}
+          <Card.Text style={{ gridColumnStart: '2', textAlign: 'left' }}>
+            {Parser(content, {
+              replace: domNode => {
+                if (domNode.name && domNode.name === 'a')
+                  return <>{domNode.data}</>;
+                if (domNode.name && domNode.name === 'img') return <></>;
+              },
+            })}
           </Card.Text>
         </section>
         <Button href={link} variant="secondary">
