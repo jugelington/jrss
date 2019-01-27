@@ -113,14 +113,13 @@ class App extends Component {
   };
 
   subscribeToFeed = (feedName, feedUrl, feedTags = []) => {
-    const newFeed = {
+    const formattedName = feedName.replace(/\s/g, '_').toLowerCase();
+    const feeds = this.cloneFeeds();
+    feeds[formattedName] = {
       displayName: feedName,
       url: feedUrl,
       tags: feedTags,
     };
-    const formattedName = feedName.replace(/\s/g, '_');
-    const feeds = this.cloneFeeds();
-    feeds[formattedName] = newFeed;
     const newTags = this.cloneTags();
     feedTags.forEach(tag => {
       if (!newTags.includes(tag.trim())) newTags.push(tag.trim());
