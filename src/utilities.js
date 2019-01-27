@@ -29,3 +29,16 @@ export const imageExtractor = article => {
       return article[key].match(srcRegex)[1];
   }
 };
+
+export const dateParser = parsedDate => {
+  const m = (parsedDate.getMonth() + 1).toString();
+  const d = parsedDate.getDate().toString();
+  const y = parsedDate.getFullYear();
+  return `${d.length === 1 ? `0${d}` : d}/${m.length === 1 ? `0${m}` : m}/${y}`;
+};
+
+export const timeParser = parsedDate => {
+  const h = parsedDate.getHours();
+  const mi = parsedDate.getMinutes().toString();
+  return `${h}:${mi.length === 1 ? `0${mi}` : mi}`;
+};

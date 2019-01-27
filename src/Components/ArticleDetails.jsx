@@ -1,23 +1,18 @@
 import React from 'react';
 import Card from 'react-bootstrap/lib/Card';
 import Button from 'react-bootstrap/lib/Button';
-import { imageExtractor } from '../utilities';
+import { imageExtractor, dateParser, timeParser } from '../utilities';
 import Parser from 'html-react-parser';
 
 const ArticleDetails = ({
   article,
-  article: {
-    title,
-    creator,
-    author,
-    pubDate,
-    contentSnippet,
-    link,
-    source,
-    content,
-  },
+  article: { title, creator, author, isoDate, link, source, content },
 }) => {
   const image = imageExtractor(article);
+  const parsedDate = new Date(isoDate);
+  const date = dateParser(parsedDate);
+  const time = timeParser(parsedDate);
+
   return (
     <Card
       style={{
@@ -68,7 +63,7 @@ const ArticleDetails = ({
       <Card.Footer>
         {creator || author}
         <br />
-        {pubDate}
+        {date} {time}
       </Card.Footer>
     </Card>
   );
