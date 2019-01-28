@@ -4,6 +4,7 @@ import ArticleDetails from './ArticleDetails';
 
 const FeedView = ({ articles, loading, feedName, tagName }) => {
   const filteredArticles = articles.filter(article => {
+    if (!article) return false;
     if (tagName) return article.feedTags.includes(tagName);
     if (feedName) return article.feedName === feedName;
     return true;

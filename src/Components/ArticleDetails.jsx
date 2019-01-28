@@ -19,8 +19,6 @@ const ArticleDetails = ({
         width: '90vw',
         margin: '5px',
         textAlign: 'center',
-        maxHeight: '25vw',
-        overflowY: 'auto',
       }}
       className="feed-card"
       variant="dark"

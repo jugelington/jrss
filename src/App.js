@@ -97,19 +97,27 @@ class App extends Component {
     const feeds = this.cloneFeeds();
     return Promise.all(
       Object.keys(feeds).map(feedName => {
-        return rssParser(feeds, feedName).then(articles => {
-          return (feeds[feedName].articles = articles);
-        });
+        return rssParser(feeds, feedName)
+          .then(articles => {
+            return (feeds[feedName].articles = articles);
+          })
+          .catch(err =>
+            console.log(
+              `error caused by feed: ${feedName}\nInside fetchFeeds() .map:\n${err}`,
+            ),
+          );
       }),
-    ).then(articles => {
-      const flattenedAndSortedArticles = _.flatten(articles).sort((a, b) =>
-        a.isoDate < b.isoDate ? 1 : -1,
-      );
-      return this.setState({
-        articles: flattenedAndSortedArticles,
-        loading: false,
-      });
-    });
+    )
+      .then(articles => {
+        const flattenedAndSortedArticles = _.flatten(articles).sort((a, b) =>
+          a.isoDate < b.isoDate ? 1 : -1,
+        );
+        return this.setState({
+          articles: flattenedAndSortedArticles,
+          loading: false,
+        });
+      })
+      .catch(err => console.log(`fetchFeeds() error outside .map`, err));
   };
 
   subscribeToFeed = (feedName, feedUrl, feedTags = []) => {
