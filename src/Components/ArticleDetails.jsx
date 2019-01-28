@@ -56,6 +56,8 @@ const ArticleDetails = ({
             style={{
               gridColumnStart: '2',
               textAlign: 'left',
+              overflowY: 'hidden',
+              maxHeight: '10vw',
             }}
           >
             {Parser(content, {
