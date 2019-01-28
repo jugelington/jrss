@@ -7,6 +7,7 @@ import Parser from 'html-react-parser';
 const ArticleDetails = ({
   article,
   article: { title, creator, author, isoDate, link, source, content },
+  openModal,
 }) => {
   const image = imageExtractor(article);
   const parsedDate = new Date(isoDate);
@@ -66,8 +67,9 @@ const ArticleDetails = ({
             })}
           </Card.Text>
         </section>
+        <Button onClick={() => openModal(article)}>read more</Button>
         <Button href={link} variant="secondary">
-          read more
+          go to site
         </Button>
       </Card.Body>
       <Card.Footer>

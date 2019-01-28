@@ -6,6 +6,7 @@ import ManageFeeds from './Components/ManageFeeds';
 import AddFeed from './Components/AddFeed';
 import _ from 'lodash';
 import { rssParser } from './utilities';
+import ArticleModal from './Components/ArticleModal';
 
 class App extends Component {
   state = {
@@ -39,25 +40,48 @@ class App extends Component {
     articles: [],
     loading: true,
     tags: ['music', 'culture', 'tech', 'politics'],
+    modalVisible: false,
+    modalArticle: null,
   };
 
   render() {
-    const { feeds, tags, articles, loading } = this.state;
+    const {
+      feeds,
+      tags,
+      articles,
+      loading,
+      modalVisible,
+      modalArticle,
+    } = this.state;
     return (
       <main className="App">
         <header className="App-header" />
         <NavigationBar feeds={feeds} tags={tags} />
+        {modalVisible ? (
+          <ArticleModal
+            article={modalArticle}
+            closeModal={this.closeModal}
+            modalVisible={modalVisible}
+          />
+        ) : null}
         <Router>
-          <FeedView path="/" articles={articles} loading={loading} />
+          <FeedView
+            path="/"
+            articles={articles}
+            loading={loading}
+            openModal={this.openModal}
+          />
           <FeedView
             path="/feeds/:feedName"
             articles={articles}
             loading={loading}
+            openModal={this.openModal}
           />
           <FeedView
             path="/tags/:tagName"
             articles={articles}
             loading={loading}
+            openModal={this.openModal}
           />
           <ManageFeeds
             path="/settings/managefeeds"
@@ -183,6 +207,14 @@ class App extends Component {
       currentlyUsedTags.includes(tag),
     );
     this.setState({ tags: filteredTags });
+  };
+
+  openModal = article => {
+    this.setState({ modalVisible: true, modalArticle: article });
+  };
+
+  closeModal = () => {
+    this.setState({ modalVisible: false, modalArticle: null });
   };
 }
 
