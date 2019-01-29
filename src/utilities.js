@@ -30,15 +30,19 @@ export const imageExtractor = article => {
   }
 };
 
-export const dateParser = parsedDate => {
-  const m = (parsedDate.getMonth() + 1).toString();
-  const d = parsedDate.getDate().toString();
-  const y = parsedDate.getFullYear();
-  return `${d.length === 1 ? `0${d}` : d}/${m.length === 1 ? `0${m}` : m}/${y}`;
+export const dateParser = date => {
+  const month = (date.getMonth() + 1).toString();
+  const day = date.getDate().toString();
+  const year = date.getFullYear();
+  return `${day.length === 1 ? `0${day}` : day}/${
+    month.length === 1 ? `0${month}` : month
+  }/${year}`;
 };
 
-export const timeParser = parsedDate => {
-  const h = parsedDate.getHours();
-  const mi = parsedDate.getMinutes().toString();
-  return `${h}:${mi.length === 1 ? `0${mi}` : mi}`;
+export const timeParser = date => {
+  const hour = date.getHours().toString();
+  const minute = date.getMinutes().toString();
+  return `${hour.length === 1 ? `0${hour}` : hour}:${
+    minute.length === 1 ? `0${minute}` : minute
+  }`;
 };
