@@ -25,6 +25,9 @@ const ArticleModal = ({
       <Modal.Body>{Parser(content)}</Modal.Body>
 
       <Modal.Footer>
+        <Button href={link} variant="primary">
+          Read On Site
+        </Button>
         <Button variant="secondary" onClick={closeModal}>
           Close
         </Button>

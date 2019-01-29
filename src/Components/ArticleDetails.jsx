@@ -69,9 +69,9 @@ const ArticleDetails = ({
             })}
           </Card.Text>
         </section>
-        <Button onClick={() => openModal(article)}>read more</Button>
+        <Button onClick={() => openModal(article)}>Read More</Button>
         <Button href={link} variant="secondary">
-          go to site
+          Read On Site
         </Button>
       </Card.Body>
       <Card.Footer>
