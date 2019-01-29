@@ -62,8 +62,6 @@ const ArticleDetails = ({
           >
             {Parser(content, {
               replace: domNode => {
-                if (domNode.name && domNode.name === 'a')
-                  return <>{domNode.data}</>;
                 if (domNode.name && domNode.name === 'img') return <></>;
               },
             })}
