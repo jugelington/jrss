@@ -3,7 +3,9 @@ import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Parser from 'html-react-parser';
+import { dateParser, timeParser } from '../utilities';
 import '../CSS/modal.css';
+import '../CSS/articleCard.css';
 
 const ArticleModal = ({
   article,
@@ -11,6 +13,9 @@ const ArticleModal = ({
   closeModal,
   modalVisible,
 }) => {
+  const parsedDate = new Date(isoDate);
+  const date = dateParser(parsedDate);
+  const time = timeParser(parsedDate);
   return (
     <Modal
       show={modalVisible}
@@ -18,9 +23,16 @@ const ArticleModal = ({
       aria-labelledby="example-custom-modal-styling-title"
     >
       <Modal.Header>
-        <Modal.Title id="example-custom-modal-styling-title">
-          {title}
-        </Modal.Title>
+        <div className="title-div">
+          <Modal.Title id="example-custom-modal-styling-title">
+            {title}
+          </Modal.Title>
+          {source}
+        </div>
+        <div className="time-div">
+          {time} <br />
+          {date}
+        </div>
       </Modal.Header>
 
       <Modal.Body>{Parser(content)}</Modal.Body>

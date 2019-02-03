@@ -20,11 +20,11 @@ const ArticleCard = ({
   return (
     <Card bg="dark" text="light" border="light" className="article-card">
       <Card.Header style={{ gridColumnStart: '1', gridColumnEnd: '3' }}>
-        <div className="article-title-div">
+        <div className="title-div">
           <Card.Title style={{ fontSize: '1.5rem' }}>{title}</Card.Title>
           <Card.Subtitle>{source}</Card.Subtitle>
         </div>
-        <div className="article-time-div">
+        <div className="time-div">
           {time} <br />
           {date}
         </div>

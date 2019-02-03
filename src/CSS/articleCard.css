@@ -29,7 +29,7 @@
   );
 }
 
-.article-title-div {
+.title-div {
   float: left;
 }
 
@@ -37,7 +37,7 @@
   float: right;
 }
 
-.article-time-div {
+.time-div {
   text-align: center;
   float: right;
 }
