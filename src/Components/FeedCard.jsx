@@ -7,7 +7,7 @@ import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Form from 'react-bootstrap/lib/Form';
 import Alert from 'react-bootstrap/lib/Alert';
 
-class FeedDetails extends Component {
+class FeedCard extends Component {
   state = {
     newTag: '',
   };
@@ -123,4 +123,4 @@ class FeedDetails extends Component {
   }
 }
 
-export default FeedDetails;
+export default FeedCard;

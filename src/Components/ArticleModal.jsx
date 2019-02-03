@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Parser from 'html-react-parser';
 import '../CSS/modal.css';
 
@@ -25,12 +26,14 @@ const ArticleModal = ({
       <Modal.Body>{Parser(content)}</Modal.Body>
 
       <Modal.Footer>
-        <Button href={link} variant="primary">
-          Read On Site
-        </Button>
-        <Button variant="secondary" onClick={closeModal}>
-          Close
-        </Button>
+        <ButtonGroup>
+          <Button href={link} variant="outline-light">
+            Read On Site
+          </Button>
+          <Button variant="outline-secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </ButtonGroup>
       </Modal.Footer>
     </Modal>
   );

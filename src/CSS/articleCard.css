@@ -1,0 +1,17 @@
+.article-card {
+  width: 95vw;
+  margin: 5px;
+}
+
+.article-title-div {
+  float: left;
+}
+
+.article-button-div {
+  float: right;
+}
+
+.article-time-div {
+  text-align: center;
+  float: right;
+}

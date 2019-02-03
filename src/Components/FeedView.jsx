@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactLoading from 'react-loading';
-import ArticleDetails from './ArticleDetails';
+import ArticleCard from './ArticleCard';
 
 const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
   const filteredArticles = articles.filter(article => {
@@ -16,7 +16,7 @@ const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
         <ReactLoading type={'spin'} color={'gray'} height={100} width={100} />
       ) : (
         filteredArticles.map(article => (
-          <ArticleDetails
+          <ArticleCard
             key={article.link}
             article={article}
             openModal={openModal}

@@ -1,5 +1,5 @@
 import React from 'react';
-import FeedDetails from './FeedDetails';
+import FeedCard from './FeedCard';
 
 const ManageFeeds = ({ feeds, unsubscribeFromFeed, deleteTag, addTag }) => {
   const feedsArr = Object.keys(feeds).sort();
@@ -7,7 +7,7 @@ const ManageFeeds = ({ feeds, unsubscribeFromFeed, deleteTag, addTag }) => {
   return (
     <div id="settingsCards">
       {feedsArr.map(feed => (
-        <FeedDetails
+        <FeedCard
           key={feed}
           feedName={feed}
           feed={feeds[feed]}
