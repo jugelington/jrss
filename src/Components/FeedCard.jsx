@@ -23,9 +23,9 @@ class FeedCard extends Component {
     return (
       <Card
         style={{
-          width: '50vw',
           margin: '5px',
           textAlign: 'center',
+          width: '400px',
         }}
         className="feed-card"
         variant="dark"
@@ -40,13 +40,7 @@ class FeedCard extends Component {
           </Card.Subtitle>
         </Card.Header>
         <Card.Body>
-          <Form
-            style={{
-              margin: '0 auto',
-              width: '25%',
-            }}
-            onSubmit={e => this.handleSubmit(e)}
-          >
+          <Form onSubmit={e => this.handleSubmit(e)}>
             <Form.Group controlId="formTag">
               <Form.Label>New Tag:</Form.Label>
               <Form.Control

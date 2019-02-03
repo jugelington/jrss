@@ -14,15 +14,15 @@ const NavigationBar = ({ feeds, tags }) => {
         <Navbar.Brand>jrss</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav className="mr-auto">
-          <Nav.Link href="/">front page</Nav.Link>
-          <NavDropdown title="tags" id="tagsDropdown">
+          <Nav.Link href="/">Front Page</Nav.Link>
+          <NavDropdown title="Tags" id="tagsDropdown">
             {tags.map(tag => (
               <NavDropdown.Item key={tag} href={`/tags/${tag}`}>
                 {tag}
               </NavDropdown.Item>
             ))}
           </NavDropdown>
-          <NavDropdown title="feeds" id="FeedsDropdown">
+          <NavDropdown title="Feeds" id="FeedsDropdown">
             {feedsArr.map(feed => (
               <NavDropdown.Item key={feed} href={`/feeds/${feed}`}>
                 {feeds[feed].displayName}
@@ -30,10 +30,10 @@ const NavigationBar = ({ feeds, tags }) => {
             ))}
             <NavDropdown.Divider />
             <NavDropdown.Item key="manageFeeds" href="/settings/managefeeds">
-              manage feeds
+              Manage Feeds
             </NavDropdown.Item>
             <NavDropdown.Item key="addFeed" href="/settings/addfeed">
-              add feed
+              Add Feed
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>

@@ -5,7 +5,14 @@ const ManageFeeds = ({ feeds, unsubscribeFromFeed, deleteTag, addTag }) => {
   const feedsArr = Object.keys(feeds).sort();
 
   return (
-    <div id="settingsCards">
+    <div
+      id="settingsCards"
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
+      }}
+    >
       {feedsArr.map(feed => (
         <FeedCard
           key={feed}

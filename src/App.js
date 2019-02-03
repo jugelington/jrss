@@ -12,7 +12,7 @@ class App extends Component {
   state = {
     feeds: {
       time: {
-        displayName: 'time',
+        displayName: 'Time',
         url: 'https://feeds.feedburner.com/time/topstories?format=xml',
         tags: ['politics'],
       },
