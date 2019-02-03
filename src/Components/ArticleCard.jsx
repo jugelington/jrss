@@ -29,42 +29,19 @@ const ArticleCard = ({
           {date}
         </div>
       </Card.Header>
-      <Card.Body>
-        <section
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '20% 80%',
-          }}
-        >
-          {image ? (
-            <Card.Img
-              src={image}
-              style={{
-                maxHeight: 'auto',
-                maxWidth: '80%',
-                gridColumnStart: '1',
-                border: '1px solid grey',
-                borderRadius: '5px',
-              }}
-            />
-          ) : (
-            <></>
-          )}
-          <Card.Text
-            style={{
-              gridColumnStart: '2',
-              textAlign: 'left',
-              overflowY: 'hidden',
-              maxHeight: '10vw',
-            }}
-          >
-            {Parser(content, {
-              replace: domNode => {
-                if (domNode.name && domNode.name === 'img') return <></>;
-              },
-            })}
-          </Card.Text>
-        </section>
+      <Card.Body className="article-card-body">
+        {image ? (
+          <Card.Img className="article-card-image" src={image} />
+        ) : (
+          <></>
+        )}
+        <Card.Text className="article-card-text" style={{}}>
+          {Parser(content, {
+            replace: domNode => {
+              if (domNode.name && domNode.name === 'img') return <></>;
+            },
+          })}
+        </Card.Text>
       </Card.Body>
 
       <Card.Footer className="article-card-footer">

@@ -3,6 +3,32 @@
   margin: 10px;
 }
 
+.article-card-body {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.article-card-image {
+  max-height: auto;
+  max-width: 80%;
+  grid-column-start: 1;
+  border: 1px solid white;
+  border-radius: 25px;
+}
+
+.article-card-text {
+  grid-column-start: 2;
+  overflow-y: hidden;
+  max-height: 8em;
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left 95%,
+    left bottom,
+    from(rgba(0, 0, 0, 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+}
+
 .article-title-div {
   float: left;
 }
