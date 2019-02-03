@@ -1,6 +1,6 @@
 .article-card {
   width: 95vw;
-  margin: 5px;
+  margin: 10px;
 }
 
 .article-title-div {
@@ -14,4 +14,12 @@
 .article-time-div {
   text-align: center;
   float: right;
+}
+
+.card-header {
+  border-bottom: 1px solid white !important;
+}
+
+.card-footer {
+  border-top: 1px solid white !important;
 }

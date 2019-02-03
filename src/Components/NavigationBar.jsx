@@ -3,18 +3,13 @@ import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
+import '../CSS/NavigationBar.css';
 
 const NavigationBar = ({ feeds, tags }) => {
   const feedsArr = Object.keys(feeds).sort();
   tags.sort();
   return (
-    <Navbar
-      id="NavigationBar"
-      variant="dark"
-      bg="dark"
-      fixed="top"
-      style={{ borderBottom: '1px solid grey' }}
-    >
+    <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
       <Container>
         <Navbar.Brand>jrss</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

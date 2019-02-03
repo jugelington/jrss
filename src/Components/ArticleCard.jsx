@@ -67,7 +67,7 @@ const ArticleCard = ({
         </section>
       </Card.Body>
 
-      <Card.Footer>
+      <Card.Footer className="article-card-footer">
         <div className="article-button-div">
           <ButtonGroup>
             <Button onClick={() => openModal(article)} variant="outline-light">
