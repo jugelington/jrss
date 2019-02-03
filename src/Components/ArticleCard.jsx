@@ -42,7 +42,7 @@ const ArticleCard = ({
             </Card.Text>
           </>
         ) : (
-          <Card.Text className="article-card-text">
+          <Card.Text className="article-card-text without-image">
             {Parser(content, {
               replace: domNode => {
                 if (domNode.name && domNode.name === 'img') return <></>;

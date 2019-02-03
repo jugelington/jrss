@@ -20,16 +20,21 @@
   grid-column-start: 2;
 }
 
+.without-image {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
 .article-card-text {
-  overflow-y: hidden;
+  overflow-y: auto;
   max-height: 8em;
-  -webkit-mask-image: -webkit-gradient(
+  /* -webkit-mask-image: -webkit-gradient(
     linear,
-    left 95%,
+    left 10%,
     left bottom,
     from(rgba(0, 0, 0, 1)),
     to(rgba(0, 0, 0, 0))
-  );
+  ); */
 }
 
 .title-div {
