@@ -109,6 +109,7 @@ class App extends Component {
     const savedState = JSON.parse(localStorage.getItem('savedState'));
     if (savedState) {
       savedState.modalVisible = false;
+      savedState.loading = true;
       this.setState(savedState);
     }
     this.fetchFeeds();
