@@ -47,11 +47,12 @@ const ArticleCard = ({
       <Card.Footer className="article-card-footer">
         <div className="article-button-div">
           <ButtonGroup>
-            <Button onClick={() => openModal(article)} variant="outline-light">
-              Read More
-            </Button>
+       
             <Button href={link} variant="outline-secondary">
               Read On Site
+            </Button>
+            <Button onClick={() => openModal(article)} variant="outline-light">
+              Read More
             </Button>
           </ButtonGroup>
         </div>

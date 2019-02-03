@@ -39,10 +39,10 @@ const ArticleModal = ({
 
       <Modal.Footer>
         <ButtonGroup>
-          <Button href={link} variant="outline-light">
+          <Button href={link} variant="outline-secondary">
             Read On Site
           </Button>
-          <Button variant="outline-secondary" onClick={closeModal}>
+          <Button variant="outline-light" onClick={closeModal}>
             Close
           </Button>
         </ButtonGroup>
