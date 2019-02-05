@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
 import NavigationBar from './Components/NavigationBar';
+import { Auth } from 'aws-amplify';
+import _ from 'lodash';
+
 import FeedView from './Components/FeedView';
 import ManageFeeds from './Components/ManageFeeds';
 import AddFeed from './Components/AddFeed';
-import _ from 'lodash';
+import Login from './Components/Login';
 import { rssParser } from './utilities';
 import ArticleModal from './Components/ArticleModal';
 
@@ -42,6 +45,8 @@ class App extends Component {
     tags: ['music', 'culture', 'tech', 'politics'],
     modalVisible: false,
     modalArticle: null,
+    isAuthenticated: false,
+    isAuthenticating: true,
   };
 
   render() {
@@ -52,50 +57,69 @@ class App extends Component {
       loading,
       modalVisible,
       modalArticle,
+      isAuthenticated,
+      isAuthenticating,
     } = this.state;
     return (
-      <main className="App">
-        <header className="App-header" />
-        <NavigationBar feeds={feeds} tags={tags} />
-        {modalVisible ? (
-          <ArticleModal
-            article={modalArticle}
-            closeModal={this.closeModal}
-            modalVisible={modalVisible}
-          />
-        ) : null}
-        <Router>
-          <FeedView
-            path="/"
-            articles={articles}
-            loading={loading}
-            openModal={this.openModal}
-          />
-          <FeedView
-            path="/feeds/:feedName"
-            articles={articles}
-            loading={loading}
-            openModal={this.openModal}
-          />
-          <FeedView
-            path="/tags/:tagName"
-            articles={articles}
-            loading={loading}
-            openModal={this.openModal}
-          />
-          <ManageFeeds
-            path="/settings/managefeeds"
+      !isAuthenticating && (
+        <main className="App">
+          <header className="App-header" />
+          <NavigationBar
             feeds={feeds}
-            unsubscribeFromFeed={this.unsubscribeFromFeed}
-            deleteTag={this.deleteTag}
-            addTag={this.addTag}
+            tags={tags}
+            isAuthenticated={isAuthenticated}
+            handleLogout={this.handleLogout}
           />
-          <AddFeed
-            path="/settings/addfeed"
-            subscribeToFeed={this.subscribeToFeed}
-          />
-        </Router>
-      </main>
+          {modalVisible && (
+            <ArticleModal
+              article={modalArticle}
+              closeModal={this.closeModal}
+              modalVisible={modalVisible}
+            />
+          )}
+          <Router>
+            <Login
+              path="/login"
+              isAuthenticated={isAuthenticated}
+              userHasAuthenticated={this.userHasAuthenticated}
+            />
+            <FeedView
+              isAuthenticated={isAuthenticated}
+              path="/"
+              articles={articles}
+              loading={loading}
+              openModal={this.openModal}
+            />
+            <FeedView
+              isAuthenticated={isAuthenticated}
+              path="/feeds/:feedName"
+              articles={articles}
+              loading={loading}
+              openModal={this.openModal}
+            />
+            <FeedView
+              isAuthenticated={isAuthenticated}
+              path="/tags/:tagName"
+              articles={articles}
+              loading={loading}
+              openModal={this.openModal}
+            />
+            <ManageFeeds
+              isAuthenticated={isAuthenticated}
+              path="/settings/managefeeds"
+              feeds={feeds}
+              unsubscribeFromFeed={this.unsubscribeFromFeed}
+              deleteTag={this.deleteTag}
+              addTag={this.addTag}
+            />
+            <AddFeed
+              isAuthenticated={isAuthenticated}
+              path="/settings/addfeed"
+              subscribeToFeed={this.subscribeToFeed}
+            />
+          </Router>
+        </main>
+      )
     );
   }
 
@@ -105,18 +129,29 @@ class App extends Component {
       this.fetchFeeds();
   }
 
-  componentDidMount() {
-    const savedState = JSON.parse(localStorage.getItem('savedState'));
-    if (savedState) {
-      savedState.modalVisible = false;
-      savedState.loading = true;
-      this.setState(savedState);
+  async componentDidMount() {
+    try {
+      await Auth.currentSession();
+      this.userHasAuthenticated(true);
+    } catch (e) {
+      if (e !== 'No current user') {
+        alert(e);
+      }
     }
-    this.fetchFeeds();
+
+    this.setState({ isAuthenticating: false });
+
+    // const savedState = JSON.parse(localStorage.getItem('savedState'));
+    // savedState && this.setState(savedState);
+    // this.fetchFeeds();
   }
 
   saveState = () => {
-    localStorage.setItem('savedState', JSON.stringify(this.state));
+    // const saveState = this.cloneFeeds();
+    // saveState.modalVisible = false;
+    // saveState.loading = true;
+    // saveState.isAuthenticating = true;
+    // localStorage.setItem('savedState', JSON.stringify(saveState));
   };
 
   fetchFeeds = () => {
@@ -217,6 +252,15 @@ class App extends Component {
 
   closeModal = () => {
     this.setState({ modalVisible: false, modalArticle: null });
+  };
+
+  userHasAuthenticated = authenticated => {
+    this.setState({ isAuthenticated: authenticated });
+  };
+
+  handleLogout = async () => {
+    await Auth.signOut();
+    this.setState({ isAuthenticated: false });
   };
 }
 

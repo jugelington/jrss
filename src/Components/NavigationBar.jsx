@@ -5,10 +5,10 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
 import '../CSS/NavigationBar.css';
 
-const NavigationBar = ({ feeds, tags }) => {
+const NavigationBar = ({ feeds, tags, isAuthenticated, handleLogout }) => {
   const feedsArr = Object.keys(feeds).sort();
   tags.sort();
-  return (
+  return isAuthenticated ? (
     <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
       <Container>
         <Navbar.Brand>jrss</Navbar.Brand>
@@ -36,6 +36,20 @@ const NavigationBar = ({ feeds, tags }) => {
               Add Feed
             </NavDropdown.Item>
           </NavDropdown>
+          <Nav.Link onClick={handleLogout} href="/login">
+            Log Out
+          </Nav.Link>
+        </Nav>
+      </Container>
+    </Navbar>
+  ) : (
+    <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
+      <Container>
+        <Navbar.Brand>jrss</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Nav className="mr-auto">
+          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link href="/signup">Sign Up</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

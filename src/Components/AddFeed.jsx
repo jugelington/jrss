@@ -63,7 +63,7 @@ class AddFeed extends Component {
             <Form.Text>Optional. Seperate tags with commas</Form.Text>
           </Form.Group>
           <Button variant="secondary" type="submit">
-            Submit
+            Subscribe
           </Button>
         </Form>
       </Card>
@@ -73,9 +73,7 @@ class AddFeed extends Component {
   handleSubmit(e) {
     const form = e.currentTarget;
     e.preventDefault();
-    if (form.checkValidity() === false) {
-      e.stopPropagation();
-    }
+    !form.checkValidity() && e.stopPropagation();
     const {
       formGroupDisplayName,
       formGroupFeedUrl,
