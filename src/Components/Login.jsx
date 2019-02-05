@@ -17,9 +17,7 @@ class Login extends Component {
   render() {
     const { validated, loading } = this.state;
 
-    return loading ? (
-      <ReactLoading type={'spin'} color={'gray'} height={100} width={100} />
-    ) : (
+    return (
       <Card
         bg="dark"
         text="light"
@@ -59,9 +57,20 @@ class Login extends Component {
               Please enter your password
             </Form.Control.Feedback>
           </Form.Group>
-          <Button variant="secondary" type="submit">
-            Log In
-          </Button>
+          {!loading ? (
+            <Button variant="secondary" type="submit">
+              Log In
+            </Button>
+          ) : (
+            <div style={{ margin: '0 auto', width: '48px', height: '48px' }}>
+              <ReactLoading
+                type={'spin'}
+                color={'grey'}
+                height={48}
+                width={48}
+              />
+            </div>
+          )}
         </Form>
       </Card>
     );
@@ -86,7 +95,7 @@ class Login extends Component {
       this.props.userHasAuthenticated(true);
       navigate('/');
     } catch (e) {
-      alert(e.message);
+      alert('Error! Please try again.');
       this.setState({ loading: false });
     }
   };
