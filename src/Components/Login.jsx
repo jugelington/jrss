@@ -62,14 +62,14 @@ class Login extends Component {
               Log In
             </Button>
           ) : (
-            <div style={{ margin: '0 auto', width: '48px', height: '48px' }}>
-              <ReactLoading
-                type={'spin'}
-                color={'grey'}
-                height={48}
-                width={48}
-              />
-            </div>
+            <ReactLoading
+              style={{
+                margin: '0 auto',
+                height: '48px',
+                width: '48px',
+              }}
+              type={'bubbles'}
+            />
           )}
         </Form>
       </Card>
