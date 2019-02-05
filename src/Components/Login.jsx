@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import { navigate } from '@reach/router';
+import ReactLoading from 'react-loading';
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
@@ -10,12 +11,15 @@ class Login extends Component {
     email: '',
     password: '',
     validated: false,
+    loading: false,
   };
 
   render() {
-    const { validated } = this.state;
+    const { validated, loading } = this.state;
 
-    return (
+    return loading ? (
+      <ReactLoading type={'spin'} color={'gray'} height={100} width={100} />
+    ) : (
       <Card
         bg="dark"
         text="light"
@@ -76,12 +80,14 @@ class Login extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    this.setState({ loading: true });
     try {
       await Auth.signIn(this.state.email, this.state.password);
       this.props.userHasAuthenticated(true);
       navigate('/');
     } catch (e) {
       alert(e.message);
+      this.setState({ loading: false });
     }
   };
 }

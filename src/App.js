@@ -77,47 +77,54 @@ class App extends Component {
               modalVisible={modalVisible}
             />
           )}
-          <Router>
+          {isAuthenticated ? (
+            <Router>
+              <Login
+                path="/login"
+                isAuthenticated={isAuthenticated}
+                userHasAuthenticated={this.userHasAuthenticated}
+              />
+              <FeedView
+                isAuthenticated={isAuthenticated}
+                path="/"
+                articles={articles}
+                loading={loading}
+                openModal={this.openModal}
+              />
+              <FeedView
+                isAuthenticated={isAuthenticated}
+                path="/feeds/:feedName"
+                articles={articles}
+                loading={loading}
+                openModal={this.openModal}
+              />
+              <FeedView
+                isAuthenticated={isAuthenticated}
+                path="/tags/:tagName"
+                articles={articles}
+                loading={loading}
+                openModal={this.openModal}
+              />
+              <ManageFeeds
+                isAuthenticated={isAuthenticated}
+                path="/settings/managefeeds"
+                feeds={feeds}
+                unsubscribeFromFeed={this.unsubscribeFromFeed}
+                deleteTag={this.deleteTag}
+                addTag={this.addTag}
+              />
+              <AddFeed
+                isAuthenticated={isAuthenticated}
+                path="/settings/addfeed"
+                subscribeToFeed={this.subscribeToFeed}
+              />
+            </Router>
+          ) : (
             <Login
-              path="/login"
               isAuthenticated={isAuthenticated}
               userHasAuthenticated={this.userHasAuthenticated}
             />
-            <FeedView
-              isAuthenticated={isAuthenticated}
-              path="/"
-              articles={articles}
-              loading={loading}
-              openModal={this.openModal}
-            />
-            <FeedView
-              isAuthenticated={isAuthenticated}
-              path="/feeds/:feedName"
-              articles={articles}
-              loading={loading}
-              openModal={this.openModal}
-            />
-            <FeedView
-              isAuthenticated={isAuthenticated}
-              path="/tags/:tagName"
-              articles={articles}
-              loading={loading}
-              openModal={this.openModal}
-            />
-            <ManageFeeds
-              isAuthenticated={isAuthenticated}
-              path="/settings/managefeeds"
-              feeds={feeds}
-              unsubscribeFromFeed={this.unsubscribeFromFeed}
-              deleteTag={this.deleteTag}
-              addTag={this.addTag}
-            />
-            <AddFeed
-              isAuthenticated={isAuthenticated}
-              path="/settings/addfeed"
-              subscribeToFeed={this.subscribeToFeed}
-            />
-          </Router>
+          )}
         </main>
       )
     );
