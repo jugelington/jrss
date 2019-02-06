@@ -5,22 +5,27 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CSS/index.css';
 import Amplify from 'aws-amplify';
-import config from './config';
+
+const {
+  cognito: { CREGION, USER_POOL_ID, APP_CLIENT_ID, IDENTITY_POOL_ID },
+
+  apiGateway: { AREGION, URL },
+} = process.env.API_TOKEN ? process.env : require('./config');
 
 Amplify.configure({
   Auth: {
     mandatorySignIn: true,
-    region: config.cognito.REGION,
-    userPoolId: config.cognito.USER_POOL_ID,
-    identityPoolId: config.cognito.IDENTITY_POOL_ID,
-    userPoolWebClientId: config.cognito.APP_CLIENT_ID,
+    region: CREGION,
+    userPoolId: USER_POOL_ID,
+    identityPoolId: IDENTITY_POOL_ID,
+    userPoolWebClientId: APP_CLIENT_ID,
   },
   API: {
     endpoints: [
       {
         name: 'jrss-api',
-        endpoint: config.apiGateway.URL,
-        region: config.apiGateway.REGION,
+        endpoint: URL,
+        region: AREGION,
       },
     ],
   },
