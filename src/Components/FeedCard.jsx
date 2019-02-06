@@ -8,6 +8,7 @@ import ReactLoading from 'react-loading';
 import edit from '../Images/edit.png';
 import back from '../Images/back.png';
 import { API } from 'aws-amplify';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 
 class FeedCard extends Component {
   state = {
@@ -16,6 +17,7 @@ class FeedCard extends Component {
     url: '',
     tags: [],
     loading: false,
+    deleting: false,
   };
 
   render() {
@@ -110,10 +112,15 @@ class FeedCard extends Component {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            {!this.state.loading ? (
-              <Button variant="secondary" type="submit">
-                Submit
-              </Button>
+            {!this.state.loading && !this.state.deleting ? (
+              <ButtonGroup>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+                <Button variant="danger" onClick={this.handleDelete}>
+                  Unsubscribe
+                </Button>
+              </ButtonGroup>
             ) : (
               <ReactLoading
                 style={{
@@ -148,6 +155,24 @@ class FeedCard extends Component {
     return API.put('jrss-api', `/feeds/${this.props.feed.feedId}`, {
       body: feed,
     });
+  };
+
+  deleteFeed = () => {
+    return API.del('jrss-api', `/feeds/${this.props.feed.feedId}`);
+  };
+
+  handleDelete = async e => {
+    e.preventDefault();
+    const confirmed = window.confirm('Are you sure you want to unsubscribe?');
+    if (!confirmed) return;
+    this.setState({ deleting: true });
+    try {
+      await this.deleteFeed();
+      navigate('/');
+    } catch (error) {
+      alert(error);
+      this.setState({ isDeleting: false });
+    }
   };
 
   handleChange = e => {

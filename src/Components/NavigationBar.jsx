@@ -15,7 +15,7 @@ const NavigationBar = ({
   const feedsArr = Object.keys(feeds).sort((a, b) =>
     b.displayName - a.displayName > 0 ? 1 : -1,
   );
-  tags.sort();
+  tags.sort((a, b) => (b.toUpperCase() - a.toUpperCase() > 0 ? 1 : -1));
   return isAuthenticated ? (
     <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
       <Container>
