@@ -47,7 +47,9 @@ const NavigationBar = ({
           <Nav.Link onClick={handleLogout} href="/login">
             Log Out
           </Nav.Link>
-          <p>{username}</p>
+          <Nav.Link eventKey="disabled" disabled>
+            {username}
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

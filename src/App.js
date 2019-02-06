@@ -131,7 +131,8 @@ class App extends Component {
       await Auth.currentSession();
       this.userHasAuthenticated(true);
       const feeds = await this.getFeeds();
-      this.setState({ feeds });
+      const currUser = await Auth.currentAuthenticatedUser();
+      this.setState({ feeds, username: currUser.attributes.email });
       this.fetchFeeds();
       this.getTags();
     } catch (e) {
@@ -139,10 +140,9 @@ class App extends Component {
         alert(e);
       }
     }
-    const currUser = await Auth.currentAuthenticatedUser();
+
     this.setState({
       isAuthenticating: false,
-      username: currUser.attributes.email,
     });
   };
 
