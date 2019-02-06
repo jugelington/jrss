@@ -6,7 +6,9 @@ import Container from 'react-bootstrap/lib/Container';
 import '../CSS/NavigationBar.css';
 
 const NavigationBar = ({ feeds, tags, isAuthenticated, handleLogout }) => {
-  const feedsArr = Object.keys(feeds).sort();
+  const feedsArr = Object.keys(feeds).sort((a, b) =>
+    b.displayName - a.displayName > 0 ? 1 : -1,
+  );
   tags.sort();
   return isAuthenticated ? (
     <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
