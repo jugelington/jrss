@@ -10,12 +10,11 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    validated: false,
     loading: false,
   };
 
   render() {
-    const { validated, loading } = this.state;
+    const { loading } = this.state;
 
     return (
       <Card
@@ -28,22 +27,16 @@ class Login extends Component {
           width: '30vw',
         }}
       >
-        <Form
-          noValidate
-          validated={validated}
-          onSubmit={e => this.handleSubmit(e)}
-        >
+        <Form onSubmit={e => this.handleSubmit(e)}>
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              autoFocus
               required
               type="email"
               placeholder="Enter your email address"
               onChange={e => this.handleChange(e)}
             />
-            <Form.Control.Feedback type="invalid">
-              Please enter your email address
-            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
@@ -53,9 +46,6 @@ class Login extends Component {
               placeholder="Enter your password"
               onChange={e => this.handleChange(e)}
             />
-            <Form.Control.Feedback type="invalid">
-              Please enter your password
-            </Form.Control.Feedback>
           </Form.Group>
           {!loading ? (
             <Button variant="secondary" type="submit">
@@ -88,11 +78,13 @@ class Login extends Component {
   };
 
   handleSubmit = async e => {
+    const { email, password } = this.state;
+    const { userHasAuthenticated } = this.props;
     e.preventDefault();
     this.setState({ loading: true });
     try {
-      await Auth.signIn(this.state.email, this.state.password);
-      this.props.userHasAuthenticated(true);
+      await Auth.signIn(email, password);
+      userHasAuthenticated(true);
       navigate('/');
     } catch (e) {
       alert('Error! Please try again.');

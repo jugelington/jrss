@@ -10,6 +10,7 @@ import AddFeed from './Components/AddFeed';
 import Login from './Components/Login';
 import { rssParser } from './utilities';
 import ArticleModal from './Components/ArticleModal';
+import SignUp from './Components/SignUp';
 
 class App extends Component {
   state = {
@@ -120,10 +121,17 @@ class App extends Component {
               />
             </Router>
           ) : (
-            <Login
-              isAuthenticated={isAuthenticated}
-              userHasAuthenticated={this.userHasAuthenticated}
-            />
+            <Router>
+              <SignUp
+                path="/signup"
+                userHasAuthenticated={this.userHasAuthenticated}
+              />
+              <Login
+                path="*"
+                isAuthenticated={isAuthenticated}
+                userHasAuthenticated={this.userHasAuthenticated}
+              />
+            </Router>
           )}
         </main>
       )
