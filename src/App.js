@@ -196,20 +196,20 @@ class App extends Component {
       .catch(err => console.log(`fetchFeeds() error outside .map`, err));
   };
 
-  subscribeToFeed = (feedName, feedUrl, feedTags = []) => {
-    const formattedName = feedName.replace(/\s/g, '_').toLowerCase();
-    const feeds = this.cloneFeeds();
-    feeds[formattedName] = {
-      displayName: feedName,
-      url: feedUrl,
-      tags: feedTags,
-    };
-    const newTags = this.cloneTags();
-    feedTags.forEach(tag => {
-      if (!newTags.includes(tag.trim())) newTags.push(tag.trim());
-    });
-    this.setState({ feeds, tags: newTags });
-  };
+  // subscribeToFeed = (feedName, feedUrl, feedTags = []) => {
+  //   const formattedName = feedName.replace(/\s/g, '_').toLowerCase();
+  //   const feeds = this.cloneFeeds();
+  //   feeds[formattedName] = {
+  //     displayName: feedName,
+  //     url: feedUrl,
+  //     tags: feedTags,
+  //   };
+  //   const newTags = this.cloneTags();
+  //   feedTags.forEach(tag => {
+  //     if (!newTags.includes(tag.trim())) newTags.push(tag.trim());
+  //   });
+  //   this.setState({ feeds, tags: newTags });
+  // };
 
   unsubscribeFromFeed = async feedName => {
     const newFeeds = this.cloneFeeds();
