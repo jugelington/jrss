@@ -5,7 +5,13 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
 import '../CSS/NavigationBar.css';
 
-const NavigationBar = ({ feeds, tags, isAuthenticated, handleLogout }) => {
+const NavigationBar = ({
+  feeds,
+  tags,
+  isAuthenticated,
+  handleLogout,
+  username,
+}) => {
   const feedsArr = Object.keys(feeds).sort((a, b) =>
     b.displayName - a.displayName > 0 ? 1 : -1,
   );
@@ -41,6 +47,7 @@ const NavigationBar = ({ feeds, tags, isAuthenticated, handleLogout }) => {
           <Nav.Link onClick={handleLogout} href="/login">
             Log Out
           </Nav.Link>
+          <p>{username}</p>
         </Nav>
       </Container>
     </Navbar>

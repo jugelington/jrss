@@ -15,7 +15,8 @@ import SignUp from './Components/SignUp';
 
 class App extends Component {
   state = {
-    feeds: null,
+    username: 'test_user',
+    feeds: [],
     articles: [],
     loading: true,
     tags: [],
@@ -35,6 +36,7 @@ class App extends Component {
       modalArticle,
       isAuthenticated,
       isAuthenticating,
+      username,
     } = this.state;
     return (
       !isAuthenticating && (
@@ -45,6 +47,7 @@ class App extends Component {
             tags={tags}
             isAuthenticated={isAuthenticated}
             handleLogout={this.handleLogout}
+            username={username}
           />
           {modalVisible && (
             <ArticleModal
@@ -114,6 +117,16 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    this.authFunc();
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
+      this.authFunc();
+    }
+  }
+
+  authFunc = async () => {
     try {
       await Auth.currentSession();
       this.userHasAuthenticated(true);
@@ -126,8 +139,12 @@ class App extends Component {
         alert(e);
       }
     }
-    this.setState({ isAuthenticating: false });
-  }
+    const currUser = await Auth.currentAuthenticatedUser();
+    this.setState({
+      isAuthenticating: false,
+      username: currUser.attributes.email,
+    });
+  };
 
   fetchFeeds = () => {
     const feeds = this.cloneFeeds();
