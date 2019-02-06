@@ -80,23 +80,6 @@ class AddFeed extends Component {
     );
   }
 
-  // handleSubmit(e) {
-  //   const form = e.currentTarget;
-  //   e.preventDefault();
-  //   !form.checkValidity() && e.stopPropagation();
-  //   const {
-  //     name,
-  //     url,
-  //     tags
-  //   } = this.state;
-  //   this.setState({ validated: true });
-  //   this.props.subscribeToFeed(
-  //     name,
-  //     url,
-  //     tags.split(','),
-  //   );
-  // }
-
   handleSubmit = async e => {
     const { url, name, tags } = this.state;
     e.preventDefault();
@@ -105,7 +88,7 @@ class AddFeed extends Component {
       await this.subscribeToFeed({
         displayName: name,
         url: url,
-        tags: tags.split(','),
+        tags: tags.split(',').map(tag => tag.trim()),
       });
       navigate('/');
     } catch (error) {

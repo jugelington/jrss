@@ -3,6 +3,7 @@ import { Router } from '@reach/router';
 import NavigationBar from './Components/NavigationBar';
 import { Auth } from 'aws-amplify';
 import _ from 'lodash';
+import { API } from 'aws-amplify';
 
 import FeedView from './Components/FeedView';
 import ManageFeeds from './Components/ManageFeeds';
@@ -14,36 +15,10 @@ import SignUp from './Components/SignUp';
 
 class App extends Component {
   state = {
-    feeds: {
-      time: {
-        displayName: 'Time',
-        url: 'https://feeds.feedburner.com/time/topstories?format=xml',
-        tags: ['politics'],
-      },
-      guardian: {
-        displayName: 'Guardian',
-        url: 'https://www.theguardian.com/world/rss',
-        tags: ['politics'],
-      },
-      verge: {
-        displayName: 'Verge',
-        url: 'https://www.theverge.com/rss/index.xml',
-        tags: ['tech'],
-      },
-      jezebel: {
-        displayName: 'Jezebel',
-        url: 'https://jezebel.com/rss',
-        tags: ['culture'],
-      },
-      stereogum: {
-        displayName: 'Stereogum',
-        url: 'https://www.stereogum.com/feed/',
-        tags: ['music', 'culture'],
-      },
-    },
+    feeds: null,
     articles: [],
     loading: true,
-    tags: ['music', 'culture', 'tech', 'politics'],
+    tags: [],
     modalVisible: false,
     modalArticle: null,
     isAuthenticated: false,
@@ -138,36 +113,21 @@ class App extends Component {
     );
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    this.saveState();
-    if (JSON.stringify(this.state) !== JSON.stringify(prevState))
-      this.fetchFeeds();
-  }
-
   async componentDidMount() {
     try {
       await Auth.currentSession();
       this.userHasAuthenticated(true);
+      const feeds = await this.getFeeds();
+      this.setState({ feeds });
+      this.fetchFeeds();
+      this.getTags();
     } catch (e) {
       if (e !== 'No current user') {
         alert(e);
       }
     }
-
     this.setState({ isAuthenticating: false });
-
-    // const savedState = JSON.parse(localStorage.getItem('savedState'));
-    // savedState && this.setState(savedState);
-    // this.fetchFeeds();
   }
-
-  saveState = () => {
-    // const saveState = this.cloneFeeds();
-    // saveState.modalVisible = false;
-    // saveState.loading = true;
-    // saveState.isAuthenticating = true;
-    // localStorage.setItem('savedState', JSON.stringify(saveState));
-  };
 
   fetchFeeds = () => {
     const feeds = this.cloneFeeds();
@@ -196,51 +156,13 @@ class App extends Component {
       .catch(err => console.log(`fetchFeeds() error outside .map`, err));
   };
 
-  // subscribeToFeed = (feedName, feedUrl, feedTags = []) => {
-  //   const formattedName = feedName.replace(/\s/g, '_').toLowerCase();
-  //   const feeds = this.cloneFeeds();
-  //   feeds[formattedName] = {
-  //     displayName: feedName,
-  //     url: feedUrl,
-  //     tags: feedTags,
-  //   };
-  //   const newTags = this.cloneTags();
-  //   feedTags.forEach(tag => {
-  //     if (!newTags.includes(tag.trim())) newTags.push(tag.trim());
-  //   });
-  //   this.setState({ feeds, tags: newTags });
-  // };
-
-  unsubscribeFromFeed = async feedName => {
-    const newFeeds = this.cloneFeeds();
-    delete newFeeds[feedName];
-    const filteredArticles = this.state.articles.filter(
-      article => article.feedName !== feedName,
-    );
-    await this.setState({ feeds: newFeeds, articles: filteredArticles });
-    this.removeRedundantTags();
+  getFeeds = () => {
+    return API.get('jrss-api', '/feeds');
   };
 
-  deleteTag = async (feedName, deletedTag) => {
-    const feeds = this.cloneFeeds();
-    feeds[feedName].tags = feeds[feedName].tags.filter(
-      tag => tag !== deletedTag,
-    );
-    await this.setState({ feeds });
-    this.removeRedundantTags();
-  };
-
-  addTag = (feedName, newTag) => {
-    const feeds = this.cloneFeeds();
-    const tags = this.cloneTags();
-    const tag = newTag.toLowerCase();
-    if (!tags.includes(tag)) {
-      tags.push(tag);
-    }
-    if (!feeds[feedName].tags.includes(tag)) {
-      feeds[feedName].tags.push(tag);
-    }
-    this.setState({ feeds, tags });
+  getTags = () => {
+    const tags = _.flatten(this.state.feeds.map(feed => feed.tags));
+    this.setState({ tags: _.uniq(tags) });
   };
 
   cloneFeeds = () => {
@@ -250,17 +172,6 @@ class App extends Component {
   cloneTags = () => {
     return JSON.parse(JSON.stringify(this.state.tags));
   };
-
-  removeRedundantTags = () => {
-    const currentlyUsedTags = _.flatten(
-      Object.keys(this.state.feeds).map(feed => this.state.feeds[feed].tags),
-    );
-    const filteredTags = this.cloneTags().filter(tag =>
-      currentlyUsedTags.includes(tag),
-    );
-    this.setState({ tags: filteredTags });
-  };
-
   openModal = article => {
     this.setState({ modalVisible: true, modalArticle: article });
   };
