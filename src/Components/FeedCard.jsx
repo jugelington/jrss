@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/lib/Card';
+import Form from 'react-bootstrap/lib/Form';
+import Button from 'react-bootstrap/lib/Button';
+
+import ReactLoading from 'react-loading';
 import edit from '../Images/edit.png';
+import back from '../Images/back.png';
 
 class FeedCard extends Component {
-  state = {};
+  state = {
+    editing: false,
+    displayName: '',
+    url: '',
+    tags: [],
+    loading: false,
+  };
 
   render() {
     const { feed } = this.props;
+    const { editing } = this.state;
     return (
       <Card
         style={{
@@ -20,6 +32,28 @@ class FeedCard extends Component {
         text="light"
         border="secondary"
       >
+        {editing ? this.editCard(feed) : this.staticCard(feed)}
+      </Card>
+    );
+  }
+
+  componentDidMount() {
+    const { feed } = this.props;
+
+    this.setState({
+      displayName: feed.displayName,
+      url: feed.url,
+      tags: feed.tags,
+    });
+  }
+
+  toggleEdit = () => {
+    this.setState({ editing: !this.state.editing });
+  };
+
+  staticCard = feed => {
+    return (
+      <>
         <Card.Header>
           <Card.Title>
             {feed.displayName}
@@ -28,6 +62,7 @@ class FeedCard extends Component {
               width="24px"
               alt="edit"
               style={{ float: 'right' }}
+              onClick={this.toggleEdit}
             />
           </Card.Title>
         </Card.Header>
@@ -39,9 +74,63 @@ class FeedCard extends Component {
           <Card.Subtitle>Tags:</Card.Subtitle>
           <Card.Text>{feed.tags.join(' ')}</Card.Text>
         </Card.Body>
-      </Card>
+      </>
     );
-  }
+  };
+
+  editCard = feed => {
+    return (
+      <>
+        <Card.Header>
+          <Card.Title>
+            {feed.displayName}
+            <img
+              src={back}
+              width="24px"
+              alt="back"
+              style={{ float: 'right' }}
+              onClick={this.toggleEdit}
+            />
+          </Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="displayName">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control
+                autoFocus
+                required
+                type="text"
+                value={this.state.displayName}
+              />
+            </Form.Group>
+            <Form.Group controlId="url">
+              <Form.Label>URL:</Form.Label>
+              <Form.Control required type="url" value={this.state.url} />
+            </Form.Group>
+            <Form.Group controlId="tags">
+              <Form.Label>Tags:</Form.Label>
+              <Form.Control type="text" value={this.state.tags} />
+            </Form.Group>
+            {!this.state.loading ? (
+              <Button variant="secondary" type="submit">
+                Submit
+              </Button>
+            ) : (
+              <ReactLoading
+                style={{
+                  margin: '0 auto',
+                  height: '48px',
+                  width: '48px',
+                }}
+                type={'bubbles'}
+              />
+            )}
+          </Form>
+        </Card.Body>
+      </>
+    );
+  };
 }
 
 export default FeedCard;
