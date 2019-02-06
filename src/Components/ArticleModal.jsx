@@ -35,7 +35,27 @@ const ArticleModal = ({
         </div>
       </Modal.Header>
 
-      <Modal.Body>{Parser(content)}</Modal.Body>
+      <Modal.Body style={{ float: 'left', position: 'relative' }}>
+        {Parser(content, {
+          replace: domNode => {
+            if (domNode.name && domNode.name === 'img') {
+              return (
+                <img
+                  alt={domNode.attribs.alt}
+                  src={domNode.attribs.src}
+                  style={{
+                    maxWidth: '25%',
+                    float: 'left',
+                    marginRight: '5px',
+                    border: '1px solid white',
+                    borderRadius: '5px',
+                  }}
+                />
+              );
+            }
+          },
+        })}
+      </Modal.Body>
 
       <Modal.Footer>
         <ButtonGroup>

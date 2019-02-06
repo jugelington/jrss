@@ -10,7 +10,7 @@ const {
   cognito: { CREGION, USER_POOL_ID, APP_CLIENT_ID, IDENTITY_POOL_ID },
 
   apiGateway: { AREGION, URL },
-} = process.env.API_TOKEN ? process.env : require('./config');
+} = require('./config');
 
 Amplify.configure({
   Auth: {

@@ -13,7 +13,7 @@
   max-width: 80%;
   grid-column-start: 1;
   border: 1px solid white;
-  border-radius: 25px;
+  border-radius: 5px;
 }
 
 .with-image {
