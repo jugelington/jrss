@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/lib/Card';
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
+import { navigate } from '@reach/router';
 
 import ReactLoading from 'react-loading';
 import edit from '../Images/edit.png';
 import back from '../Images/back.png';
+import { API } from 'aws-amplify';
 
 class FeedCard extends Component {
   state = {
@@ -36,20 +38,6 @@ class FeedCard extends Component {
       </Card>
     );
   }
-
-  componentDidMount() {
-    const { feed } = this.props;
-
-    this.setState({
-      displayName: feed.displayName,
-      url: feed.url,
-      tags: feed.tags,
-    });
-  }
-
-  toggleEdit = () => {
-    this.setState({ editing: !this.state.editing });
-  };
 
   staticCard = feed => {
     return (
@@ -102,15 +90,25 @@ class FeedCard extends Component {
                 required
                 type="text"
                 value={this.state.displayName}
+                onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group controlId="url">
               <Form.Label>URL:</Form.Label>
-              <Form.Control required type="url" value={this.state.url} />
+              <Form.Control
+                required
+                type="url"
+                value={this.state.url}
+                onChange={this.handleChange}
+              />
             </Form.Group>
             <Form.Group controlId="tags">
               <Form.Label>Tags:</Form.Label>
-              <Form.Control type="text" value={this.state.tags} />
+              <Form.Control
+                type="text"
+                value={this.state.tags}
+                onChange={this.handleChange}
+              />
             </Form.Group>
             {!this.state.loading ? (
               <Button variant="secondary" type="submit">
@@ -130,6 +128,48 @@ class FeedCard extends Component {
         </Card.Body>
       </>
     );
+  };
+
+  componentDidMount() {
+    const { feed } = this.props;
+
+    this.setState({
+      displayName: feed.displayName,
+      url: feed.url,
+      tags: feed.tags,
+    });
+  }
+
+  toggleEdit = () => {
+    this.setState({ editing: !this.state.editing });
+  };
+
+  patchFeed = feed => {
+    return API.put('jrss-api', `/feeds/${this.props.feed.feedId}`, {
+      body: feed,
+    });
+  };
+
+  handleChange = e => {
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
+  };
+
+  handleSubmit = async e => {
+    const { url, displayName, tags } = this.state;
+    e.preventDefault();
+    this.setState({ loading: true });
+    try {
+      await this.patchFeed({
+        displayName: displayName,
+        url: url,
+        tags: tags.split(',').map(tag => tag.trim()),
+      });
+      navigate('/');
+    } catch (error) {
+      alert(error);
+      this.setState({ isLoading: false });
+    }
   };
 }
 
