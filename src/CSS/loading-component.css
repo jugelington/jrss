@@ -1,0 +1,11 @@
+.loading-bubbles {
+  margin: 0 auto;
+  height: 48px;
+  width: 48px;
+}
+
+.loading-spinner {
+  margin: 0 auto;
+  width: 30%;
+  height: 30%;
+}

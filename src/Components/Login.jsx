@@ -1,33 +1,30 @@
+// React
 import React, { Component } from 'react';
+// utilities
 import { Auth } from 'aws-amplify';
 import { navigate } from '@reach/router';
 import ReactLoading from 'react-loading';
+// react-bootstrap
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
+// CSS
+import '../CSS/login.css';
+import '../CSS/loading-component.css';
 
 class Login extends Component {
   state = {
-    email: '',
-    password: '',
+    email: 'example.user@email.com',
+    password: 'Passw0rd!',
     loading: false,
   };
 
   render() {
-    const { loading } = this.state;
+    const { loading, email, password } = this.state;
 
     return (
-      <Card
-        bg="dark"
-        text="light"
-        border="secondary"
-        style={{
-          textAlign: 'center',
-          padding: '5px',
-          width: '30vw',
-        }}
-      >
-        <Form onSubmit={e => this.handleSubmit(e)}>
+      <Card bg="dark" text="light" border="secondary" className="loginCard">
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -35,7 +32,8 @@ class Login extends Component {
               required
               type="email"
               placeholder="Enter your email address"
-              onChange={e => this.handleChange(e)}
+              value={email}
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group controlId="password">
@@ -43,8 +41,9 @@ class Login extends Component {
             <Form.Control
               required
               type="password"
+              value={password}
               placeholder="Enter your password"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
           </Form.Group>
           {!loading ? (
@@ -52,42 +51,31 @@ class Login extends Component {
               Log In
             </Button>
           ) : (
-            <ReactLoading
-              style={{
-                margin: '0 auto',
-                height: '48px',
-                width: '48px',
-              }}
-              type={'bubbles'}
-            />
+            <ReactLoading className="loading-bubbles" type={'bubbles'} />
           )}
         </Form>
       </Card>
     );
   }
 
-  validateForm = () => {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  };
-
-  handleChange = e => {
-    const { id, value } = e.target;
+  handleChange = event => {
+    const { id, value } = event.target;
     this.setState({
       [id]: value,
     });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async event => {
     const { email, password } = this.state;
     const { userHasAuthenticated } = this.props;
-    e.preventDefault();
+    event.preventDefault();
     this.setState({ loading: true });
     try {
       await Auth.signIn(email, password);
       userHasAuthenticated(true);
       navigate('/');
-    } catch (e) {
-      alert('Error! Please try again.');
+    } catch (error) {
+      alert(error);
       this.setState({ loading: false });
     }
   };

@@ -8,3 +8,16 @@
   max-width: 95vw !important;
   width: 95vw !important;
 }
+
+.modal-body {
+  float: left;
+  position: relative;
+}
+
+.modal-image {
+  max-width: 25%;
+  float: left;
+  margin-right: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+}

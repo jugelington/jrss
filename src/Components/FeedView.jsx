@@ -1,6 +1,10 @@
 import React from 'react';
+// utilities
 import ReactLoading from 'react-loading';
+// components
 import ArticleCard from './ArticleCard';
+// css
+import '../CSS/loading-component.css';
 
 const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
   const filteredArticles = articles.filter(article => {
@@ -13,7 +17,11 @@ const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
   return (
     <section className="article-container">
       {loading ? (
-        <ReactLoading type={'spin'} color={'gray'} height={100} width={100} />
+        <ReactLoading
+          type={'spin'}
+          color={'gray'}
+          className="loading-spinner"
+        />
       ) : (
         filteredArticles.map(article => (
           <ArticleCard

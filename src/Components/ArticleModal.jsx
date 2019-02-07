@@ -1,15 +1,17 @@
 import React from 'react';
+// react-bootstrap
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+// utilities
 import Parser from 'html-react-parser';
 import { dateParser, timeParser } from '../utilities';
+// css
 import '../CSS/modal.css';
-import '../CSS/articleCard.css';
+import '../CSS/cards.css';
 
 const ArticleModal = ({
-  article,
-  article: { title, creator, author, isoDate, link, source, content },
+  article: { title, isoDate, link, source, content },
   closeModal,
   modalVisible,
 }) => {
@@ -35,7 +37,7 @@ const ArticleModal = ({
         </div>
       </Modal.Header>
 
-      <Modal.Body style={{ float: 'left', position: 'relative' }}>
+      <Modal.Body className="modal-body">
         {Parser(content, {
           replace: domNode => {
             if (domNode.name && domNode.name === 'img') {
@@ -43,13 +45,7 @@ const ArticleModal = ({
                 <img
                   alt={domNode.attribs.alt}
                   src={domNode.attribs.src}
-                  style={{
-                    maxWidth: '25%',
-                    float: 'left',
-                    marginRight: '5px',
-                    border: '1px solid white',
-                    borderRadius: '5px',
-                  }}
+                  className="modal-image"
                 />
               );
             }

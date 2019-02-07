@@ -1,8 +1,10 @@
 import React from 'react';
+// react-bootstrap
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
 import Container from 'react-bootstrap/lib/Container';
+// css
 import '../CSS/NavigationBar.css';
 
 const NavigationBar = ({

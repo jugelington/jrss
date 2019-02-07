@@ -1,6 +1,16 @@
+/* Article Cards */
 .article-card {
   width: 95vw;
   margin: 10px;
+}
+
+.article-card-header {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.article-card-title {
+  font-size: 1.5rem;
 }
 
 .article-card-body {
@@ -28,13 +38,6 @@
 .article-card-text {
   overflow-y: auto;
   max-height: 8em;
-  /* -webkit-mask-image: -webkit-gradient(
-    linear,
-    left 10%,
-    left bottom,
-    from(rgba(0, 0, 0, 1)),
-    to(rgba(0, 0, 0, 0))
-  ); */
 }
 
 .title-div {
@@ -56,4 +59,37 @@
 
 .card-footer {
   border-top: 1px solid white !important;
+}
+
+/* AddFeed */
+
+.add-feed-card {
+  text-align: center;
+  padding: 5px;
+  width: 30vw;
+}
+
+/* FeedCard */
+.feed-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.feed-card {
+  margin: 5px;
+  text-align: center;
+  width: fit-content;
+  border: 1px solid white;
+}
+
+.feed-card-title {
+  float: right;
+}
+
+/* SignUp */
+.signup-card {
+  text-align: center;
+  padding: 5px;
+  width: 30vw;
 }

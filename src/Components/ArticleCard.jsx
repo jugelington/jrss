@@ -1,11 +1,14 @@
 import React from 'react';
+// react-bootstrap
 import Card from 'react-bootstrap/lib/Card';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-
+// utilities
 import { imageExtractor, dateParser, timeParser } from '../utilities';
 import Parser from 'html-react-parser';
-import '../CSS/articleCard.css';
+// CSS
+import '../CSS/cards.css';
+import '../CSS/loading-component.css';
 
 const ArticleCard = ({
   article,
@@ -19,9 +22,9 @@ const ArticleCard = ({
 
   return (
     <Card bg="dark" text="light" border="light" className="article-card">
-      <Card.Header style={{ gridColumnStart: '1', gridColumnEnd: '3' }}>
+      <Card.Header className="article-card-header">
         <div className="title-div">
-          <Card.Title style={{ fontSize: '1.5rem' }}>{title}</Card.Title>
+          <Card.Title className="article-card-title">{title}</Card.Title>
           <Card.Subtitle>{source}</Card.Subtitle>
         </div>
         <div className="time-div">

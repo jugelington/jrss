@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+// react-bootstrap
 import Card from 'react-bootstrap/lib/Card';
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+// utilities
 import { navigate } from '@reach/router';
-
 import ReactLoading from 'react-loading';
+import { API } from 'aws-amplify';
+// images
 import edit from '../Images/edit.png';
 import back from '../Images/back.png';
-import { API } from 'aws-amplify';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+// css
+import '../CSS/cards.css';
+import '../CSS/loading-component.css';
 
 class FeedCard extends Component {
   state = {
@@ -25,11 +30,6 @@ class FeedCard extends Component {
     const { editing } = this.state;
     return (
       <Card
-        style={{
-          margin: '5px',
-          textAlign: 'center',
-          width: '400px',
-        }}
         className="feed-card"
         variant="dark"
         bg="dark"
@@ -51,7 +51,7 @@ class FeedCard extends Component {
               src={edit}
               width="24px"
               alt="edit"
-              style={{ float: 'right' }}
+              className="feed-card-title"
               onClick={this.toggleEdit}
             />
           </Card.Title>
@@ -78,7 +78,7 @@ class FeedCard extends Component {
               src={back}
               width="24px"
               alt="back"
-              style={{ float: 'right' }}
+              className="feed-card-title"
               onClick={this.toggleEdit}
             />
           </Card.Title>
@@ -122,14 +122,7 @@ class FeedCard extends Component {
                 </Button>
               </ButtonGroup>
             ) : (
-              <ReactLoading
-                style={{
-                  margin: '0 auto',
-                  height: '48px',
-                  width: '48px',
-                }}
-                type={'bubbles'}
-              />
+              <ReactLoading className="loading-bubbles" type={'bubbles'} />
             )}
           </Form>
         </Card.Body>

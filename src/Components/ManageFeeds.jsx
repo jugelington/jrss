@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+// components
 import FeedCard from './FeedCard';
+// utilities
 import { API } from 'aws-amplify';
+// css
+import '../CSS/cards.css';
 
 class ManageFeeds extends Component {
   state = {
@@ -9,23 +13,13 @@ class ManageFeeds extends Component {
   render() {
     const { feeds } = this.state;
     return (
-      <div
-        id="settingsCards"
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-evenly',
-        }}
-      >
+      <div className="feed-cards-container">
         {feeds &&
           feeds.map(feed => (
             <FeedCard
               key={feed.feedID}
               feedName={feed.displayName}
               feed={feed}
-              // unsubscribeFromFeed={unsubscribeFromFeed}
-              // deleteTag={deleteTag}
-              // addTag={addTag}
             />
           ))}
       </div>

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+// utilities
 import { navigate } from '@reach/router';
 import { Auth } from 'aws-amplify';
 import ReactLoading from 'react-loading';
+// react-bootstrap
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
+// css
+import '../CSS/cards.css';
 
 class SignUp extends Component {
   state = {
@@ -18,16 +22,7 @@ class SignUp extends Component {
 
   render() {
     return (
-      <Card
-        bg="dark"
-        text="light"
-        border="secondary"
-        style={{
-          textAlign: 'center',
-          padding: '5px',
-          width: '30vw',
-        }}
-      >
+      <Card bg="dark" text="light" border="secondary" className="signup-card">
         {this.state.newUser === null
           ? this.signUpForm()
           : this.confirmationForm()}

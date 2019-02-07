@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+// utilities
 import { API } from 'aws-amplify';
 import ReactLoading from 'react-loading';
 import { navigate } from '@reach/router';
+// react-bootstrap
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
+// css
+import '../CSS/loading-component.css';
+import '../CSS/cards.css';
 
 class AddFeed extends Component {
   state = {
@@ -17,24 +22,15 @@ class AddFeed extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <Card
-        bg="dark"
-        text="light"
-        border="secondary"
-        style={{
-          textAlign: 'center',
-          padding: '5px',
-          width: '30vw',
-        }}
-      >
-        <Form onSubmit={e => this.handleSubmit(e)}>
+      <Card bg="dark" text="light" border="secondary" className="add-feed-card">
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control
               required
               type="text"
               placeholder="enter name of feed"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
             <Form.Control.Feedback type="invalid">
               Please enter a valid name.
@@ -46,7 +42,7 @@ class AddFeed extends Component {
               required
               type="url"
               placeholder="enter url of rss feed"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
             <Form.Control.Feedback type="invalid">
               Please enter a valid url.
@@ -57,7 +53,7 @@ class AddFeed extends Component {
             <Form.Control
               type="text"
               placeholder="enter tags to categorise feed"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
             <Form.Text>Optional. Seperate tags with commas</Form.Text>
           </Form.Group>
@@ -66,14 +62,7 @@ class AddFeed extends Component {
               Subscribe
             </Button>
           ) : (
-            <ReactLoading
-              style={{
-                margin: '0 auto',
-                height: '48px',
-                width: '48px',
-              }}
-              type={'bubbles'}
-            />
+            <ReactLoading className="loading-bubbles" type={'bubbles'} />
           )}
         </Form>
       </Card>
