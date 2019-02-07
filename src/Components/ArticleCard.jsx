@@ -12,7 +12,7 @@ import '../CSS/loading-component.css';
 
 const ArticleCard = ({
   article,
-  article: { title, creator, author, isoDate, link, source, content },
+  article: { title, isoDate, link, source, content },
   openModal,
 }) => {
   const image = imageExtractor(article);
@@ -55,8 +55,8 @@ const ArticleCard = ({
         )}
       </Card.Body>
 
-      <Card.Footer className="article-card-footer">
-        <div className="article-button-div">
+      <Card.Footer className="article-card-footer ">
+        <section className="article-button-div">
           <ButtonGroup>
             <Button href={link} variant="outline-secondary">
               Read On Site
@@ -65,7 +65,7 @@ const ArticleCard = ({
               Read More
             </Button>
           </ButtonGroup>
-        </div>
+        </section>
       </Card.Footer>
     </Card>
   );

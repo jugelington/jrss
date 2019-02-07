@@ -22,13 +22,12 @@ const ArticleModal = ({
     <Modal
       show={modalVisible}
       dialogClassName="modal-90w"
+      className="modal"
       aria-labelledby="example-custom-modal-styling-title"
     >
       <Modal.Header>
         <div className="title-div">
-          <Modal.Title id="example-custom-modal-styling-title">
-            {title}
-          </Modal.Title>
+          <Modal.Title id="modal-title">{title}</Modal.Title>
           {source}
         </div>
         <div className="time-div">
@@ -53,7 +52,7 @@ const ArticleModal = ({
         })}
       </Modal.Body>
 
-      <Modal.Footer>
+      <Modal.Footer className="modal-footer">
         <ButtonGroup>
           <Button href={link} variant="outline-secondary">
             Read On Site

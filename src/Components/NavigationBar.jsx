@@ -21,10 +21,9 @@ const NavigationBar = ({
   return isAuthenticated ? (
     <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
       <Container>
-        <Navbar.Brand>jrss</Navbar.Brand>
+        <Navbar.Brand href="/">jrss</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav className="mr-auto">
-          <Nav.Link href="/">Front Page</Nav.Link>
           <NavDropdown title="Tags" id="tagsDropdown">
             {tags.map(tag => (
               <NavDropdown.Item key={tag} href={`/tags/${tag}`}>
@@ -32,7 +31,7 @@ const NavigationBar = ({
               </NavDropdown.Item>
             ))}
           </NavDropdown>
-          <NavDropdown title="Feeds" id="FeedsDropdown">
+          <NavDropdown title="Feeds" id="feedsDropdown">
             {feedsArr.map(feed => (
               <NavDropdown.Item key={feed} href={`/feeds/${feed}`}>
                 {feeds[feed].displayName}
@@ -47,10 +46,10 @@ const NavigationBar = ({
             </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link onClick={handleLogout} href="/login">
-            Log Out
+            Logout
           </Nav.Link>
           <Nav.Link eventKey="disabled" disabled>
-            {username}
+            {username.substring(0, username.indexOf('@'))}
           </Nav.Link>
         </Nav>
       </Container>

@@ -1,7 +1,12 @@
+.modal {
+  max-height: 90vh !important;
+}
+
 .modal-content {
   background-color: #343a40 !important;
   color: white;
   border: 1px white solid;
+  overflow-y: scroll;
 }
 
 .modal-dialog {
@@ -20,4 +25,25 @@
   margin-right: 5px;
   border: 1px solid white;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .modal {
+    height: 95vh;
+  }
+  .time-div {
+    display: none;
+  }
+  #modal-title {
+    height: 10vh;
+    overflow-y: scroll;
+    font-size: 1em;
+  }
+  .modal-body {
+    height: 50vh;
+    overflow-y: scroll;
+  }
+  .modal-footer {
+    height: 10vh;
+  }
 }

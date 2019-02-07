@@ -3,3 +3,9 @@
   padding: 5px;
   width: 30vw;
 }
+
+@media only screen and (max-width: 600px) {
+  .loginCard {
+    width: 90%;
+  }
+}
