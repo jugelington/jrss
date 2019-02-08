@@ -24,6 +24,7 @@
 }
 
 .article-card-body {
+  padding: 0 !important;
   float: left;
   position: relative;
   overflow-y: auto;
@@ -31,16 +32,13 @@
 }
 
 .article-container-image {
-  max-width: 25%;
+  height: auto;
+  width: auto;
+  max-width: 10em;
   float: left;
-  margin-right: 5px;
+  margin: 5px;
   border: 1px solid white;
   border-radius: 5px;
-}
-
-.article-card-text {
-  /* overflow-y: auto; */
-  max-height: 8em;
 }
 
 .title-div {
