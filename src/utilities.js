@@ -6,7 +6,7 @@ export const rssParser = async (feeds, feedName) => {
       item: [['media:content', 'media:content', { keepArray: true }]],
     },
   });
-  const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
+  const CORS_PROXY = 'https://jrss-cors-anywhere.herokuapp.com/';
   const obj = await parser.parseURL(CORS_PROXY + feeds[feedName].url);
   const articles = obj.items;
   return articles.map(article => {
