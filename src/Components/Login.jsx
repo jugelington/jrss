@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import Card from 'react-bootstrap/lib/Card';
 // CSS
-import '../CSS/login.css';
+import '../CSS/cards.css';
 import '../CSS/loading-component.css';
 
 class Login extends Component {
