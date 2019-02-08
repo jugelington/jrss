@@ -1,8 +1,5 @@
 #NavigationBar {
   border-bottom: 1px solid white;
+  position: sticky;
+  width: 100vw;
 }
-/* 
-#NavigationBar ul.dropdown-menu {
-  max-height: 90vh;
-  overflow-y: auto;
-} */
