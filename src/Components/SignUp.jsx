@@ -6,6 +6,7 @@ import ReactLoading from 'react-loading';
 // react-bootstrap
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Card from 'react-bootstrap/lib/Card';
 // css
 import '../CSS/cards.css';
@@ -21,92 +22,64 @@ class SignUp extends Component {
   };
 
   render() {
-    return (
-      <Card bg="dark" text="light" border="secondary" className="signup-card">
-        {this.state.newUser === null
-          ? this.signUpForm()
-          : this.confirmationForm()}
-      </Card>
-    );
+    return this.state.newUser === null
+      ? this.signUpForm()
+      : this.confirmationForm();
   }
 
   signUpForm = () => {
     const { loading } = this.state;
     return (
-      <Form onSubmit={e => this.handleSubmit(e)}>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            required
-            type="email"
-            placeholder="Enter your email address"
-            onChange={e => this.handleChange(e)}
-          />
-          <Form.Control.Feedback type="invalid">
-            Please enter your email address
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            required
-            type="password"
-            placeholder="Enter a password"
-            onChange={e => this.handleChange(e)}
-          />
-          <Form.Control.Feedback type="invalid">
-            Please enter a password
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            required
-            type="password"
-            placeholder="Re-enter a password"
-            onChange={e => this.handleChange(e)}
-          />
-          <Form.Control.Feedback type="invalid">
-            Please enter a matching password
-          </Form.Control.Feedback>
-        </Form.Group>
-        {!loading ? (
-          <Button variant="secondary" type="submit">
-            Sign Up
-          </Button>
-        ) : (
-          <ReactLoading
-            style={{
-              margin: '0 auto',
-              height: '48px',
-              width: '48px',
-            }}
-            type={'bubbles'}
-          />
-        )}
-      </Form>
-    );
-  };
-
-  confirmationForm = () => {
-    const { loading, confirmationCode } = this.state;
-    return (
-      <Form onSubmit={e => this.handleConfirmationSubmit(e)}>
-        <Form.Group controlId="confirmationCode">
-          <Form.Label>Confirmation Code</Form.Label>
-          <Form.Control
-            autoFocus
-            required
-            type="tel"
-            value={confirmationCode}
-            placeholder="Enter your confirmation code"
-            onChange={e => this.handleChange(e)}
-          />
+      <Card bg="dark" text="light" border="secondary" className="signup-card">
+        <Form onSubmit={e => this.handleSubmit(e)}>
+          <Form.Group controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              autoFocus
+              required
+              type="email"
+              placeholder="Enter your email address"
+              onChange={e => this.handleChange(e)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please enter your email address
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="password">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              required
+              type="password"
+              placeholder="Enter a password"
+              onChange={e => this.handleChange(e)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please enter a password
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group controlId="confirmPassword">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              required
+              type="password"
+              placeholder="Re-enter a password"
+              onChange={e => this.handleChange(e)}
+            />
+            <Form.Control.Feedback type="invalid">
+              Please enter a matching password
+            </Form.Control.Feedback>
+          </Form.Group>
           {!loading ? (
-            <Button variant="secondary" type="submit">
-              Confirm
-            </Button>
+            <div className="text-center">
+              <ButtonGroup>
+                <Button variant="secondary" type="submit">
+                  Sign Up
+                </Button>
+                <Button variant="outline-secondary" href="/login">
+                  Log In
+                </Button>
+              </ButtonGroup>
+            </div>
           ) : (
             <ReactLoading
               style={{
@@ -117,8 +90,50 @@ class SignUp extends Component {
               type={'bubbles'}
             />
           )}
-        </Form.Group>
-      </Form>
+        </Form>{' '}
+      </Card>
+    );
+  };
+
+  confirmationForm = () => {
+    const { loading, confirmationCode } = this.state;
+    return (
+      <Card
+        bg="dark"
+        text="light"
+        border="secondary"
+        className="confirmation-card"
+      >
+        <Form onSubmit={e => this.handleConfirmationSubmit(e)}>
+          <Form.Group controlId="confirmationCode">
+            <Form.Label>Confirmation Code</Form.Label>
+            <Form.Control
+              autoFocus
+              required
+              type="tel"
+              value={confirmationCode}
+              placeholder="Enter your confirmation code"
+              onChange={e => this.handleChange(e)}
+            />
+            {!loading ? (
+              <div className="text-center">
+                <Button variant="secondary" type="submit">
+                  Confirm
+                </Button>
+              </div>
+            ) : (
+              <ReactLoading
+                style={{
+                  margin: '0 auto',
+                  height: '48px',
+                  width: '48px',
+                }}
+                type={'bubbles'}
+              />
+            )}
+          </Form.Group>
+        </Form>
+      </Card>
     );
   };
 

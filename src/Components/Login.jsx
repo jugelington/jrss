@@ -7,6 +7,7 @@ import ReactLoading from 'react-loading';
 // react-bootstrap
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
+import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Card from 'react-bootstrap/lib/Card';
 // CSS
 import '../CSS/cards.css';
@@ -47,9 +48,16 @@ class Login extends Component {
             />
           </Form.Group>
           {!loading ? (
-            <Button variant="secondary" type="submit">
-              Log In
-            </Button>
+            <div className="text-center">
+              <ButtonGroup>
+                <Button variant="secondary" type="submit">
+                  Log In
+                </Button>
+                <Button variant="outline-secondary" href="/signup">
+                  Sign Up
+                </Button>
+              </ButtonGroup>
+            </div>
           ) : (
             <ReactLoading className="loading-bubbles" type={'bubbles'} />
           )}
