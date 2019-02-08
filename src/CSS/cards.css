@@ -6,6 +6,7 @@
   left: 0;
   right: 0;
   padding: 5px;
+  margin-bottom: 5px;
 }
 
 .article-container-header {
@@ -22,6 +23,13 @@
   position: relative;
 }
 
+.article-card-body {
+  float: left;
+  position: relative;
+  overflow-y: auto;
+  max-height: 8em;
+}
+
 .article-container-image {
   max-width: 25%;
   float: left;
@@ -31,7 +39,7 @@
 }
 
 .article-card-text {
-  overflow-y: auto;
+  /* overflow-y: auto; */
   max-height: 8em;
 }
 
@@ -62,22 +70,19 @@
   background-color: #343a40 !important;
   color: white;
   border: 1px white solid;
+}
+
+.modal-body {
+  height: 50vh;
   overflow-y: scroll;
+}
+.modal-footer {
+  height: 10vh;
 }
 
 @media only screen and (max-width: 600px) {
-  .modal-content {
-    height: 95vh;
-  }
   .time-div {
     display: none;
-  }
-  .modal-body {
-    height: 50vh;
-    overflow-y: scroll;
-  }
-  .modal-footer {
-    height: 10vh;
   }
 }
 

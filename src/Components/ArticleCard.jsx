@@ -32,11 +32,16 @@ const ArticleCard = ({
           {date}
         </div>
       </Card.Header>
-      <Card.Body className="article-container-body">
+      <Card.Body className="article-card-body">
         {image ? (
           <>
-            <Card.Img className="article-container-image" src={image} />
-            <Card.Text className="article-container-text with-image">
+            <div className="img-div">
+              <Card.Img
+                className="article-container-image article-card-image"
+                src={image}
+              />
+            </div>
+            <Card.Text className="article-container-text article-card-text">
               {Parser(content, {
                 replace: domNode => {
                   if (domNode.name && domNode.name === 'img') return <></>;
@@ -45,7 +50,7 @@ const ArticleCard = ({
             </Card.Text>
           </>
         ) : (
-          <Card.Text className="article-container-text without-image">
+          <Card.Text className="article-container-text article-card-text">
             {Parser(content, {
               replace: domNode => {
                 if (domNode.name && domNode.name === 'img') return <></>;
