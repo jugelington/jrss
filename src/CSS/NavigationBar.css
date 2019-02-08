@@ -1,5 +1,7 @@
 #NavigationBar {
-  border-bottom: 1px solid white;
+  border: 1px solid white;
+  border-radius: 5px;
   position: sticky;
-  width: 100vw;
+  width: 98vw;
+  overflow-x: hidden;
 }
