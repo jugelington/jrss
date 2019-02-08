@@ -33,31 +33,14 @@ const ArticleCard = ({
         </div>
       </Card.Header>
       <Card.Body className="article-card-body">
-        {image ? (
-          <>
-            <div className="img-div">
-              <Card.Img
-                className="article-container-image article-card-image"
-                src={image}
-              />
-            </div>
-            <Card.Text className="article-container-text article-card-text">
-              {Parser(content, {
-                replace: domNode => {
-                  if (domNode.name && domNode.name === 'img') return <></>;
-                },
-              })}
-            </Card.Text>
-          </>
-        ) : (
-          <Card.Text className="article-container-text article-card-text">
-            {Parser(content, {
-              replace: domNode => {
-                if (domNode.name && domNode.name === 'img') return <></>;
-              },
-            })}
-          </Card.Text>
-        )}
+        {image && <Card.Img className="article-container-image" src={image} />}
+        <Card.Text className="article-container-text article-card-text">
+          {Parser(content, {
+            replace: domNode => {
+              if (domNode.name && domNode.name === 'img') return <></>;
+            },
+          })}
+        </Card.Text>
       </Card.Body>
 
       <Card.Footer className="article-container-footer ">
