@@ -21,10 +21,10 @@ const ArticleCard = ({
   const time = timeParser(parsedDate);
 
   return (
-    <Card bg="dark" text="light" border="light" className="article-card">
-      <Card.Header className="article-card-header">
+    <Card bg="dark" text="light" border="light" className="article-container">
+      <Card.Header className="article-container-header">
         <div className="title-div">
-          <Card.Title className="article-card-title">{title}</Card.Title>
+          <Card.Title className="article-container-title">{title}</Card.Title>
           <Card.Subtitle>{source}</Card.Subtitle>
         </div>
         <div className="time-div">
@@ -32,11 +32,11 @@ const ArticleCard = ({
           {date}
         </div>
       </Card.Header>
-      <Card.Body className="article-card-body">
+      <Card.Body className="article-container-body">
         {image ? (
           <>
-            <Card.Img className="article-card-image" src={image} />
-            <Card.Text className="article-card-text with-image">
+            <Card.Img className="article-container-image" src={image} />
+            <Card.Text className="article-container-text with-image">
               {Parser(content, {
                 replace: domNode => {
                   if (domNode.name && domNode.name === 'img') return <></>;
@@ -45,7 +45,7 @@ const ArticleCard = ({
             </Card.Text>
           </>
         ) : (
-          <Card.Text className="article-card-text without-image">
+          <Card.Text className="article-container-text without-image">
             {Parser(content, {
               replace: domNode => {
                 if (domNode.name && domNode.name === 'img') return <></>;
@@ -55,7 +55,7 @@ const ArticleCard = ({
         )}
       </Card.Body>
 
-      <Card.Footer className="article-card-footer ">
+      <Card.Footer className="article-container-footer ">
         <section className="article-button-div">
           <ButtonGroup>
             <Button href={link} variant="outline-secondary">

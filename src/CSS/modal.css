@@ -1,3 +1,7 @@
+/*
+
+This is all legacy css. The article modal now shares most of its css with the article cards in cards.css; what remains of the css unique to modals has moved over to cards.css.
+
 .modal {
   max-height: 90vh !important;
 }
@@ -46,4 +50,4 @@
   .modal-footer {
     height: 10vh;
   }
-}
+} */

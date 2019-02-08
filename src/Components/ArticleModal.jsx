@@ -7,7 +7,7 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import Parser from 'html-react-parser';
 import { dateParser, timeParser } from '../utilities';
 // css
-import '../CSS/modal.css';
+// import '../CSS/modal.css';
 import '../CSS/cards.css';
 
 const ArticleModal = ({
@@ -22,12 +22,14 @@ const ArticleModal = ({
     <Modal
       show={modalVisible}
       dialogClassName="modal-90w"
-      className="modal"
+      className="article-container"
       aria-labelledby="example-custom-modal-styling-title"
     >
       <Modal.Header>
         <div className="title-div">
-          <Modal.Title id="modal-title">{title}</Modal.Title>
+          <Modal.Title id="article-container-title modal-title">
+            {title}
+          </Modal.Title>
           {source}
         </div>
         <div className="time-div">
@@ -36,7 +38,7 @@ const ArticleModal = ({
         </div>
       </Modal.Header>
 
-      <Modal.Body className="modal-body">
+      <Modal.Body className="article-container-body">
         {Parser(content, {
           replace: domNode => {
             if (domNode.name && domNode.name === 'img') {
@@ -44,7 +46,7 @@ const ArticleModal = ({
                 <img
                   alt={domNode.attribs.alt}
                   src={domNode.attribs.src}
-                  className="modal-image"
+                  className="article-container-image"
                 />
               );
             }
@@ -52,7 +54,7 @@ const ArticleModal = ({
         })}
       </Modal.Body>
 
-      <Modal.Footer className="modal-footer">
+      <Modal.Footer className="article-container-footer">
         <ButtonGroup>
           <Button href={link} variant="outline-secondary">
             Read On Site

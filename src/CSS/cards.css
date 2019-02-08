@@ -1,38 +1,33 @@
 /* Article Cards */
-.article-card {
-  width: 95vw;
-  margin: 10px;
+.article-container {
+  max-width: 95vw;
+  margin: 0 auto;
+  position: relative;
+  left: 0;
+  right: 0;
+  padding: 5px;
 }
 
-.article-card-header {
+.article-container-header {
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
-.article-card-title {
+.article-container-title {
   font-size: 1.5rem;
 }
 
-.article-card-body {
-  display: grid;
-  grid-template-columns: 20% 80%;
+.article-container-body {
+  float: left;
+  position: relative;
 }
 
-.article-card-image {
-  max-height: auto;
-  max-width: 80%;
-  grid-column-start: 1;
+.article-container-image {
+  max-width: 25%;
+  float: left;
+  margin-right: 5px;
   border: 1px solid white;
   border-radius: 5px;
-}
-
-.with-image {
-  grid-column-start: 2;
-}
-
-.without-image {
-  grid-column-start: 1;
-  grid-column-end: 3;
 }
 
 .article-card-text {
@@ -59,6 +54,31 @@
 
 .card-footer {
   border-top: 1px solid white !important;
+}
+
+/* ArticleModal */
+
+.modal-content {
+  background-color: #343a40 !important;
+  color: white;
+  border: 1px white solid;
+  overflow-y: scroll;
+}
+
+@media only screen and (max-width: 600px) {
+  .modal-content {
+    height: 95vh;
+  }
+  .time-div {
+    display: none;
+  }
+  .modal-body {
+    height: 50vh;
+    overflow-y: scroll;
+  }
+  .modal-footer {
+    height: 10vh;
+  }
 }
 
 /* AddFeed */
