@@ -6,9 +6,11 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 // utilities
 import Parser from 'html-react-parser';
 import { dateParser, timeParser } from '../utilities';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+
 // css
-// import '../CSS/modal.css';
 import '../CSS/cards.css';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const ArticleModal = ({
   article: { title, isoDate, link, source, content },
@@ -26,35 +28,35 @@ const ArticleModal = ({
     >
       <Modal.Header>
         <div className="title-div">
-          <Modal.Title id="article-container-title modal-title">
-            {title}
-          </Modal.Title>
-          {source}
+          <Modal.Title className="article-container-title">{title}</Modal.Title>
         </div>
-        <div className="time-div">
-          {time} <br />
-          {date}
+        <div className="source-div">
+          {/* <Card.Subtitle> */}
+          {`${time}   ${date}`} <br /> {source}
+          {/* </Card.Subtitle> */}
         </div>
       </Modal.Header>
 
       <Modal.Body className="article-container-body">
-        {Parser(content, {
-          replace: domNode => {
-            if (domNode.name && domNode.name === 'img') {
-              return (
-                <img
-                  alt={domNode.attribs.alt}
-                  src={domNode.attribs.src}
-                  className="article-container-image"
-                />
-              );
-            }
-          },
-        })}
+        <PerfectScrollbar>
+          {Parser(content, {
+            replace: domNode => {
+              if (domNode.name && domNode.name === 'img') {
+                return (
+                  <img
+                    alt={domNode.attribs.alt}
+                    src={domNode.attribs.src}
+                    className="article-container-image"
+                  />
+                );
+              }
+            },
+          })}
+        </PerfectScrollbar>
       </Modal.Body>
 
       <Modal.Footer className="article-container-footer">
-        <ButtonGroup>
+        <ButtonGroup size="sm">
           <Button href={link} variant="outline-secondary">
             Read On Site
           </Button>

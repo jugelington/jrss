@@ -15,7 +15,7 @@
 }
 
 .article-container-title {
-  font-size: 1.5rem;
+  font-size: 1.1rem !important;
 }
 
 .article-container-body {
@@ -24,17 +24,22 @@
 }
 
 .article-card-body {
-  padding: 0 !important;
+  padding: 1px !important;
   float: left;
   position: relative;
-  overflow-y: auto;
-  max-height: 8em;
+  overflow-y: hidden;
+  font-size: 0.9rem !important;
+  max-height: 6em;
+}
+
+.article-card-body p {
+  margin: 0;
 }
 
 .article-container-image {
   height: auto;
   width: auto;
-  max-width: 10em;
+  max-width: 9em;
   float: left;
   margin: 5px;
   border: 1px solid white;
@@ -49,17 +54,18 @@
   float: right;
 }
 
-.time-div {
+.source-div .h6 {
   text-align: center;
   float: right;
+  font-size: 0.8em;
 }
 
 .card-header {
-  border-bottom: 1px solid white !important;
+  /* border-bottom: 1px solid white !important; */
 }
 
 .card-footer {
-  border-top: 1px solid white !important;
+  /* border-top: 1px solid white !important; */
 }
 
 /* ArticleModal */
@@ -68,14 +74,12 @@
   background-color: #343a40 !important;
   color: white;
   border: 1px white solid;
+  width: 80vw;
 }
 
 .modal-body {
   height: 50vh;
-  overflow-y: scroll;
-}
-.modal-footer {
-  height: 10vh;
+  overflow-y: hidden;
 }
 
 @media only screen and (max-width: 600px) {

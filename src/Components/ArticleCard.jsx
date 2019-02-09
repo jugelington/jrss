@@ -6,9 +6,11 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 // utilities
 import { imageExtractor, dateParser, timeParser } from '../utilities';
 import Parser from 'html-react-parser';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 // CSS
 import '../CSS/cards.css';
 import '../CSS/loading-component.css';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const ArticleCard = ({
   article,
@@ -25,35 +27,39 @@ const ArticleCard = ({
       <Card.Header className="article-container-header">
         <div className="title-div">
           <Card.Title className="article-container-title">{title}</Card.Title>
-          <Card.Subtitle>{source}</Card.Subtitle>
         </div>
-        <div className="time-div">
-          {time} <br />
-          {date}
+        <div className="source-div">
+          <Card.Subtitle>
+            {`${time}   ${date}`} <br /> {source}
+          </Card.Subtitle>
         </div>
       </Card.Header>
       <Card.Body className="article-card-body">
-        {image && <Card.Img className="article-container-image" src={image} />}
-        <Card.Text className="article-container-text article-card-text">
-          {Parser(content, {
-            replace: domNode => {
-              if (domNode.name && domNode.name === 'img') return <></>;
-            },
-          })}
-        </Card.Text>
+        <PerfectScrollbar>
+          {image && (
+            <Card.Img className="article-container-image" src={image} />
+          )}
+          <Card.Text className="article-container-text article-card-text">
+            {Parser(content, {
+              replace: domNode => {
+                if (domNode.name && domNode.name === 'img') return <></>;
+              },
+            })}
+          </Card.Text>
+        </PerfectScrollbar>
       </Card.Body>
 
       <Card.Footer className="article-container-footer ">
-        <section className="article-button-div">
-          <ButtonGroup>
-            <Button href={link} variant="outline-secondary">
-              Read On Site
-            </Button>
-            <Button onClick={() => openModal(article)} variant="outline-light">
-              Read More
-            </Button>
-          </ButtonGroup>
-        </section>
+        {/* <section > */}
+        <ButtonGroup size="sm" className="article-button-div">
+          <Button href={link} variant="outline-secondary">
+            Read On Site
+          </Button>
+          <Button onClick={() => openModal(article)} variant="outline-light">
+            Read More
+          </Button>
+        </ButtonGroup>
+        {/* </section> */}
       </Card.Footer>
     </Card>
   );
