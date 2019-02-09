@@ -23,7 +23,7 @@ const ArticleModal = ({
   return (
     <Modal
       show={modalVisible}
-      dialogClassName="modal-90w"
+      // dialogClassName="modal-90w"
       aria-labelledby="example-custom-modal-styling-title"
     >
       <Modal.Header>
