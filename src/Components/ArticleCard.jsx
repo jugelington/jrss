@@ -47,10 +47,6 @@ const ArticleCard = ({
             })}
           </Card.Text>
         </PerfectScrollbar>
-      </Card.Body>
-
-      <Card.Footer className="article-container-footer ">
-        {/* <section > */}
         <ButtonGroup size="sm" className="article-button-div">
           <Button href={link} variant="outline-secondary">
             Read On Site
@@ -59,8 +55,7 @@ const ArticleCard = ({
             Read More
           </Button>
         </ButtonGroup>
-        {/* </section> */}
-      </Card.Footer>
+      </Card.Body>
     </Card>
   );
 };

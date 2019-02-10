@@ -57,7 +57,12 @@
 }
 
 .article-button-div {
-  float: right;
+  position: absolute !important;
+  right: 2px;
+  bottom: 2px;
+  z-index: 1;
+  border-radius: 5px;
+  background: #32383e;
 }
 
 .source-div .h6 {
