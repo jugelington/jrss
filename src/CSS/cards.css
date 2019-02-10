@@ -5,8 +5,8 @@
   position: relative;
   left: 0;
   right: 0;
-  padding-top: 5px;
-  margin-bottom: 5px;
+  /* padding-top: 5px; */
+  /* margin-bottom: 5px; */
 }
 
 .article-container-header {
@@ -17,7 +17,8 @@
 }
 
 .article-container-title {
-  font-size: 1.1rem !important;
+  font-size: 1.5rem !important;
+  text-align: center;
 }
 
 .card {
@@ -47,6 +48,7 @@
   overflow-y: hidden;
   font-size: 0.9rem !important;
   max-height: 6em;
+  min-height: 3em;
 }
 
 .article-card-body p {
