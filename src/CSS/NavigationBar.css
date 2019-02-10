@@ -1,6 +1,6 @@
 #NavigationBar {
-  border: 1px solid white;
-  border-radius: 5px;
+  border-bottom: 1px solid white;
   position: sticky;
-  width: 98vw;
+  width: 100%;
+  padding: 2px;
 }
