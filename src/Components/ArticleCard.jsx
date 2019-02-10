@@ -6,7 +6,6 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 // utilities
 import { imageExtractor, dateParser, timeParser } from '../utilities';
 import Parser from 'html-react-parser';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 // CSS
 import '../CSS/cards.css';
 import '../CSS/loading-component.css';
@@ -35,18 +34,14 @@ const ArticleCard = ({
         </div>
       </Card.Header>
       <Card.Body className="article-card-body">
-        <PerfectScrollbar>
-          {image && (
-            <Card.Img className="article-container-image" src={image} />
-          )}
-          <Card.Text className="article-container-text article-card-text">
-            {Parser(content, {
-              replace: domNode => {
-                if (domNode.name && domNode.name === 'img') return <></>;
-              },
-            })}
-          </Card.Text>
-        </PerfectScrollbar>
+        {image && <Card.Img className="article-container-image" src={image} />}
+        <Card.Text className="article-container-text article-card-text">
+          {Parser(content, {
+            replace: domNode => {
+              if (domNode.name && domNode.name === 'img') return <></>;
+            },
+          })}
+        </Card.Text>
         <ButtonGroup size="sm" className="article-button-div">
           <Button href={link} variant="outline-secondary">
             Read On Site
