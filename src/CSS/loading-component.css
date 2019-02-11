@@ -5,7 +5,11 @@
 }
 
 .loading-spinner {
-  margin: 0 auto;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  margin-top: 50px;
+  margin-left: -50px;
   width: 30%;
   height: 30%;
 }

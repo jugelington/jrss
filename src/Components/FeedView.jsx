@@ -20,6 +20,8 @@ const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
         <ReactLoading
           type={'spin'}
           color={'gray'}
+          height={'100px'}
+          width={'100px'}
           className="loading-spinner"
         />
       ) : (
