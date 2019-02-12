@@ -113,9 +113,27 @@
 
 /* AddFeed */
 .add-feed-card {
+  border: 1px solid white !important;
+  border-radius: 5px !important;
   text-align: center;
   padding: 5px;
   width: 30vw;
+  height: 340px;
+  left: 50vw;
+  margin-left: -15vw;
+  top: 50vh;
+  margin-top: -170px;
+}
+
+@media only screen and (max-width: 600px) {
+  .add-feed-card {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    left: 0;
+    top: 0;
+  }
 }
 
 /* FeedCard */
