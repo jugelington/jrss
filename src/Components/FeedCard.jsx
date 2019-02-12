@@ -4,6 +4,8 @@ import Card from 'react-bootstrap/lib/Card';
 import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
+import Tooltip from 'react-bootstrap/lib/Tooltip';
 // utilities
 import { navigate } from '@reach/router';
 import ReactLoading from 'react-loading';
@@ -28,6 +30,7 @@ class FeedCard extends Component {
   render() {
     const { feed } = this.props;
     const { editing } = this.state;
+
     return (
       <Card
         className="feed-card"
@@ -62,7 +65,15 @@ class FeedCard extends Component {
             <a href={feed.url}>{feed.url}</a>
           </Card.Text>
           <Card.Subtitle>Tags:</Card.Subtitle>
-          <Card.Text>{feed.tags.join(' ')}</Card.Text>
+          <Card.Text>
+            <ButtonGroup>
+              {feed.tags.map(tag => (
+                <Button id={tag} variant="secondary" disabled>
+                  {tag}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </Card.Text>
         </Card.Body>
       </>
     );
@@ -106,11 +117,37 @@ class FeedCard extends Component {
             </Form.Group>
             <Form.Group controlId="tags">
               <Form.Label>Tags:</Form.Label>
-              <Form.Control
-                type="text"
-                value={this.state.tags}
-                onChange={this.handleChange}
-              />
+              <ButtonGroup>
+                {feed.tags.map(tag => (
+                  <OverlayTrigger
+                    key={tag}
+                    placement="top"
+                    overlay={
+                      <Tooltip id={`tooltip-${tag}`}>
+                        {this.state.tags.includes(tag) ? (
+                          <>
+                            Remove <strong>{tag}</strong>
+                          </>
+                        ) : (
+                          <>
+                            Keep <strong>{tag}</strong>
+                          </>
+                        )}
+                      </Tooltip>
+                    }
+                  >
+                    <Button
+                      id={tag}
+                      variant={
+                        this.state.tags.includes(tag) ? 'secondary' : 'danger'
+                      }
+                      onClick={this.deleteTag}
+                    >
+                      {tag}
+                    </Button>
+                  </OverlayTrigger>
+                ))}
+              </ButtonGroup>
             </Form.Group>
             {!this.state.loading && !this.state.deleting ? (
               <ButtonGroup>
@@ -168,6 +205,19 @@ class FeedCard extends Component {
     }
   };
 
+  deleteTag = async e => {
+    e.preventDefault();
+    const removedTag = e.target.id;
+    const { tags } = this.state;
+    if (tags.includes(removedTag)) {
+      const newTags = tags.filter(tag => tag !== removedTag);
+      this.setState({ tags: newTags });
+    } else {
+      tags.push(removedTag);
+      this.setState({ tags });
+    }
+  };
+
   handleChange = e => {
     const { id, value } = e.target;
     this.setState({ [id]: value });
@@ -181,7 +231,7 @@ class FeedCard extends Component {
       await this.patchFeed({
         displayName: displayName,
         url: url,
-        tags: tags.split(',').map(tag => tag.trim()),
+        tags: tags.map(tag => tag.trim()),
       });
       navigate('/');
     } catch (error) {
