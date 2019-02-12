@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
+import InputGroup from 'react-bootstrap/lib/InputGroup';
 // utilities
 import { navigate } from '@reach/router';
 import ReactLoading from 'react-loading';
@@ -23,6 +24,7 @@ class FeedCard extends Component {
     displayName: '',
     url: '',
     tags: [],
+    newTag: '',
     loading: false,
     deleting: false,
   };
@@ -65,21 +67,20 @@ class FeedCard extends Component {
             <a href={feed.url}>{feed.url}</a>
           </Card.Text>
           <Card.Subtitle>Tags:</Card.Subtitle>
-          <Card.Text>
-            <ButtonGroup>
-              {feed.tags.map(tag => (
-                <Button id={tag} variant="secondary" disabled>
-                  {tag}
-                </Button>
-              ))}
-            </ButtonGroup>
-          </Card.Text>
+          <ButtonGroup>
+            {feed.tags.map(tag => (
+              <Button id={tag} variant="secondary" disabled>
+                {tag}
+              </Button>
+            ))}
+          </ButtonGroup>
         </Card.Body>
       </>
     );
   };
 
   editCard = feed => {
+    const { displayName, url, tags, newTag } = this.state;
     return (
       <>
         <Card.Header>
@@ -102,7 +103,7 @@ class FeedCard extends Component {
                 autoFocus
                 required
                 type="text"
-                value={this.state.displayName}
+                value={displayName}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -111,43 +112,49 @@ class FeedCard extends Component {
               <Form.Control
                 required
                 type="url"
-                value={this.state.url}
+                value={url}
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="tags">
-              <Form.Label>Tags:</Form.Label>
-              <ButtonGroup>
-                {feed.tags.map(tag => (
-                  <OverlayTrigger
-                    key={tag}
-                    placement="top"
-                    overlay={
-                      <Tooltip id={`tooltip-${tag}`}>
-                        {this.state.tags.includes(tag) ? (
-                          <>
-                            Remove <strong>{tag}</strong>
-                          </>
-                        ) : (
-                          <>
-                            Keep <strong>{tag}</strong>
-                          </>
-                        )}
-                      </Tooltip>
+            Tags:
+            <br />
+            <ButtonGroup>
+              {tags.map(tag => (
+                <OverlayTrigger
+                  key={tag}
+                  placement="top"
+                  overlay={
+                    <Tooltip id={`tooltip-${tag}`}>
+                      Remove <strong>{tag}</strong>
+                    </Tooltip>
+                  }
+                >
+                  <Button
+                    id={tag}
+                    variant={
+                      this.state.tags.includes(tag) ? 'secondary' : 'danger'
                     }
+                    onClick={this.deleteTag}
                   >
-                    <Button
-                      id={tag}
-                      variant={
-                        this.state.tags.includes(tag) ? 'secondary' : 'danger'
-                      }
-                      onClick={this.deleteTag}
-                    >
-                      {tag}
-                    </Button>
-                  </OverlayTrigger>
-                ))}
-              </ButtonGroup>
+                    {tag}
+                  </Button>
+                </OverlayTrigger>
+              ))}
+            </ButtonGroup>
+            <br />
+            <Form.Group controlId="newTag">
+              <Form.Label>New Tag:</Form.Label>
+
+              <InputGroup>
+                <Form.Control
+                  type="text"
+                  value={newTag}
+                  onChange={this.handleChange}
+                />{' '}
+                <InputGroup.Append>
+                  <Button onClick={this.addTag}>Add Tag</Button>
+                </InputGroup.Append>
+              </InputGroup>
             </Form.Group>
             {!this.state.loading && !this.state.deleting ? (
               <ButtonGroup>
@@ -205,17 +212,18 @@ class FeedCard extends Component {
     }
   };
 
-  deleteTag = async e => {
+  addTag = e => {
+    e.preventDefault();
+    const { tags, newTag } = this.state;
+    tags.push(newTag);
+    this.setState({ tags, newTag: '' });
+  };
+
+  deleteTag = e => {
     e.preventDefault();
     const removedTag = e.target.id;
     const { tags } = this.state;
-    if (tags.includes(removedTag)) {
-      const newTags = tags.filter(tag => tag !== removedTag);
-      this.setState({ tags: newTags });
-    } else {
-      tags.push(removedTag);
-      this.setState({ tags });
-    }
+    this.setState({ tags: tags.filter(tag => tag !== removedTag) });
   };
 
   handleChange = e => {
