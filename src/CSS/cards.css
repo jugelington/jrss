@@ -13,10 +13,14 @@
   overflow-y: hidden;
 }
 
-h5 {
+h6 {
   padding-left: 5px;
+  margin-bottom: 0 !important;
 }
 
+p {
+  margin-bottom: 0 !important;
+}
 .hidden-body {
   display: none;
 }
@@ -29,7 +33,7 @@ h5 {
 .article-image {
   height: auto;
   width: auto;
-  max-width: 10em;
+  width: 8em;
   float: left;
   margin: 5px;
   border: 1px solid white;
@@ -135,17 +139,49 @@ h5 {
 .feed-cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .feed-card {
+  position: relative;
+  color: white;
+  background: #343a40;
+  width: 300px;
+  max-width: 95vw;
   margin: 5px;
   text-align: center;
-  width: fit-content;
-  border: 1px solid white !important;
-  border-radius: 0 !important;
+  border: 1px solid white;
+  height: fit-content;
 }
 
-.feed-card-title {
+.feed-header {
+  height: 30px;
+}
+
+.feed-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+}
+
+.feed-body {
+  padding: 5px;
+}
+
+label {
+  float: left;
+  left: 0;
+}
+
+input {
   float: right;
+}
+
+.add-tag-form {
+  float: right;
+}
+
+.tags-div {
+  display: inline-block;
 }

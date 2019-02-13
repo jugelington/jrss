@@ -10,18 +10,15 @@ import ManageFeeds from './Components/ManageFeeds';
 import AddFeed from './Components/AddFeed';
 import Login from './Components/Login';
 import { rssParser } from './utilities';
-import ArticleModal from './Components/ArticleModal';
 import SignUp from './Components/SignUp';
 
 class App extends Component {
   state = {
-    username: 'test_user',
+    username: '',
     feeds: [],
     articles: [],
     loading: true,
     tags: [],
-    modalVisible: false,
-    modalArticle: null,
     isAuthenticated: false,
     isAuthenticating: true,
   };
@@ -32,8 +29,6 @@ class App extends Component {
       tags,
       articles,
       loading,
-      modalVisible,
-      modalArticle,
       isAuthenticated,
       isAuthenticating,
       username,
@@ -49,13 +44,6 @@ class App extends Component {
             handleLogout={this.handleLogout}
             username={username}
           />
-          {modalVisible && (
-            <ArticleModal
-              article={modalArticle}
-              closeModal={this.closeModal}
-              modalVisible={modalVisible}
-            />
-          )}
           {isAuthenticated ? (
             <Router>
               <Login

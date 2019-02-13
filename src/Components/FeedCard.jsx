@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
 // react-bootstrap
-import Card from 'react-bootstrap/lib/Card';
-import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
-import InputGroup from 'react-bootstrap/lib/InputGroup';
 // utilities
 import { navigate } from '@reach/router';
 import ReactLoading from 'react-loading';
 import { API } from 'aws-amplify';
-// images
-import edit from '../Images/edit.png';
-import back from '../Images/back.png';
 // css
 import '../CSS/cards.css';
 import '../CSS/loading-component.css';
@@ -31,148 +25,97 @@ class FeedCard extends Component {
 
   render() {
     const { feed } = this.props;
-    const { editing } = this.state;
+    const { displayName, url, tags, editing, newTag } = this.state;
 
     return (
-      <Card
-        className="feed-card"
-        variant="dark"
-        bg="dark"
-        text="light"
-        border="secondary"
-      >
-        {editing ? this.editCard(feed) : this.staticCard(feed)}
-      </Card>
-    );
-  }
-
-  staticCard = feed => {
-    return (
-      <>
-        <Card.Header>
-          <Card.Title>
-            {feed.displayName}
-            <img
-              src={edit}
-              width="24px"
-              alt="edit"
-              className="feed-card-title"
-              onClick={this.toggleEdit}
-            />
-          </Card.Title>
-        </Card.Header>
-        <Card.Body>
-          <Card.Subtitle>URL:</Card.Subtitle>
-          <Card.Text>
-            <a href={feed.url}>{feed.url}</a>
-          </Card.Text>
-          <Card.Subtitle>Tags:</Card.Subtitle>
-          <ButtonGroup>
-            {feed.tags.map(tag => (
-              <Button id={tag} variant="secondary" disabled>
-                {tag}
-              </Button>
-            ))}
-          </ButtonGroup>
-        </Card.Body>
-      </>
-    );
-  };
-
-  editCard = feed => {
-    const { displayName, url, tags, newTag } = this.state;
-    return (
-      <>
-        <Card.Header>
-          <Card.Title>
-            {feed.displayName}
-            <img
-              src={back}
-              width="24px"
-              alt="back"
-              className="feed-card-title"
-              onClick={this.toggleEdit}
-            />
-          </Card.Title>
-        </Card.Header>
-        <Card.Body>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group controlId="displayName">
-              <Form.Label>Name:</Form.Label>
-              <Form.Control
+      <section className="feed-card">
+        <section className="feed-header">
+          <h5 className="feed-name">{feed.displayName}</h5>
+          <Button
+            size="sm"
+            variant="light"
+            onClick={this.toggleEdit}
+            className="feed-button"
+          >
+            Edit
+          </Button>
+        </section>
+        {editing && (
+          <section className="feed-body">
+            <form onSubmit={this.handleSubmit}>
+              <label for="displayName">Name:</label>
+              <input
+                id="displayName"
                 autoFocus
                 required
                 type="text"
                 value={displayName}
                 onChange={this.handleChange}
               />
-            </Form.Group>
-            <Form.Group controlId="url">
-              <Form.Label>URL:</Form.Label>
-              <Form.Control
+              <br />
+              <label for="url">URL:</label>
+              <input
                 required
+                id="url"
                 type="url"
                 value={url}
                 onChange={this.handleChange}
               />
-            </Form.Group>
-            Tags:
-            <br />
-            <ButtonGroup>
-              {tags.map(tag => (
-                <OverlayTrigger
-                  key={tag}
-                  placement="top"
-                  overlay={
-                    <Tooltip id={`tooltip-${tag}`}>
-                      Remove <strong>{tag}</strong>
-                    </Tooltip>
-                  }
-                >
-                  <Button
-                    id={tag}
-                    variant={
-                      this.state.tags.includes(tag) ? 'secondary' : 'danger'
-                    }
-                    onClick={this.deleteTag}
-                  >
-                    {tag}
-                  </Button>
-                </OverlayTrigger>
-              ))}
-            </ButtonGroup>
-            <br />
-            <Form.Group controlId="newTag">
-              <Form.Label>New Tag:</Form.Label>
+              <br />
+              <label>Tags:</label>
 
-              <InputGroup>
-                <Form.Control
-                  type="text"
-                  value={newTag}
-                  onChange={this.handleChange}
-                />{' '}
-                <InputGroup.Append>
-                  <Button onClick={this.addTag}>Add Tag</Button>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form.Group>
-            {!this.state.loading && !this.state.deleting ? (
-              <ButtonGroup>
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-                <Button variant="danger" onClick={this.handleDelete}>
-                  Unsubscribe
-                </Button>
-              </ButtonGroup>
-            ) : (
-              <ReactLoading className="loading-bubbles" type={'bubbles'} />
-            )}
-          </Form>
-        </Card.Body>
-      </>
+              <div className="tags-div">
+                {tags.map(tag => (
+                  <OverlayTrigger
+                    key={tag}
+                    placement="top"
+                    overlay={
+                      <Tooltip id={`tooltip-${tag}`}>
+                        Remove <strong>{tag}</strong>
+                      </Tooltip>
+                    }
+                  >
+                    <Button
+                      id={tag}
+                      variant="secondary"
+                      onClick={this.deleteTag}
+                    >
+                      {tag}
+                    </Button>
+                  </OverlayTrigger>
+                ))}
+              </div>
+              <br />
+              <label for="newTag">New Tag:</label>
+              <input
+                id="newTag"
+                type="text"
+                value={newTag}
+                placeholder="add tag"
+                onChange={this.handleChange}
+              />
+              <Button onClick={this.addTag} variant="outline-light">
+                Add Tag
+              </Button>
+              <br />
+              {!this.state.loading && !this.state.deleting ? (
+                <ButtonGroup>
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                  <Button variant="danger" onClick={this.handleDelete}>
+                    Unsubscribe
+                  </Button>
+                </ButtonGroup>
+              ) : (
+                <ReactLoading className="loading-bubbles" type={'bubbles'} />
+              )}
+            </form>
+          </section>
+        )}
+      </section>
     );
-  };
+  }
 
   componentDidMount() {
     const { feed } = this.props;
@@ -227,6 +170,7 @@ class FeedCard extends Component {
   };
 
   handleChange = e => {
+    e.preventDefault();
     const { id, value } = e.target;
     this.setState({ [id]: value });
   };

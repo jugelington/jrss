@@ -31,13 +31,15 @@ class ArticleCard extends Component {
           {image && (
             <img src={image} alt="none found" className="article-image" />
           )}
-          <h5 className="article-title">{title}</h5>
+          <h6 className="article-title">
+            <strong>{title}</strong>
+          </h6>
           <section className="article-subtitle">
-            <h6>{source}</h6>
-            <h6>{time + ' ' + date}</h6>{' '}
+            <p>{source}</p>
+            <p>{time + ' ' + date}</p>
           </section>
 
-          <ButtonGroup className="article-button-div">
+          <ButtonGroup className="article-button-div" size="sm">
             <Button href={link} variant="outline-light">
               Visit Site
             </Button>
