@@ -53,12 +53,6 @@ h5 {
     text-align: center;
   }
 
-  .article-title {
-  }
-
-  .article-subtitle {
-  }
-
   .article-image {
     float: none;
   }
@@ -135,4 +129,23 @@ h5 {
     height: 100%;
     margin: 0;
   }
+}
+
+/* FeedCard */
+.feed-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.feed-card {
+  margin: 5px;
+  text-align: center;
+  width: fit-content;
+  border: 1px solid white !important;
+  border-radius: 0 !important;
+}
+
+.feed-card-title {
+  float: right;
 }
