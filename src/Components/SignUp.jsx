@@ -31,7 +31,7 @@ class SignUp extends Component {
     const { loading } = this.state;
     return (
       <Card bg="dark" text="light" border="secondary" className="signup-card">
-        <Form onSubmit={e => this.handleSubmit(e)}>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -39,7 +39,7 @@ class SignUp extends Component {
               required
               type="email"
               placeholder="Enter your email address"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
             <Form.Control.Feedback type="invalid">
               Please enter your email address
@@ -51,7 +51,7 @@ class SignUp extends Component {
               required
               type="password"
               placeholder="Enter a password"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
             <Form.Control.Feedback type="invalid">
               Please enter a password
@@ -63,7 +63,7 @@ class SignUp extends Component {
               required
               type="password"
               placeholder="Re-enter a password"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
             <Form.Control.Feedback type="invalid">
               Please enter a matching password
@@ -104,7 +104,7 @@ class SignUp extends Component {
         border="secondary"
         className="confirmation-card"
       >
-        <Form onSubmit={e => this.handleConfirmationSubmit(e)}>
+        <Form onSubmit={this.handleConfirmationSubmit}>
           <Form.Group controlId="confirmationCode">
             <Form.Label>Confirmation Code</Form.Label>
             <Form.Control
@@ -113,7 +113,7 @@ class SignUp extends Component {
               type="tel"
               value={confirmationCode}
               placeholder="Enter your confirmation code"
-              onChange={e => this.handleChange(e)}
+              onChange={this.handleChange}
             />
             {!loading ? (
               <div className="text-center">
