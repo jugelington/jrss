@@ -24,7 +24,7 @@ class Login extends Component {
     return (
       <section className="login-card text-center">
         <form onSubmit={this.handleSubmit}>
-          <div className="login-form-div">
+          <div className="form-div">
             <label for="email">Email:</label>
             <input
               id="email"
@@ -37,7 +37,7 @@ class Login extends Component {
             />
           </div>
           <br />
-          <div className="login-form-div">
+          <div className="form-div">
             <label for="password">Password:</label>
             <input
               id="password"

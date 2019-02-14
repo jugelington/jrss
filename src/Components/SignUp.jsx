@@ -4,10 +4,8 @@ import { navigate } from '@reach/router';
 import { Auth } from 'aws-amplify';
 import ReactLoading from 'react-loading';
 // react-bootstrap
-import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Card from 'react-bootstrap/lib/Card';
 // css
 import '../CSS/cards.css';
 
@@ -30,53 +28,50 @@ class SignUp extends Component {
   signUpForm = () => {
     const { loading } = this.state;
     return (
-      <Card bg="dark" text="light" border="secondary" className="signup-card">
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
+      <section className="signup-card">
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-div">
+            <label for="email">Email:</label>
+            <input
               autoFocus
               required
+              id="email"
               type="email"
               placeholder="Enter your email address"
               onChange={this.handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              Please enter your email address
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
+          </div>
+          <br />
+          <div className="form-div">
+            <label for="password">Password:</label>
+            <input
               required
+              id="password"
               type="password"
               placeholder="Enter a password"
               onChange={this.handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              Please enter a password
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="confirmPassword">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
+          </div>
+          <br />
+          <div className="form-div">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input
               required
               type="password"
+              id="confirmPassword"
               placeholder="Re-enter a password"
               onChange={this.handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              Please enter a matching password
-            </Form.Control.Feedback>
-          </Form.Group>
+          </div>
+
           {!loading ? (
             <div className="text-center">
               <ButtonGroup>
-                <Button variant="secondary" type="submit">
-                  Sign Up
-                </Button>
-                <Button variant="outline-secondary" href="/login">
+                <Button variant="outline-light" href="/login">
                   Log In
+                </Button>
+                <Button variant="light" type="submit">
+                  Sign Up
                 </Button>
               </ButtonGroup>
             </div>
@@ -90,50 +85,45 @@ class SignUp extends Component {
               type={'bubbles'}
             />
           )}
-        </Form>{' '}
-      </Card>
+        </form>
+      </section>
     );
   };
 
   confirmationForm = () => {
     const { loading, confirmationCode } = this.state;
     return (
-      <Card
-        bg="dark"
-        text="light"
-        border="secondary"
-        className="confirmation-card"
-      >
-        <Form onSubmit={this.handleConfirmationSubmit}>
-          <Form.Group controlId="confirmationCode">
-            <Form.Label>Confirmation Code</Form.Label>
-            <Form.Control
+      <section className="signup-card">
+        <form onSubmit={this.handleConfirmationSubmit}>
+          <div className="form-div">
+            <label for="confirmationCode">Confirmation Code:</label>
+            <input
               autoFocus
+              id="confirmationCode"
               required
               type="tel"
               value={confirmationCode}
-              placeholder="Enter your confirmation code"
               onChange={this.handleChange}
             />
-            {!loading ? (
-              <div className="text-center">
-                <Button variant="secondary" type="submit">
-                  Confirm
-                </Button>
-              </div>
-            ) : (
-              <ReactLoading
-                style={{
-                  margin: '0 auto',
-                  height: '48px',
-                  width: '48px',
-                }}
-                type={'bubbles'}
-              />
-            )}
-          </Form.Group>
-        </Form>
-      </Card>
+          </div>
+          {!loading ? (
+            <div className="text-center">
+              <Button variant="light" type="submit">
+                Confirm
+              </Button>
+            </div>
+          ) : (
+            <ReactLoading
+              style={{
+                margin: '0 auto',
+                height: '48px',
+                width: '48px',
+              }}
+              type={'bubbles'}
+            />
+          )}
+        </form>
+      </section>
     );
   };
 
