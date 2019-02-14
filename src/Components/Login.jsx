@@ -5,10 +5,8 @@ import { Auth } from 'aws-amplify';
 import { navigate } from '@reach/router';
 import ReactLoading from 'react-loading';
 // react-bootstrap
-import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-import Card from 'react-bootstrap/lib/Card';
 // CSS
 import '../CSS/cards.css';
 import '../CSS/loading-component.css';
@@ -24,36 +22,38 @@ class Login extends Component {
     const { loading, email, password } = this.state;
 
     return (
-      <Card bg="dark" text="light" border="secondary" className="loginCard">
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="email">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              autoFocus
-              required
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              required
-              type="password"
-              value={password}
-              placeholder="Enter your password"
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+      <section className="login-card">
+        <form onSubmit={this.handleSubmit}>
+          <label for="email">Email</label>
+          <br />
+          <input
+            id="email"
+            autoFocus
+            required
+            type="email"
+            placeholder="Enter your email address"
+            value={email}
+            onChange={this.handleChange}
+          />
+          <br />
+          <label for="password">Password</label>
+          <br />
+          <input
+            id="password"
+            required
+            type="password"
+            value={password}
+            placeholder="Enter your password"
+            onChange={this.handleChange}
+          />
+          <br />
           {!loading ? (
             <div className="text-center">
               <ButtonGroup>
-                <Button variant="secondary" type="submit">
+                <Button variant="light" type="submit">
                   Log In
                 </Button>
-                <Button variant="outline-secondary" href="/signup">
+                <Button variant="outline-light" href="/signup">
                   Sign Up
                 </Button>
               </ButtonGroup>
@@ -61,8 +61,8 @@ class Login extends Component {
           ) : (
             <ReactLoading className="loading-bubbles" type={'bubbles'} />
           )}
-        </Form>
-      </Card>
+        </form>
+      </section>
     );
   }
 
