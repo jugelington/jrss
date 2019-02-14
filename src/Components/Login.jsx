@@ -24,28 +24,30 @@ class Login extends Component {
     return (
       <section className="login-card">
         <form onSubmit={this.handleSubmit}>
-          <label for="email">Email</label>
+          <div className="login-form-div">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              autoFocus
+              required
+              type="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={this.handleChange}
+            />
+          </div>
           <br />
-          <input
-            id="email"
-            autoFocus
-            required
-            type="email"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <br />
-          <label for="password">Password</label>
-          <br />
-          <input
-            id="password"
-            required
-            type="password"
-            value={password}
-            placeholder="Enter your password"
-            onChange={this.handleChange}
-          />
+          <div className="login-form-div">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              required
+              type="password"
+              value={password}
+              placeholder="Enter your password"
+              onChange={this.handleChange}
+            />
+          </div>
           <br />
           {!loading ? (
             <div className="text-center">
