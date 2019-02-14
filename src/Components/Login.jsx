@@ -22,10 +22,10 @@ class Login extends Component {
     const { loading, email, password } = this.state;
 
     return (
-      <section className="login-card">
+      <section className="login-card text-center">
         <form onSubmit={this.handleSubmit}>
           <div className="login-form-div">
-            <label for="email">Email</label>
+            <label for="email">Email:</label>
             <input
               id="email"
               autoFocus
@@ -38,7 +38,7 @@ class Login extends Component {
           </div>
           <br />
           <div className="login-form-div">
-            <label for="password">Password</label>
+            <label for="password">Password:</label>
             <input
               id="password"
               required
@@ -50,13 +50,13 @@ class Login extends Component {
           </div>
           <br />
           {!loading ? (
-            <div className="text-center">
+            <div className="text-center login-btn-grp">
               <ButtonGroup>
-                <Button variant="light" type="submit">
-                  Log In
-                </Button>
                 <Button variant="outline-light" href="/signup">
                   Sign Up
+                </Button>
+                <Button variant="light" type="submit">
+                  Log In
                 </Button>
               </ButtonGroup>
             </div>

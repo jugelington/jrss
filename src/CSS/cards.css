@@ -123,17 +123,19 @@ p {
   padding: 15px;
 }
 .login-form-div {
-  height: 30px;
+  min-height: 30px;
+  margin: 5px;
 }
+
 @media only screen and (max-width: 600px) {
   .login-card {
-    text-align: center;
     width: 90vw;
-    margin: 0 auto;
-    top: 50%;
-    left: 50%;
+    height: 230px;
     margin-left: -45vw;
     margin-top: -144px;
+  }
+  .login-btn-grp {
+    margin-top: 20px;
   }
 }
 
