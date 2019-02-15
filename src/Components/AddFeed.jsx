@@ -4,9 +4,7 @@ import { API } from 'aws-amplify';
 import ReactLoading from 'react-loading';
 import { navigate } from '@reach/router';
 // react-bootstrap
-import Form from 'react-bootstrap/lib/Form';
 import Button from 'react-bootstrap/lib/Button';
-import Card from 'react-bootstrap/lib/Card';
 // css
 import '../CSS/loading-component.css';
 import '../CSS/cards.css';
@@ -22,50 +20,37 @@ class AddFeed extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <Card bg="dark" text="light" border="secondary" className="add-feed-card">
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
+      <section className="add-feed-card box">
+        <h3 className="text-center">Add Feed</h3>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-div">
+            <label for="name">Name:</label>
+            <input
+              id="name"
               required
               type="text"
-              placeholder="enter name of feed"
               onChange={this.handleChange}
             />
-            <Form.Control.Feedback type="invalid">
-              Please enter a valid name.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="url">
-            <Form.Label>URL</Form.Label>
-            <Form.Control
-              required
-              type="url"
-              placeholder="enter url of rss feed"
-              onChange={this.handleChange}
-            />
-            <Form.Control.Feedback type="invalid">
-              Please enter a valid url.
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group controlId="tags">
-            <Form.Label>Tags</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="enter tags to categorise feed"
-              onChange={this.handleChange}
-            />
-            <Form.Text>Optional. Seperate tags with commas</Form.Text>
-          </Form.Group>
+          </div>
+          <div className="form-div">
+            <label for="url">URL:</label>
+            <input id="url" required type="url" onChange={this.handleChange} />
+          </div>
+          <div className="form-div">
+            <label for="tags">Tags:</label>
+            <input id="tags" type="text" onChange={this.handleChange} />
+          </div>
           {!loading ? (
-            <Button variant="secondary" type="submit">
-              Subscribe
-            </Button>
+            <div className="text-center">
+              <Button variant="secondary" type="submit">
+                Subscribe
+              </Button>
+            </div>
           ) : (
             <ReactLoading className="loading-bubbles" type={'bubbles'} />
           )}
-        </Form>
-      </Card>
+        </form>
+      </section>
     );
   }
 

@@ -1,10 +1,14 @@
-/* Article Cards */
-.article-card {
+/* General */
+.box {
   background: #343a40;
   border: 1px solid white;
+  color: white;
+}
+
+/* Article Cards */
+.article-card {
   width: 50%;
   margin: 5px auto;
-  color: white;
 }
 
 .article-header {
@@ -69,15 +73,12 @@ p {
 
 /* SignUp */
 .signup-card {
-  background: #343a40;
-  border: 1px solid white;
-  color: white;
   position: fixed;
   top: 50%;
   left: 50%;
   height: fit-content;
   width: 400px;
-  margin-top: -103px;
+  margin-top: -121.3px;
   margin-left: -200px;
   padding: 15px;
 }
@@ -94,14 +95,11 @@ p {
 
 /* Login */
 .login-card {
-  background: #343a40;
-  border: 1px solid white;
-  color: white;
   position: fixed;
   top: 50%;
   left: 50%;
   width: 340px;
-  margin-top: -106px;
+  margin-top: -115.3px;
   margin-left: -170px;
   padding: 15px;
 }
@@ -131,13 +129,10 @@ p {
 
 .feed-card {
   position: relative;
-  color: white;
-  background: #343a40;
   width: 300px;
   max-width: 95vw;
   margin: 5px;
   text-align: center;
-  border: 1px solid white;
   height: fit-content;
 }
 
@@ -171,4 +166,17 @@ input {
 
 .tags-div {
   display: inline-block;
+}
+
+/* add-feed-card */
+
+.add-feed-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: fit-content;
+  width: 400px;
+  margin-top: -92.3px;
+  margin-left: -200px;
+  padding: 15px;
 }
