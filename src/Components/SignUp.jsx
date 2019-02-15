@@ -28,7 +28,9 @@ class SignUp extends Component {
   signUpForm = () => {
     const { loading } = this.state;
     return (
-      <section className="signup-card">
+      <section className="signup-card box">
+        <h3 className="text-center">Sign Up</h3>
+
         <form onSubmit={this.handleSubmit}>
           <div className="form-div">
             <label for="email">Email:</label>
@@ -93,7 +95,12 @@ class SignUp extends Component {
   confirmationForm = () => {
     const { loading, confirmationCode } = this.state;
     return (
-      <section className="signup-card">
+      <section className="signup-card box">
+        <section className="text-center">
+          <h3>Confirmation</h3>
+          <h6>Check your email for a confirmation code</h6>
+        </section>
+        <br />
         <form onSubmit={this.handleConfirmationSubmit}>
           <div className="form-div">
             <label for="confirmationCode">Confirmation Code:</label>

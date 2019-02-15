@@ -22,7 +22,9 @@ class Login extends Component {
     const { loading, email, password } = this.state;
 
     return (
-      <section className="login-card text-center">
+      <section className="login-card text-center box">
+        <h3 className="text-center">Login</h3>
+        <br />
         <form onSubmit={this.handleSubmit}>
           <div className="form-div">
             <label for="email">Email:</label>
