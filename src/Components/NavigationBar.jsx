@@ -1,11 +1,7 @@
 import React from 'react';
-// react-bootstrap
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavDropdown from 'react-bootstrap/lib/NavDropdown';
-import Container from 'react-bootstrap/lib/Container';
 // css
 import '../CSS/NavigationBar.css';
+// images
 
 const NavigationBar = ({
   feeds,
@@ -19,52 +15,57 @@ const NavigationBar = ({
   );
   tags.sort((a, b) => (b.toUpperCase() - a.toUpperCase() > 0 ? 1 : -1));
   return isAuthenticated ? (
-    <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
-      <Container>
-        <Navbar.Brand href="/">jrss</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Nav className="mr-auto">
-          <NavDropdown title="Tags" id="tagsDropdown">
-            {tags.map(tag => (
-              <NavDropdown.Item key={tag} href={`/tags/${tag}`}>
-                {tag}
-              </NavDropdown.Item>
-            ))}
-          </NavDropdown>
-          <NavDropdown title="Feeds" id="feedsDropdown">
-            {feedsArr.map(feed => (
-              <NavDropdown.Item key={feed} href={`/feeds/${feed}`}>
-                {feeds[feed].displayName}
-              </NavDropdown.Item>
-            ))}
-            <NavDropdown.Divider />
-            <NavDropdown.Item key="manageFeeds" href="/settings/managefeeds">
-              Manage Feeds
-            </NavDropdown.Item>
-            <NavDropdown.Item key="addFeed" href="/settings/addfeed">
-              Add Feed
-            </NavDropdown.Item>
-          </NavDropdown>
-          <Nav.Link onClick={handleLogout} href="/login">
-            Logout
-          </Nav.Link>
-          <Nav.Link eventKey="disabled" disabled>
-            {username.substring(0, username.indexOf('@'))}
-          </Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
+    <div className="navigationbar">
+      <div className="navbtn navitem">
+        <a href="/">
+          <strong>JRSS</strong>
+        </a>
+      </div>
+      <div className="dropdown">
+        <button className="dropbtn navitem">Tags</button>
+        <div className="dropdown-content">
+          {tags.map(tag => (
+            <a href={`/tags/${tag}`}>{tag}</a>
+          ))}
+        </div>
+      </div>
+      <div className="dropdown">
+        <button className="dropbtn navitem">Feeds</button>
+        <div className="dropdown-content">
+          {feedsArr.map(feed => (
+            <a href={`/feeds/${feed}`}>{feeds[feed].displayName}</a>
+          ))}
+        </div>
+      </div>
+      <div className="dropdown">
+        <button className="dropbtn navitem">Settings</button>
+        <div className="dropdown-content">
+          <a href="/settings/managefeeds">Manage Feeds</a>
+          <a href="/settings/addfeed">Add Feed</a>
+          <a href="/" onClick={handleLogout}>
+            Log Out ({username.substring(0, username.indexOf('@'))})
+          </a>
+        </div>
+      </div>
+    </div>
   ) : (
-    <Navbar id="NavigationBar" variant="dark" bg="dark" fixed="top">
-      <Container>
-        <Navbar.Brand>jrss</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Nav className="mr-auto">
-          <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/signup">Sign Up</Nav.Link>
-        </Nav>
-      </Container>
-    </Navbar>
+    <div className="navigationbar">
+      <div className="navbtn navitem">
+        <a href="/">
+          <strong>JRSS</strong>
+        </a>
+      </div>
+      <div className="navbtn navitem">
+        <a href="/login">
+          <strong>Login </strong>
+        </a>
+      </div>
+      <div className="navbtn navitem">
+        <a href="/signup">
+          <strong>Sign Up</strong>
+        </a>
+      </div>
+    </div>
   );
 };
 
