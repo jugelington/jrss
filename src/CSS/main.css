@@ -258,6 +258,17 @@
 .add-feed-card .btn {
   border-radius: 0;
 }
+.add-feed-card .form-div {
+  display: block;
+  margin: 10px;
+}
+.add-feed-card .form-div input {
+  float: right;
+  width: 75%;
+}
+.add-feed-card .form-div .explanation {
+  float: right;
+}
 @media screen and (max-width: 600px) {
   .add-feed-card {
     width: 90vw;

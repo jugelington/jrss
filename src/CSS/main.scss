@@ -270,6 +270,18 @@ $break-small: 600px;
   .btn {
     border-radius: $border-radius;
   }
+  .form-div {
+    display: block;
+    input {
+      float: right;
+      width: 75%;
+    }
+    .explanation {
+      float: right;
+    }
+    margin: 10px;
+  }
+
   @media screen and (max-width: $break-small) {
     width: 90vw;
     margin-left: -45vw;

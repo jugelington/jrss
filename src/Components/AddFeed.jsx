@@ -38,8 +38,14 @@ class AddFeed extends Component {
           </div>
           <div className="form-div">
             <label for="tags">Tags:</label>
-            <input id="tags" type="text" onChange={this.handleChange} />
+            <input
+              id="tags"
+              type="text"
+              onChange={this.handleChange}
+              placeholder="Seperate tags with a comma"
+            />
           </div>
+          <br />
           {!loading ? (
             <div className="text-center">
               <Button variant="secondary" type="submit">
