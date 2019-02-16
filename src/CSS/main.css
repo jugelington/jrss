@@ -100,8 +100,8 @@
 }
 .article-card .article-header {
   position: relative;
-  min-height: fit-content;
-  height: 90px;
+  height: fit-content;
+  min-height: 90px;
   padding: 5px;
 }
 .article-card .article-header h6 {
