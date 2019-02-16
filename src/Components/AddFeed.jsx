@@ -7,7 +7,7 @@ import { navigate } from '@reach/router';
 import Button from 'react-bootstrap/lib/Button';
 // css
 import '../CSS/loading-component.css';
-import '../CSS/cards.css';
+import '../CSS/main.css';
 
 class AddFeed extends Component {
   state = {

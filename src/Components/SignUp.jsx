@@ -7,7 +7,7 @@ import ReactLoading from 'react-loading';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 // css
-import '../CSS/cards.css';
+// import '../CSS/main.css';
 
 class SignUp extends Component {
   state = {

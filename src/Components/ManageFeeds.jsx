@@ -4,7 +4,7 @@ import FeedCard from './FeedCard';
 // utilities
 import { API } from 'aws-amplify';
 // css
-import '../CSS/cards.css';
+import '../CSS/main.css';
 
 class ManageFeeds extends Component {
   state = {

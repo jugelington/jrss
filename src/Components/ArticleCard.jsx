@@ -6,9 +6,8 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import { imageExtractor, dateParser, timeParser } from '../utilities';
 import Parser from 'html-react-parser';
 // CSS
-import '../CSS/cards.css';
+import '../CSS/main.css';
 import '../CSS/loading-component.css';
-import 'react-perfect-scrollbar/dist/css/styles.css';
 
 class ArticleCard extends Component {
   state = {
@@ -26,15 +25,15 @@ class ArticleCard extends Component {
     const time = timeParser(parsedDate);
 
     return (
-      <section className="article-card box">
+      <section className="box article-card">
         <section className="article-header">
           {image && (
             <img src={image} alt="none found" className="article-image" />
           )}
-          <h6 className="article-title">
+          <h6>
             <strong>{title}</strong>
           </h6>
-          <section className="article-subtitle">
+          <section>
             <p>{source}</p>
             <p>{time + ' ' + date}</p>
           </section>

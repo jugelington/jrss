@@ -9,7 +9,7 @@ import { navigate } from '@reach/router';
 import ReactLoading from 'react-loading';
 import { API } from 'aws-amplify';
 // css
-import '../CSS/cards.css';
+import '../CSS/main.css';
 import '../CSS/loading-component.css';
 
 class FeedCard extends Component {
