@@ -100,9 +100,10 @@
 .article-card .article-header {
   position: relative;
   min-height: fit-content;
+  height: 90px;
+  padding: 5px;
 }
 .article-card .article-header h6 {
-  padding-left: 5px;
   margin-bottom: 0 !important;
 }
 .article-card .article-header p {
@@ -110,10 +111,12 @@
 }
 .article-card .article-header .article-image {
   height: auto;
-  width: 8em;
+  width: auto;
+  max-width: 8em;
+  max-height: 80px;
   float: left;
-  margin: 5px;
   border: 1px solid white;
+  margin-right: 5px;
 }
 @media screen and (max-width: 600px) {
   .article-card .article-header .article-image {

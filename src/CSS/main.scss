@@ -116,12 +116,12 @@ $break-small: 600px;
   background: $background-color;
   border: $border;
   color: $highlight-color;
-
   .article-header {
     position: relative;
     min-height: fit-content;
+    height: 90px;
+    padding: 5px;
     h6 {
-      padding-left: 5px;
       margin-bottom: 0 !important;
     }
     p {
@@ -129,10 +129,12 @@ $break-small: 600px;
     }
     .article-image {
       height: auto;
-      width: 8em;
+      width: auto;
+      max-width: 8em;
+      max-height: 80px;
       float: left;
-      margin: 5px;
       border: $border;
+      margin-right: 5px;
       @media screen and (max-width: $break-small) {
         float: none;
       }
