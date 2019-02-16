@@ -1,17 +1,19 @@
-$background-color: #343a40;
-$background-color-alt: rgb(68, 86, 104);
-$highlight-color: white;
-$highlight-color-alt: #ddd;
+$primary-color: white;
+$primary-color-alt: #ddd;
+$secondary-color: #343a40;
+$secondary-color-alt: #49525a;
 $border: 1px solid white;
+$border-alt: 1px solid #343a40;
 $border-dashed: 0.1px dashed white;
 $button-padding: 10px;
+$border-radius: 0;
 $button-font-size: 16px;
 $break-small: 600px;
 
 .navigationbar {
   display: flex;
   justify-content: center;
-  background-color: $background-color;
+  background-color: $secondary-color;
   border-bottom: $border;
   position: sticky;
   top: 0;
@@ -22,26 +24,26 @@ $break-small: 600px;
   }
 
   .navbtn:hover {
-    background-color: $highlight-color;
+    background-color: $primary-color;
   }
 
   .navbtn-b:hover {
-    background-color: $highlight-color;
+    background-color: $primary-color;
   }
 
   a {
     float: left;
     font-size: $button-font-size;
-    color: $highlight-color;
+    color: $primary-color;
     text-align: center;
     .navitem {
-      color: $background-color;
+      color: $secondary-color;
     }
     .navbtn:hover {
-      color: $highlight-color;
+      color: $primary-color;
     }
     .navbtn-b:hover {
-      color: $background-color;
+      color: $secondary-color;
       border: $border;
     }
   }
@@ -50,25 +52,26 @@ $break-small: 600px;
   }
   .navitem {
     padding: $button-padding;
-    background-color: $highlight-color;
+    background-color: $primary-color;
     border: $border;
   }
 
   .navitem:hover {
-    background-color: $background-color;
+    background-color: $secondary-color;
   }
 
   .navitem-b {
     padding: $button-padding;
-    background-color: $background-color;
+    background-color: $secondary-color;
   }
 
   .dropdown {
     position: relative;
     display: inline-block;
+
     .dropbtn {
-      background-color: $background-color;
-      color: $highlight-color;
+      color: $primary-color;
+      background-color: $secondary-color;
       padding: $button-padding;
       font-size: $button-font-size;
       border: none;
@@ -76,46 +79,47 @@ $break-small: 600px;
     .dropdown-content {
       display: none;
       position: absolute;
-      background-color: $highlight-color;
+      background-color: $primary-color;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
       a {
-        color: $background-color;
-        padding: 12px 16px;
+        color: $secondary-color;
+        padding: 5px 10px;
         text-decoration: none;
         display: block;
       }
       a:hover {
-        background-color: $highlight-color-alt;
+        background-color: $primary-color-alt;
       }
     }
   }
 
   .dropdown:hover {
     .dropdown-content {
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
   }
   .dropbtn:hover {
-    background-color: $highlight-color;
-    color: $background-color;
+    background-color: $primary-color;
+    color: $secondary-color;
     font-weight: bold;
   }
 }
 
 .box {
-  background: $background-color;
+  background: $secondary-color;
   border: $border;
-  color: $highlight-color;
+  color: $primary-color;
 }
 
 .article-card {
   width: 50%;
   margin: 5px auto;
-  background: $background-color;
+  background: $secondary-color;
   border: $border;
-  color: $highlight-color;
+  color: $primary-color;
   .article-header {
     position: relative;
     min-height: fit-content;
@@ -144,9 +148,9 @@ $break-small: 600px;
       right: 5px;
       bottom: 5px;
       z-index: 1;
-      border-radius: 0;
+      border-radius: $border-radius;
       .btn {
-        border-radius: 0 !important;
+        border-radius: $border-radius !important;
       }
       @media screen and (max-width: $break-small) {
         position: static !important;
@@ -177,7 +181,7 @@ $break-small: 600px;
   margin-left: -200px;
   padding: 15px;
   .btn {
-    border-radius: 0;
+    border-radius: $border-radius;
   }
   @media screen and (max-width: $break-small) {
     margin-top: -134px;
@@ -201,7 +205,7 @@ $break-small: 600px;
     margin: 5px;
   }
   .btn {
-    border-radius: 0;
+    border-radius: $border-radius;
   }
   .login-btn-grp {
     @media screen and (max-width: $break-small) {
@@ -221,7 +225,7 @@ $break-small: 600px;
   flex-wrap: wrap;
   justify-content: center;
   .btn {
-    border-radius: 0;
+    border-radius: $border-radius;
   }
   .feed-card {
     position: relative;
@@ -264,7 +268,7 @@ $break-small: 600px;
   margin-left: -200px;
   padding: 15px;
   .btn {
-    border-radius: 0;
+    border-radius: $border-radius;
   }
   @media screen and (max-width: $break-small) {
     width: 90vw;
