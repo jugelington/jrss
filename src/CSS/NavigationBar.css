@@ -21,7 +21,6 @@ a {
 
 .navitem {
   padding: 10px;
-  margin: 0 1px;
   background-color: white;
   border: 1px solid white;
 }
@@ -91,6 +90,7 @@ a .navitem-b {
 .dropdown:hover .dropbtn {
   background-color: white;
   color: #343a40;
+  font-weight: bold;
 }
 
 .navbtn:hover {
