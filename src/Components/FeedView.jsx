@@ -10,7 +10,7 @@ const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
   const filteredArticles = articles.filter(article => {
     if (!article) return false;
     if (tagName) return article.feedTags.includes(tagName);
-    if (feedName) return article.feedName === feedName;
+    if (feedName) return article.source === feedName;
     return true;
   });
 

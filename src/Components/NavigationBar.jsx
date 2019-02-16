@@ -1,7 +1,6 @@
 import React from 'react';
 // css
 import '../CSS/main.css';
-// images
 
 const NavigationBar = ({
   feeds,
@@ -10,8 +9,8 @@ const NavigationBar = ({
   handleLogout,
   username,
 }) => {
-  const feedsArr = Object.keys(feeds).sort((a, b) =>
-    b.displayName - a.displayName > 0 ? 1 : -1,
+  feeds.sort((a, b) =>
+    b.displayName.toLowerCase() - a.displayName.toLowerCase() > 0 ? 1 : -1,
   );
   tags.sort((a, b) => (b.toUpperCase() - a.toUpperCase() > 0 ? 1 : -1));
   return isAuthenticated ? (
@@ -25,15 +24,19 @@ const NavigationBar = ({
         <button className="dropbtn ">Tags</button>
         <div className="dropdown-content">
           {tags.map(tag => (
-            <a href={`/tags/${tag}`}>{tag}</a>
+            <a key={tag} href={`/tags/${tag}`}>
+              {tag}
+            </a>
           ))}
         </div>
       </div>
       <div className="dropdown">
         <button className="dropbtn ">Feeds</button>
         <div className="dropdown-content">
-          {feedsArr.map(feed => (
-            <a href={`/feeds/${feed}`}>{feeds[feed].displayName}</a>
+          {feeds.map(feed => (
+            <a key={feed.displayName} href={`/feeds/${feed.displayName}`}>
+              {feed.displayName}
+            </a>
           ))}
         </div>
       </div>
