@@ -1,0 +1,265 @@
+.navigationbar {
+  display: flex;
+  justify-content: center;
+  background-color: #343a40;
+  border-bottom: 1px solid white;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.navigationbar .navbtn {
+  height: 100%;
+}
+.navigationbar .navbtn:hover {
+  background-color: white;
+}
+.navigationbar .navbtn-b:hover {
+  background-color: white;
+}
+.navigationbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+}
+.navigationbar a .navitem {
+  color: #343a40;
+}
+.navigationbar a .navbtn:hover {
+  color: white;
+}
+.navigationbar a .navbtn-b:hover {
+  color: #343a40;
+  border: 1px solid white;
+}
+.navigationbar a:hover {
+  text-decoration: none;
+}
+.navigationbar .navitem {
+  padding: 10px;
+  background-color: white;
+  border: 1px solid white;
+}
+.navigationbar .navitem:hover {
+  background-color: #343a40;
+}
+.navigationbar .navitem-b {
+  padding: 10px;
+  background-color: #343a40;
+}
+.navigationbar .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.navigationbar .dropdown .dropbtn {
+  background-color: #343a40;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+.navigationbar .dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.navigationbar .dropdown .dropdown-content a {
+  color: #343a40;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.navigationbar .dropdown .dropdown-content a:hover {
+  background-color: #ddd;
+}
+.navigationbar .dropdown:hover .dropdown-content {
+  display: block;
+}
+.navigationbar .dropbtn:hover {
+  background-color: white;
+  color: #343a40;
+  font-weight: bold;
+}
+
+.box {
+  background: #343a40;
+  border: 1px solid white;
+  color: white;
+}
+
+.article-card {
+  width: 50%;
+  margin: 5px auto;
+  background: #343a40;
+  border: 1px solid white;
+  color: white;
+}
+.article-card .article-header {
+  position: relative;
+  min-height: fit-content;
+}
+.article-card .article-header h6 {
+  padding-left: 5px;
+  margin-bottom: 0 !important;
+}
+.article-card .article-header p {
+  margin-bottom: 0 !important;
+}
+.article-card .article-header .article-image {
+  height: auto;
+  width: 8em;
+  float: left;
+  margin: 5px;
+  border: 1px solid white;
+}
+@media screen and (max-width: 600px) {
+  .article-card .article-header .article-image {
+    float: none;
+  }
+}
+.article-card .article-header .article-button-div {
+  position: absolute !important;
+  right: 5px;
+  bottom: 5px;
+  z-index: 1;
+  border-radius: 0;
+}
+.article-card .article-header .article-button-div .btn {
+  border-radius: 0 !important;
+}
+@media screen and (max-width: 600px) {
+  .article-card .article-header .article-button-div {
+    position: static !important;
+    margin: 5px;
+  }
+}
+.article-card .hidden-body {
+  display: none;
+}
+.article-card .article-body {
+  border-top: 0.1px dashed white;
+  padding: 5px;
+}
+@media screen and (max-width: 600px) {
+  .article-card {
+    width: 95vw;
+    text-align: center;
+  }
+}
+
+.signup-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: fit-content;
+  width: 400px;
+  margin-top: -121.3px;
+  margin-left: -200px;
+  padding: 15px;
+}
+.signup-card .btn {
+  border-radius: 0;
+}
+@media screen and (max-width: 600px) {
+  .signup-card {
+    margin-top: -134px;
+    margin-left: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+  }
+}
+
+.login-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  margin-top: -115.3px;
+  margin-left: -170px;
+  padding: 15px;
+}
+.login-card .form-div {
+  min-height: 30px;
+  margin: 5px;
+}
+.login-card .btn {
+  border-radius: 0;
+}
+@media screen and (max-width: 600px) {
+  .login-card .login-btn-grp {
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .login-card {
+    width: 90vw;
+    height: fit-content;
+    margin-left: -45vw;
+    margin-top: -144px;
+  }
+}
+
+.feed-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.feed-cards-container .btn {
+  border-radius: 0;
+}
+.feed-cards-container .feed-card {
+  position: relative;
+  width: 300px;
+  max-width: 95vw;
+  margin: 5px;
+  text-align: center;
+  height: fit-content;
+}
+.feed-cards-container .feed-card .feed-header {
+  height: 30px;
+}
+.feed-cards-container .feed-card .feed-header .feed-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 30px;
+}
+.feed-cards-container .feed-card .feed-body {
+  padding: 5px;
+}
+.feed-cards-container .feed-card .feed-body label {
+  float: left;
+}
+.feed-cards-container .feed-card .feed-body input {
+  float: right;
+}
+.feed-cards-container .feed-card .feed-body .tags-div {
+  display: inline-block;
+}
+
+.add-feed-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: fit-content;
+  width: 400px;
+  margin-top: -92.3px;
+  margin-left: -200px;
+  padding: 15px;
+}
+.add-feed-card .btn {
+  border-radius: 0;
+}
+@media screen and (max-width: 600px) {
+  .add-feed-card {
+    width: 90vw;
+    margin-left: -45vw;
+    margin-top: -144px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
