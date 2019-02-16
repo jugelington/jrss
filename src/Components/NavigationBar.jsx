@@ -55,12 +55,12 @@ const NavigationBar = ({
           <strong>JRSS</strong>
         </a>
       </div>
-      <div className="navbtn navitem">
+      <div className="navbtn-b navitem-b">
         <a href="/login">
           <strong>Login </strong>
         </a>
       </div>
-      <div className="navbtn navitem">
+      <div className="navbtn-b navitem-b ">
         <a href="/signup">
           <strong>Sign Up</strong>
         </a>

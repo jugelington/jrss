@@ -5,7 +5,7 @@
   border-bottom: 1px white solid;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 .navigationbar a {
@@ -25,6 +25,16 @@
 
 .navitem a {
   color: #343a40;
+}
+
+.navitem-b {
+  padding: 10px;
+  margin: 0 1px;
+  background-color: #343a40;
+}
+
+.navitem-b a {
+  color: white;
 }
 
 .navbtn {
@@ -84,6 +94,11 @@
 .navbtn:hover {
   background-color: white;
 }
+
+.navbtn-b:hover {
+  background-color: white;
+}
+
 .navitem:hover {
   background-color: #343a40;
 }
@@ -91,6 +106,14 @@
   color: white;
 }
 
+.navbtn-b:hover a {
+  color: #343a40;
+}
+
 .navitem a:hover {
+  text-decoration: none;
+}
+
+.navitem-b a:hover {
   text-decoration: none;
 }
