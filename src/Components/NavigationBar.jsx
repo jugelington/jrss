@@ -9,10 +9,15 @@ const NavigationBar = ({
   handleLogout,
   username,
 }) => {
-  feeds.sort((a, b) =>
-    b.displayName.toLowerCase() - a.displayName.toLowerCase() > 0 ? 1 : -1,
+  feeds.sort(
+    (a, b) =>
+      a.displayName.replace(' ', '_').toUpperCase() >
+      b.displayName.replace(' ', '_').toUpperCase(),
   );
-  tags.sort((a, b) => (b.toUpperCase() - a.toUpperCase() > 0 ? 1 : -1));
+  tags.sort(
+    (a, b) =>
+      a.replace(' ', '_').toUpperCase() > b.replace(' ', '_').toUpperCase(),
+  );
   return isAuthenticated ? (
     <div className="navigationbar">
       <a href="/">
