@@ -8,12 +8,15 @@
   z-index: 2;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .navigationbar a {
   float: left;
   font-size: 16px;
   color: white;
   text-align: center;
-  text-decoration: none;
 }
 
 .navitem {
@@ -23,7 +26,7 @@
   border: 1px solid white;
 }
 
-.navitem a {
+a .navitem {
   color: #343a40;
 }
 
@@ -33,13 +36,12 @@
   background-color: #343a40;
 }
 
-.navitem-b a {
+a .navitem-b {
   color: white;
 }
 
 .navbtn {
   height: 100%;
-  /* padding: 16px; */
 }
 
 /* Dropdown Button */
@@ -102,18 +104,11 @@
 .navitem:hover {
   background-color: #343a40;
 }
-.navbtn:hover a {
+a .navbtn:hover {
   color: white;
 }
 
-.navbtn-b:hover a {
+a .navbtn-b:hover {
   color: #343a40;
-}
-
-.navitem a:hover {
-  text-decoration: none;
-}
-
-.navitem-b a:hover {
-  text-decoration: none;
+  border: 1px solid white;
 }

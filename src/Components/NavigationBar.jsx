@@ -16,13 +16,13 @@ const NavigationBar = ({
   tags.sort((a, b) => (b.toUpperCase() - a.toUpperCase() > 0 ? 1 : -1));
   return isAuthenticated ? (
     <div className="navigationbar">
-      <div className="navbtn navitem">
-        <a href="/">
+      <a href="/">
+        <div className="navbtn navitem">
           <strong>JRSS</strong>
-        </a>
-      </div>
+        </div>
+      </a>
       <div className="dropdown">
-        <button className="dropbtn navitem">Tags</button>
+        <button className="dropbtn ">Tags</button>
         <div className="dropdown-content">
           {tags.map(tag => (
             <a href={`/tags/${tag}`}>{tag}</a>
@@ -30,7 +30,7 @@ const NavigationBar = ({
         </div>
       </div>
       <div className="dropdown">
-        <button className="dropbtn navitem">Feeds</button>
+        <button className="dropbtn ">Feeds</button>
         <div className="dropdown-content">
           {feedsArr.map(feed => (
             <a href={`/feeds/${feed}`}>{feeds[feed].displayName}</a>
@@ -38,7 +38,7 @@ const NavigationBar = ({
         </div>
       </div>
       <div className="dropdown">
-        <button className="dropbtn navitem">Settings</button>
+        <button className="dropbtn ">Settings</button>
         <div className="dropdown-content">
           <a href="/settings/managefeeds">Manage Feeds</a>
           <a href="/settings/addfeed">Add Feed</a>
@@ -50,21 +50,21 @@ const NavigationBar = ({
     </div>
   ) : (
     <div className="navigationbar">
-      <div className="navbtn navitem">
-        <a href="/">
+      <a href="/">
+        <div className="navbtn navitem">
           <strong>JRSS</strong>
-        </a>
-      </div>
-      <div className="navbtn-b navitem-b">
-        <a href="/login">
+        </div>
+      </a>
+      <a href="/login">
+        <div className="navbtn-b navitem-b">
           <strong>Login </strong>
-        </a>
-      </div>
-      <div className="navbtn-b navitem-b ">
-        <a href="/signup">
+        </div>
+      </a>
+      <a href="/signup">
+        <div className="navbtn-b navitem-b ">
           <strong>Sign Up</strong>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
   );
 };
