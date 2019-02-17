@@ -22,8 +22,8 @@ class ArticleCard extends Component {
     const time = timeParser(parsedDate);
 
     return (
-      <section className="box article-card">
-        <section className="article-header">
+      <section className="article-card">
+        <header>
           {image && <img src={image} alt="none found" />}
           <h6>
             <strong>{title}</strong>
@@ -41,8 +41,8 @@ class ArticleCard extends Component {
               {expanded ? 'Hide' : 'Expand'}
             </Button>
           </ButtonGroup>
-        </section>
-        <section className={expanded ? 'article-body' : 'hidden-body'}>
+        </header>
+        <section className={expanded ? 'body' : 'hidden'}>
           {Parser(content, {
             replace: domNode => {
               if (domNode.name) {

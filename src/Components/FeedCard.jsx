@@ -23,7 +23,7 @@ class FeedCard extends Component {
     const { displayName, url, tags, newTag } = this.state;
 
     return (
-      <section className="feed-card box">
+      <section className="feed-card">
         <section className="feed-header">
           <h5 className="feed-name">{feed.displayName}</h5>
           <Button

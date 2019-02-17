@@ -16,7 +16,7 @@ class AddFeed extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <section className="add-feed-card box">
+      <section className="add-feed-card">
         <h3 className="text-center">Add Feed</h3>
         <form onSubmit={this.handleSubmit}>
           <div className="form-div">

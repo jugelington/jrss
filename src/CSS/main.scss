@@ -10,11 +10,20 @@ $border-radius: 0;
 $button-font-size: 16px;
 $break-small: 600px;
 
+@mixin default-colors {
+  color: $primary-color;
+  background-color: $secondary-color;
+}
+@mixin reverse-colors {
+  color: $secondary-color;
+  background-color: $primary-color;
+}
+
 .navigationbar {
+  @include default-colors();
+  border-bottom: $border;
   display: flex;
   justify-content: center;
-  background-color: $secondary-color;
-  border-bottom: $border;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -70,8 +79,7 @@ $break-small: 600px;
     display: inline-block;
 
     .dropbtn {
-      color: $primary-color;
-      background-color: $secondary-color;
+      @include default-colors();
       padding: $button-padding;
       font-size: $button-font-size;
       border: none;
@@ -102,26 +110,18 @@ $break-small: 600px;
       flex-direction: column;
     }
     .dropbtn {
-      background-color: $primary-color;
-      color: $secondary-color;
+      @include reverse-colors();
       font-weight: bold;
     }
   }
 }
 
-.box {
-  background: $secondary-color;
-  border: $border;
-  color: $primary-color;
-}
-
 .article-card {
+  @include default-colors();
   width: 50%;
   margin: 5px auto;
-  background: $secondary-color;
   border: $border;
-  color: $primary-color;
-  .article-header {
+  header {
     position: relative;
     height: fit-content;
     min-height: 90px;
@@ -159,10 +159,10 @@ $break-small: 600px;
       }
     }
   }
-  .hidden-body {
+  .hidden {
     display: none;
   }
-  .article-body {
+  .body {
     border-top: $border-dashed;
     padding: 5px;
     img {
@@ -179,6 +179,8 @@ $break-small: 600px;
 }
 
 .signup-card {
+  @include default-colors();
+  border: $border;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -222,6 +224,8 @@ $break-small: 600px;
 }
 
 .login-card {
+  @include default-colors();
+  border: $border;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -275,6 +279,8 @@ $break-small: 600px;
     border-radius: $border-radius;
   }
   .feed-card {
+    @include default-colors();
+    border: $border;
     position: relative;
     width: 300px;
     max-width: 95vw;
@@ -331,6 +337,8 @@ $break-small: 600px;
 }
 
 .add-feed-card {
+  @include default-colors();
+  border: $border;
   position: fixed;
   top: 50%;
   left: 50%;

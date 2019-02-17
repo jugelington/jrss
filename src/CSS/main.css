@@ -1,8 +1,9 @@
 .navigationbar {
-  display: flex;
-  justify-content: center;
+  color: white;
   background-color: #343a40;
   border-bottom: 1px solid white;
+  display: flex;
+  justify-content: center;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -81,37 +82,31 @@
   flex-direction: column;
 }
 .navigationbar .dropdown:hover .dropbtn {
-  background-color: white;
   color: #343a40;
+  background-color: white;
   font-weight: bold;
 }
 
-.box {
-  background: #343a40;
-  border: 1px solid white;
-  color: white;
-}
-
 .article-card {
+  color: white;
+  background-color: #343a40;
   width: 50%;
   margin: 5px auto;
-  background: #343a40;
   border: 1px solid white;
-  color: white;
 }
-.article-card .article-header {
+.article-card header {
   position: relative;
   height: fit-content;
   min-height: 90px;
   padding: 5px;
 }
-.article-card .article-header h6 {
+.article-card header h6 {
   margin-bottom: 0 !important;
 }
-.article-card .article-header p {
+.article-card header p {
   margin-bottom: 0 !important;
 }
-.article-card .article-header img {
+.article-card header img {
   height: auto;
   width: auto;
   max-width: 8em;
@@ -121,34 +116,34 @@
   margin-right: 5px;
 }
 @media screen and (max-width: 600px) {
-  .article-card .article-header img {
+  .article-card header img {
     float: none;
   }
 }
-.article-card .article-header .article-button-div {
+.article-card header .article-button-div {
   position: absolute !important;
   right: 5px;
   bottom: 5px;
   z-index: 1;
   border-radius: 0;
 }
-.article-card .article-header .article-button-div .btn {
+.article-card header .article-button-div .btn {
   border-radius: 0 !important;
 }
 @media screen and (max-width: 600px) {
-  .article-card .article-header .article-button-div {
+  .article-card header .article-button-div {
     position: static !important;
     margin: 5px;
   }
 }
-.article-card .hidden-body {
+.article-card .hidden {
   display: none;
 }
-.article-card .article-body {
+.article-card .body {
   border-top: 0.1px dashed white;
   padding: 5px;
 }
-.article-card .article-body img {
+.article-card .body img {
   max-width: 50%;
   float: left;
   margin-right: 5px;
@@ -162,6 +157,9 @@
 }
 
 .signup-card {
+  color: white;
+  background-color: #343a40;
+  border: 1px solid white;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -213,6 +211,9 @@
 }
 
 .login-card {
+  color: white;
+  background-color: #343a40;
+  border: 1px solid white;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -275,6 +276,9 @@
   border-radius: 0;
 }
 .feed-cards-container .feed-card {
+  color: white;
+  background-color: #343a40;
+  border: 1px solid white;
   position: relative;
   width: 300px;
   max-width: 95vw;
@@ -330,6 +334,9 @@
 }
 
 .add-feed-card {
+  color: white;
+  background-color: #343a40;
+  border: 1px solid white;
   position: fixed;
   top: 50%;
   left: 50%;
