@@ -46,7 +46,11 @@ class ArticleCard extends Component {
         <section className={expanded ? 'article-body' : 'hidden-body'}>
           {Parser(content, {
             replace: domNode => {
-              if (domNode.name && domNode.name === 'img') return <></>;
+              if (
+                domNode.name &&
+                ['a', 'img', 'table', 'tbody'].includes(domNode.name)
+              )
+                return <></>;
             },
           })}
         </section>
