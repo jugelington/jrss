@@ -111,7 +111,7 @@
 .article-card .article-header p {
   margin-bottom: 0 !important;
 }
-.article-card .article-header .article-image {
+.article-card .article-header img {
   height: auto;
   width: auto;
   max-width: 8em;
@@ -121,7 +121,7 @@
   margin-right: 5px;
 }
 @media screen and (max-width: 600px) {
-  .article-card .article-header .article-image {
+  .article-card .article-header img {
     float: none;
   }
 }
@@ -148,7 +148,7 @@
   border-top: 0.1px dashed white;
   padding: 5px;
 }
-.article-card .article-body .article-image {
+.article-card .article-body img {
   max-width: 50%;
   float: left;
   margin-right: 5px;

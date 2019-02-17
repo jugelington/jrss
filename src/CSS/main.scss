@@ -132,7 +132,7 @@ $break-small: 600px;
     p {
       margin-bottom: 0 !important;
     }
-    .article-image {
+    img {
       height: auto;
       width: auto;
       max-width: 8em;
@@ -165,7 +165,7 @@ $break-small: 600px;
   .article-body {
     border-top: $border-dashed;
     padding: 5px;
-    .article-image {
+    img {
       max-width: 50%;
       float: left;
       margin-right: 5px;

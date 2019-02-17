@@ -24,9 +24,7 @@ class ArticleCard extends Component {
     return (
       <section className="box article-card">
         <section className="article-header">
-          {image && (
-            <img src={image} alt="none found" className="article-image" />
-          )}
+          {image && <img src={image} alt="none found" />}
           <h6>
             <strong>{title}</strong>
           </h6>
@@ -49,13 +47,7 @@ class ArticleCard extends Component {
             replace: domNode => {
               if (domNode.name) {
                 if (domNode.name === 'img')
-                  return (
-                    <img
-                      src={domNode.attribs.src}
-                      alt="error"
-                      className="article-image"
-                    />
-                  );
+                  return <img src={domNode.attribs.src} alt="error" />;
                 if (domNode.name === 'a') {
                   const text = domNode.children
                     .filter(child => child.type === 'text')
