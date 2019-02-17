@@ -204,6 +204,14 @@ $break-small: 600px;
   .form-div {
     min-height: 30px;
     margin: 5px;
+    overflow-x: hidden;
+    label {
+      float: left;
+    }
+    input {
+      float: right;
+      width: 65%;
+    }
   }
   .btn {
     border-radius: $border-radius;

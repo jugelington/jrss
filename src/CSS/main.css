@@ -190,6 +190,14 @@
 .login-card .form-div {
   min-height: 30px;
   margin: 5px;
+  overflow-x: hidden;
+}
+.login-card .form-div label {
+  float: left;
+}
+.login-card .form-div input {
+  float: right;
+  width: 65%;
 }
 .login-card .btn {
   border-radius: 0;
