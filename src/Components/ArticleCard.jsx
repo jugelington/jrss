@@ -13,7 +13,7 @@ class ArticleCard extends Component {
     const { expanded } = this.state;
     const {
       article,
-      article: { title, isoDate, link, source, content },
+      article: { title, isoDate, link, feedName, content },
     } = this.props;
     const image = imageExtractor(article);
     const parsedDate = new Date(isoDate);
@@ -30,7 +30,7 @@ class ArticleCard extends Component {
             <strong>{title}</strong>
           </h6>
           <section>
-            <p>{source}</p>
+            <p>{feedName}</p>
             <p>{time + ' ' + date}</p>
           </section>
 

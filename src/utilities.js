@@ -10,8 +10,7 @@ export const rssParser = async (feeds, feedName) => {
   const obj = await parser.parseURL(CORS_PROXY + feeds[feedName].url);
   const articles = obj.items;
   return articles.map(article => {
-    article.source = obj.title;
-    article.feedName = feedName;
+    article.feedName = feeds[feedName].displayName;
     article.feedTags = feeds[feedName].tags;
     return article;
   });
