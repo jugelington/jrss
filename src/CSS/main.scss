@@ -184,8 +184,30 @@ $break-small: 600px;
   .btn {
     border-radius: $border-radius;
   }
+  .form-div {
+    min-height: 30px;
+    margin: 5px;
+    overflow-x: hidden;
+    label {
+      float: left;
+      @media screen and (max-width: $break-small) {
+        float: none;
+      }
+    }
+    input {
+      float: right;
+      width: 60%;
+      @media screen and (max-width: $break-small) {
+        float: none;
+        width: 100%;
+      }
+    }
+    @media screen and (max-width: $break-small) {
+      text-align: center;
+    }
+  }
   @media screen and (max-width: $break-small) {
-    margin-top: -134px;
+    margin-top: -172px;
     margin-left: 0;
     left: 0;
     width: 100%;
@@ -207,10 +229,20 @@ $break-small: 600px;
     overflow-x: hidden;
     label {
       float: left;
+      @media screen and (max-width: $break-small) {
+        float: none;
+      }
     }
     input {
       float: right;
-      width: 65%;
+      width: 60%;
+      @media screen and (max-width: $break-small) {
+        float: none;
+        width: 100%;
+      }
+    }
+    @media screen and (max-width: $break-small) {
+      text-align: center;
     }
   }
   .btn {

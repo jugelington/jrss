@@ -168,9 +168,37 @@
 .signup-card .btn {
   border-radius: 0;
 }
+.signup-card .form-div {
+  min-height: 30px;
+  margin: 5px;
+  overflow-x: hidden;
+}
+.signup-card .form-div label {
+  float: left;
+}
+@media screen and (max-width: 600px) {
+  .signup-card .form-div label {
+    float: none;
+  }
+}
+.signup-card .form-div input {
+  float: right;
+  width: 60%;
+}
+@media screen and (max-width: 600px) {
+  .signup-card .form-div input {
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .signup-card .form-div {
+    text-align: center;
+  }
+}
 @media screen and (max-width: 600px) {
   .signup-card {
-    margin-top: -134px;
+    margin-top: -172px;
     margin-left: 0;
     left: 0;
     width: 100%;
@@ -195,9 +223,25 @@
 .login-card .form-div label {
   float: left;
 }
+@media screen and (max-width: 600px) {
+  .login-card .form-div label {
+    float: none;
+  }
+}
 .login-card .form-div input {
   float: right;
-  width: 65%;
+  width: 60%;
+}
+@media screen and (max-width: 600px) {
+  .login-card .form-div input {
+    float: none;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .login-card .form-div {
+    text-align: center;
+  }
 }
 .login-card .btn {
   border-radius: 0;
