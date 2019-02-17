@@ -286,7 +286,14 @@
   height: 30px;
 }
 .feed-cards-container .feed-card .feed-body {
+  position: absolute;
+  left: -1px;
   padding: 5px;
+  background-color: #343a40;
+  border: 1px solid white;
+  border-top: none;
+  z-index: 1;
+  width: 300px;
 }
 .feed-cards-container .feed-card .feed-body label {
   float: left;

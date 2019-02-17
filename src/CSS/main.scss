@@ -285,7 +285,14 @@ $break-small: 600px;
       }
     }
     .feed-body {
+      position: absolute;
+      left: -1px;
       padding: 5px;
+      background-color: $secondary-color;
+      border: $border;
+      border-top: none;
+      z-index: 1;
+      width: 300px;
       label {
         float: left;
       }

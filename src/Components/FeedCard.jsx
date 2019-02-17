@@ -62,7 +62,6 @@ class FeedCard extends Component {
                 />
               </div>
               <br />
-
               <div className="form-div">
                 <label>Tags:</label>
                 {tags.map(tag => (
