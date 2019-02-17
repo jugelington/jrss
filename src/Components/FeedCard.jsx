@@ -10,7 +10,6 @@ import { API } from 'aws-amplify';
 
 class FeedCard extends Component {
   state = {
-    editing: false,
     displayName: '',
     url: '',
     tags: [],
@@ -20,8 +19,8 @@ class FeedCard extends Component {
   };
 
   render() {
-    const { feed } = this.props;
-    const { displayName, url, tags, editing, newTag } = this.state;
+    const { feed, toggleActiveFeed, editing } = this.props;
+    const { displayName, url, tags, newTag } = this.state;
 
     return (
       <section className="feed-card box">
@@ -30,7 +29,7 @@ class FeedCard extends Component {
           <Button
             size="sm"
             variant="light"
-            onClick={this.toggleEdit}
+            onClick={() => toggleActiveFeed(feed.displayName)}
             className="feed-button"
           >
             Edit
@@ -40,7 +39,7 @@ class FeedCard extends Component {
           <section className="feed-body">
             <form onSubmit={this.handleSubmit}>
               <div className="form-div">
-                <label for="displayName">Name:</label>
+                <label htmlFor="displayName">Name:</label>
                 <input
                   id="displayName"
                   autoFocus
@@ -52,7 +51,7 @@ class FeedCard extends Component {
               </div>
               <br />
               <div className="form-div">
-                <label for="url">URL:</label>
+                <label htmlFor="url">URL:</label>
                 <input
                   required
                   id="url"
@@ -85,7 +84,7 @@ class FeedCard extends Component {
                 ))}
               </div>
               <div className="form-div">
-                <label for="newTag">New Tag:</label>
+                <label htmlFor="newTag">New Tag:</label>
                 <input
                   id="newTag"
                   type="text"
@@ -138,10 +137,6 @@ class FeedCard extends Component {
       tags: feed.tags,
     });
   }
-
-  toggleEdit = () => {
-    this.setState({ editing: !this.state.editing });
-  };
 
   patchFeed = feed => {
     return API.put('jrss-api', `/feeds/${this.props.feed.feedId}`, {
