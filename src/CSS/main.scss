@@ -165,6 +165,12 @@ $break-small: 600px;
   .article-body {
     border-top: $border-dashed;
     padding: 5px;
+    .article-image {
+      max-width: 50%;
+      float: left;
+      margin-right: 5px;
+      border: $border;
+    }
   }
   @media screen and (max-width: $break-small) {
     width: 95vw;

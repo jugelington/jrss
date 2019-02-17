@@ -148,6 +148,12 @@
   border-top: 0.1px dashed white;
   padding: 5px;
 }
+.article-card .article-body .article-image {
+  max-width: 50%;
+  float: left;
+  margin-right: 5px;
+  border: 1px solid white;
+}
 @media screen and (max-width: 600px) {
   .article-card {
     width: 95vw;
