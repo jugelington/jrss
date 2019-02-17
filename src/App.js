@@ -56,21 +56,18 @@ class App extends Component {
                 path="/"
                 articles={articles}
                 loading={loading}
-                openModal={this.openModal}
               />
               <FeedView
                 isAuthenticated={isAuthenticated}
                 path="/feeds/:feedName"
                 articles={articles}
                 loading={loading}
-                openModal={this.openModal}
               />
               <FeedView
                 isAuthenticated={isAuthenticated}
                 path="/tags/:tagName"
                 articles={articles}
                 loading={loading}
-                openModal={this.openModal}
               />
               <ManageFeeds
                 isAuthenticated={isAuthenticated}
@@ -135,7 +132,7 @@ class App extends Component {
   };
 
   fetchFeeds = () => {
-    const feeds = this.cloneFeeds();
+    const { feeds } = this.state;
     return Promise.all(
       Object.keys(feeds).map(feedName => {
         return rssParser(feeds, feedName)
@@ -168,21 +165,6 @@ class App extends Component {
   getTags = () => {
     const tags = _.flatten(this.state.feeds.map(feed => feed.tags));
     this.setState({ tags: _.uniq(tags) });
-  };
-
-  cloneFeeds = () => {
-    return JSON.parse(JSON.stringify(this.state.feeds));
-  };
-
-  cloneTags = () => {
-    return JSON.parse(JSON.stringify(this.state.tags));
-  };
-  openModal = article => {
-    this.setState({ modalVisible: true, modalArticle: article });
-  };
-
-  closeModal = () => {
-    this.setState({ modalVisible: false, modalArticle: null });
   };
 
   userHasAuthenticated = authenticated => {

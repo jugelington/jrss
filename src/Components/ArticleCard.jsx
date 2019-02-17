@@ -5,6 +5,7 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 // utilities
 import { imageExtractor, dateParser, timeParser } from '../utilities';
 import Parser from 'html-react-parser';
+
 class ArticleCard extends Component {
   state = {
     expanded: false,
@@ -46,11 +47,24 @@ class ArticleCard extends Component {
         <section className={expanded ? 'article-body' : 'hidden-body'}>
           {Parser(content, {
             replace: domNode => {
-              if (
-                domNode.name &&
-                ['a', 'img', 'table', 'tbody'].includes(domNode.name)
-              )
-                return <></>;
+              if (domNode.name) {
+                if (domNode.name === 'img')
+                  return (
+                    <img
+                      src={domNode.attribs.src}
+                      alt="error"
+                      className="article-image"
+                    />
+                  );
+                if (domNode.name === 'a') {
+                  const text = domNode.children
+                    .filter(child => child.type === 'text')
+                    .map(text => text.data)
+                    .join('');
+                  return <>{text}</>;
+                }
+                if (['table', 'tbody'].includes(domNode.name)) return <></>;
+              }
             },
           })}
         </section>
