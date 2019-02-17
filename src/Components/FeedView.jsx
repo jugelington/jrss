@@ -1,15 +1,19 @@
 import React from 'react';
 // utilities
 import ReactLoading from 'react-loading';
+import _ from 'lodash';
 // components
 import ArticleCard from './ArticleCard';
 const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
-  const filteredArticles = articles.filter(article => {
-    if (!article) return false;
-    if (tagName) return article.feedTags.includes(tagName);
-    if (feedName) return article.source === feedName;
-    return true;
-  });
+  const filteredArticles = _.uniqBy(
+    articles.filter(article => {
+      if (!article) return false;
+      if (tagName) return article.feedTags.includes(tagName);
+      if (feedName) return article.source === feedName;
+      return true;
+    }),
+    'link',
+  );
 
   return (
     <section className="article-container">
