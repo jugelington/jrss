@@ -5,10 +5,6 @@ import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 // utilities
 import { imageExtractor, dateParser, timeParser } from '../utilities';
 import Parser from 'html-react-parser';
-// CSS
-import '../CSS/main.css';
-import '../CSS/loading-component.css';
-
 class ArticleCard extends Component {
   state = {
     expanded: false,

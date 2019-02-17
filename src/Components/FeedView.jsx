@@ -3,9 +3,6 @@ import React from 'react';
 import ReactLoading from 'react-loading';
 // components
 import ArticleCard from './ArticleCard';
-// css
-import '../CSS/loading-component.css';
-
 const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
   const filteredArticles = articles.filter(article => {
     if (!article) return false;

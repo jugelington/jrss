@@ -5,10 +5,6 @@ import ReactLoading from 'react-loading';
 import { navigate } from '@reach/router';
 // react-bootstrap
 import Button from 'react-bootstrap/lib/Button';
-// css
-import '../CSS/loading-component.css';
-import '../CSS/main.css';
-
 class AddFeed extends Component {
   state = {
     url: '',

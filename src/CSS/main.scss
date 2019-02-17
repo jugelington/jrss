@@ -75,6 +75,7 @@ $break-small: 600px;
       padding: $button-padding;
       font-size: $button-font-size;
       border: none;
+      height: 100%;
     }
     .dropdown-content {
       display: none;
@@ -100,11 +101,11 @@ $break-small: 600px;
       display: flex;
       flex-direction: column;
     }
-  }
-  .dropbtn:hover {
-    background-color: $primary-color;
-    color: $secondary-color;
-    font-weight: bold;
+    .dropbtn {
+      background-color: $primary-color;
+      color: $secondary-color;
+      font-weight: bold;
+    }
   }
 }
 

@@ -1,6 +1,4 @@
 import React from 'react';
-// css
-import '../CSS/main.css';
 
 const NavigationBar = ({
   feeds,

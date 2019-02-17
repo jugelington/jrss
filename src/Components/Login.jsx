@@ -7,9 +7,6 @@ import ReactLoading from 'react-loading';
 // react-bootstrap
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-// CSS
-import '../CSS/main.css';
-import '../CSS/loading-component.css';
 
 class Login extends Component {
   state = {

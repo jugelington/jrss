@@ -6,9 +6,6 @@ import ReactLoading from 'react-loading';
 // react-bootstrap
 import Button from 'react-bootstrap/lib/Button';
 import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
-// css
-// import '../CSS/main.css';
-
 class SignUp extends Component {
   state = {
     loading: false,
