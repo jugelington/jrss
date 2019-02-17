@@ -252,8 +252,26 @@ $break-small: 600px;
       input {
         float: right;
       }
-      .tags-div {
-        display: inline-block;
+      .form-div {
+        display: block;
+        margin: 5px 0;
+        padding: 5px 0;
+        input {
+          float: right;
+          width: 75%;
+        }
+        .btn {
+          margin-top: 5px;
+        }
+      }
+      .btn {
+        margin: 5px;
+      }
+      .submit-btn {
+        float: right;
+      }
+      .delete-btn {
+        float: left;
       }
     }
   }
@@ -288,4 +306,21 @@ $break-small: 600px;
     margin-left: -45vw;
     margin-top: -144px;
   }
+}
+
+.loading-bubbles {
+  margin: 0 auto;
+  height: 48px;
+  width: 48px;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 30%;
+  height: 30%;
+  fill: $primary-color !important;
 }

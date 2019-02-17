@@ -242,8 +242,26 @@
 .feed-cards-container .feed-card .feed-body input {
   float: right;
 }
-.feed-cards-container .feed-card .feed-body .tags-div {
-  display: inline-block;
+.feed-cards-container .feed-card .feed-body .form-div {
+  display: block;
+  margin: 5px 0;
+  padding: 5px 0;
+}
+.feed-cards-container .feed-card .feed-body .form-div input {
+  float: right;
+  width: 75%;
+}
+.feed-cards-container .feed-card .feed-body .form-div .btn {
+  margin-top: 5px;
+}
+.feed-cards-container .feed-card .feed-body .btn {
+  margin: 5px;
+}
+.feed-cards-container .feed-card .feed-body .submit-btn {
+  float: right;
+}
+.feed-cards-container .feed-card .feed-body .delete-btn {
+  float: left;
 }
 
 .add-feed-card {
@@ -276,6 +294,23 @@
     margin-left: -45vw;
     margin-top: -144px;
   }
+}
+
+.loading-bubbles {
+  margin: 0 auto;
+  height: 48px;
+  width: 48px;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 30%;
+  height: 30%;
+  fill: white !important;
 }
 
 /*# sourceMappingURL=main.css.map */

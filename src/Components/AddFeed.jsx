@@ -44,7 +44,7 @@ class AddFeed extends Component {
           <br />
           {!loading ? (
             <div className="text-center">
-              <Button variant="secondary" type="submit">
+              <Button variant="light" type="submit">
                 Subscribe
               </Button>
             </div>

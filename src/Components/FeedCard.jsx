@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // react-bootstrap
 import Button from 'react-bootstrap/lib/Button';
-import ButtonGroup from 'react-bootstrap/lib/ButtonGroup';
 import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger';
 import Tooltip from 'react-bootstrap/lib/Tooltip';
 // utilities
@@ -40,28 +39,32 @@ class FeedCard extends Component {
         {editing && (
           <section className="feed-body">
             <form onSubmit={this.handleSubmit}>
-              <label for="displayName">Name:</label>
-              <input
-                id="displayName"
-                autoFocus
-                required
-                type="text"
-                value={displayName}
-                onChange={this.handleChange}
-              />
+              <div className="form-div">
+                <label for="displayName">Name:</label>
+                <input
+                  id="displayName"
+                  autoFocus
+                  required
+                  type="text"
+                  value={displayName}
+                  onChange={this.handleChange}
+                />
+              </div>
               <br />
-              <label for="url">URL:</label>
-              <input
-                required
-                id="url"
-                type="url"
-                value={url}
-                onChange={this.handleChange}
-              />
+              <div className="form-div">
+                <label for="url">URL:</label>
+                <input
+                  required
+                  id="url"
+                  type="url"
+                  value={url}
+                  onChange={this.handleChange}
+                />
+              </div>
               <br />
-              <label>Tags:</label>
 
-              <div className="tags-div">
+              <div className="form-div">
+                <label>Tags:</label>
                 {tags.map(tag => (
                   <OverlayTrigger
                     key={tag}
@@ -82,28 +85,41 @@ class FeedCard extends Component {
                   </OverlayTrigger>
                 ))}
               </div>
-              <br />
-              <label for="newTag">New Tag:</label>
-              <input
-                id="newTag"
-                type="text"
-                value={newTag}
-                placeholder="add tag"
-                onChange={this.handleChange}
-              />
-              <Button onClick={this.addTag} variant="outline-light">
-                Add Tag
-              </Button>
-              <br />
+              <div className="form-div">
+                <label for="newTag">New Tag:</label>
+                <input
+                  id="newTag"
+                  type="text"
+                  value={newTag}
+                  placeholder="add tag"
+                  onChange={this.handleChange}
+                />
+                <Button onClick={this.addTag} variant="outline-light">
+                  Add Tag
+                </Button>
+              </div>
               {!this.state.loading && !this.state.deleting ? (
-                <ButtonGroup>
-                  <Button variant="primary" type="submit">
+                <>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="submit-btn"
+                  >
                     Submit
                   </Button>
-                  <Button variant="danger" onClick={this.handleDelete}>
-                    Unsubscribe
-                  </Button>
-                </ButtonGroup>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip>Warning: Irreversible!</Tooltip>}
+                  >
+                    <Button
+                      variant="danger"
+                      onClick={this.handleDelete}
+                      className="delete-btn"
+                    >
+                      Delete
+                    </Button>
+                  </OverlayTrigger>
+                </>
               ) : (
                 <ReactLoading className="loading-bubbles" type={'bubbles'} />
               )}
