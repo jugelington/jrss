@@ -9,7 +9,7 @@ import FeedView from './Components/FeedView';
 import ManageFeeds from './Components/ManageFeeds';
 import AddFeed from './Components/AddFeed';
 import Login from './Components/Login';
-import { rssParser } from './utilities';
+import { rssParser, activityToggle } from './utilities';
 import SignUp from './Components/SignUp';
 
 class App extends Component {
@@ -187,18 +187,9 @@ class App extends Component {
     this.setState({ isAuthenticated: false });
   };
 
-  toggleActiveArticle = activeTitle => {
-    const { articles } = this.state;
-    const newArticles = articles.map(article => {
-      if (article.title === activeTitle) {
-        return article.active
-          ? { ...article, active: false }
-          : { ...article, active: true };
-      } else {
-        return { ...article, active: false };
-      }
-    });
-    return this.setState({ articles: newArticles });
+  toggleActiveArticle = title => {
+    const articles = activityToggle(title, this.state.articles, 'title');
+    this.setState({ articles });
   };
 }
 

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import FeedCard from './FeedCard';
 // utilities
 import { API } from 'aws-amplify';
+import { activityToggle } from '../utilities';
 
 class ManageFeeds extends Component {
   state = {
@@ -17,7 +18,7 @@ class ManageFeeds extends Component {
             <FeedCard
               key={feed.displayName}
               feed={feed}
-              editing={feed.editing}
+              active={feed.active}
               toggleActiveFeed={this.toggleActiveFeed}
             />
           ))}
@@ -41,22 +42,14 @@ class ManageFeeds extends Component {
   };
 
   toggleActiveFeed = feedName => {
-    const feeds = this.state.feeds.map(feed => {
-      if (feed.displayName === feedName) {
-        return feed.editing
-          ? { ...feed, editing: false }
-          : { ...feed, editing: true };
-      } else {
-        return { ...feed, editing: false };
-      }
-    });
+    const feeds = activityToggle(feedName, this.state.feeds, 'displayName');
     return this.setState({ feeds });
   };
 
   mapFeeds = rawFeeds => {
     return rawFeeds.map(feed => ({
       ...feed,
-      editing: false,
+      active: false,
     }));
   };
 }

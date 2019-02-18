@@ -19,7 +19,7 @@ class FeedCard extends Component {
   };
 
   render() {
-    const { feed, toggleActiveFeed, editing } = this.props;
+    const { feed, toggleActiveFeed, active } = this.props;
     const { displayName, url, tags, newTag } = this.state;
 
     return (
@@ -35,7 +35,7 @@ class FeedCard extends Component {
             Edit
           </Button>
         </section>
-        {editing && (
+        {active && (
           <section className="feed-body">
             <form onSubmit={this.handleSubmit}>
               <div className="form-div">

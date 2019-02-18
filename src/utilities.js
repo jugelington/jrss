@@ -46,3 +46,15 @@ export const timeParser = date => {
     minute.length === 1 ? `0${minute}` : minute
   }`;
 };
+
+export const activityToggle = (name, arr, identifier) => {
+  return arr.map(item => {
+    if (item[identifier] === name) {
+      return item.active
+        ? { ...item, active: false }
+        : { ...item, active: true };
+    } else {
+      return { ...item, active: false };
+    }
+  });
+};
