@@ -11,10 +11,10 @@ class ArticleCard extends Component {
     expanded: false,
   };
   render() {
-    const { expanded } = this.state;
     const {
       article,
-      article: { title, isoDate, link, feedName, content },
+      article: { title, isoDate, link, feedName, content, active },
+      toggleActiveArticle,
     } = this.props;
     const image = imageExtractor(article);
     const parsedDate = new Date(isoDate);
@@ -37,12 +37,12 @@ class ArticleCard extends Component {
             <Button href={link} variant="outline-light">
               Visit Site
             </Button>
-            <Button onClick={this.toggleShow} variant="light">
-              {expanded ? 'Hide' : 'Expand'}
+            <Button onClick={() => toggleActiveArticle(title)} variant="light">
+              {active ? 'Hide' : 'Expand'}
             </Button>
           </ButtonGroup>
         </header>
-        <section className={expanded ? 'body' : 'hidden'}>
+        <section className={active ? 'body' : 'hidden'}>
           {Parser(content, {
             replace: domNode => {
               if (domNode.name) {

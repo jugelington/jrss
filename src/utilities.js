@@ -12,6 +12,7 @@ export const rssParser = async (feeds, feedName) => {
   return articles.map(article => {
     article.feedName = feeds[feedName].displayName;
     article.feedTags = feeds[feedName].tags;
+    article.active = false;
     return article;
   });
 };

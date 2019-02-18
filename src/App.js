@@ -55,18 +55,21 @@ class App extends Component {
               path="/"
               articles={articles}
               loading={loading}
+              toggleActiveArticle={this.toggleActiveArticle}
             />
             <FeedView
               isAuthenticated={isAuthenticated}
               path="/feeds/:feedName"
               articles={articles}
               loading={loading}
+              toggleActiveArticle={this.toggleActiveArticle}
             />
             <FeedView
               isAuthenticated={isAuthenticated}
               path="/tags/:tagName"
               articles={articles}
               loading={loading}
+              toggleActiveArticle={this.toggleActiveArticle}
             />
             <ManageFeeds
               isAuthenticated={isAuthenticated}
@@ -110,24 +113,24 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.authFunc();
+    await this.authorize();
+    const feeds = await this.getFeeds();
+    const currUser = await Auth.currentAuthenticatedUser();
+    this.setState({ feeds, username: currUser.attributes.email });
+    this.fetchFeeds();
+    this.getTags();
   }
 
   async componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
-      this.authFunc();
+      this.authorize();
     }
   }
 
-  authFunc = async () => {
+  authorize = async () => {
     try {
       await Auth.currentSession();
       this.userHasAuthenticated(true);
-      const feeds = await this.getFeeds();
-      const currUser = await Auth.currentAuthenticatedUser();
-      this.setState({ feeds, username: currUser.attributes.email });
-      this.fetchFeeds();
-      this.getTags();
     } catch (e) {
       if (e !== 'No current user') {
         alert(e);
@@ -182,6 +185,20 @@ class App extends Component {
   handleLogout = async () => {
     await Auth.signOut();
     this.setState({ isAuthenticated: false });
+  };
+
+  toggleActiveArticle = activeTitle => {
+    const { articles } = this.state;
+    const newArticles = articles.map(article => {
+      if (article.title === activeTitle) {
+        return article.active
+          ? { ...article, active: false }
+          : { ...article, active: true };
+      } else {
+        return { ...article, active: false };
+      }
+    });
+    return this.setState({ articles: newArticles });
   };
 }
 
