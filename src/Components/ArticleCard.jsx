@@ -53,7 +53,7 @@ class ArticleCard extends Component {
                     .filter(child => child.type === 'text')
                     .map(text => text.data)
                     .join('');
-                  return <>{text}</>;
+                  return <a href={domNode.attribs.href}>{text}</a>;
                 }
                 if (['table', 'tbody'].includes(domNode.name)) return <></>;
               }
