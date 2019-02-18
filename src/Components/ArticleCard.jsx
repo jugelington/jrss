@@ -26,7 +26,7 @@ class ArticleCard extends Component {
         <header>
           {image && <img src={image} alt="none found" />}
           <h6>
-            <strong>{title}</strong>
+            <strong>{Parser(title)}</strong>
           </h6>
           <section>
             <p>{feedName}</p>
