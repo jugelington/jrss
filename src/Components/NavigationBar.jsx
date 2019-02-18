@@ -49,7 +49,9 @@ const NavigationBar = ({
           <a href="/settings/managefeeds">Manage Feeds</a>
           <a href="/settings/addfeed">Add Feed</a>
           <a href="/" onClick={handleLogout}>
-            Log Out ({username.substring(0, username.indexOf('@'))})
+            Log Out{' '}
+            {username.length > 0 &&
+              `(${username.substring(0, username.indexOf('@'))})`}
           </a>
         </div>
       </div>

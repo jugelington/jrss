@@ -33,71 +33,80 @@ class App extends Component {
       isAuthenticating,
       username,
     } = this.state;
-    return (
-      !isAuthenticating && (
-        <main className="App">
-          <header className="App-header" />
-          <NavigationBar
-            feeds={feeds}
-            tags={tags}
-            isAuthenticated={isAuthenticated}
-            handleLogout={this.handleLogout}
-            username={username}
-          />
-          {isAuthenticated ? (
-            <Router>
-              <Login
-                path="/login"
-                isAuthenticated={isAuthenticated}
-                userHasAuthenticated={this.userHasAuthenticated}
-              />
-              <FeedView
-                isAuthenticated={isAuthenticated}
-                path="/"
-                articles={articles}
-                loading={loading}
-              />
-              <FeedView
-                isAuthenticated={isAuthenticated}
-                path="/feeds/:feedName"
-                articles={articles}
-                loading={loading}
-              />
-              <FeedView
-                isAuthenticated={isAuthenticated}
-                path="/tags/:tagName"
-                articles={articles}
-                loading={loading}
-              />
-              <ManageFeeds
-                isAuthenticated={isAuthenticated}
-                path="/settings/managefeeds"
-                feeds={feeds}
-                unsubscribeFromFeed={this.unsubscribeFromFeed}
-                deleteTag={this.deleteTag}
-                addTag={this.addTag}
-              />
-              <AddFeed
-                isAuthenticated={isAuthenticated}
-                path="/settings/addfeed"
-                subscribeToFeed={this.subscribeToFeed}
-              />
-            </Router>
-          ) : (
-            <Router>
-              <SignUp
-                path="/signup"
-                userHasAuthenticated={this.userHasAuthenticated}
-              />
-              <Login
-                path="*"
-                isAuthenticated={isAuthenticated}
-                userHasAuthenticated={this.userHasAuthenticated}
-              />
-            </Router>
-          )}
-        </main>
-      )
+    return !isAuthenticating ? (
+      <main className="App">
+        <header className="App-header" />
+        <NavigationBar
+          feeds={feeds}
+          tags={tags}
+          isAuthenticated={isAuthenticated}
+          handleLogout={this.handleLogout}
+          username={username}
+        />
+        {isAuthenticated ? (
+          <Router>
+            <Login
+              path="/login"
+              isAuthenticated={isAuthenticated}
+              userHasAuthenticated={this.userHasAuthenticated}
+            />
+            <FeedView
+              isAuthenticated={isAuthenticated}
+              path="/"
+              articles={articles}
+              loading={loading}
+            />
+            <FeedView
+              isAuthenticated={isAuthenticated}
+              path="/feeds/:feedName"
+              articles={articles}
+              loading={loading}
+            />
+            <FeedView
+              isAuthenticated={isAuthenticated}
+              path="/tags/:tagName"
+              articles={articles}
+              loading={loading}
+            />
+            <ManageFeeds
+              isAuthenticated={isAuthenticated}
+              path="/settings/managefeeds"
+              feeds={feeds}
+              unsubscribeFromFeed={this.unsubscribeFromFeed}
+              deleteTag={this.deleteTag}
+              addTag={this.addTag}
+            />
+            <AddFeed
+              isAuthenticated={isAuthenticated}
+              path="/settings/addfeed"
+              subscribeToFeed={this.subscribeToFeed}
+            />
+          </Router>
+        ) : (
+          <Router>
+            <SignUp
+              path="/signup"
+              userHasAuthenticated={this.userHasAuthenticated}
+            />
+            <Login
+              path="*"
+              isAuthenticated={isAuthenticated}
+              userHasAuthenticated={this.userHasAuthenticated}
+            />
+          </Router>
+        )}
+      </main>
+    ) : (
+      <NavigationBar
+        feeds={[]}
+        tags={[]}
+        isAuthenticated={isAuthenticated}
+        isAuthenticating={isAuthenticating}
+        username={''}
+        handleLogout={() => {
+          alert('Error! Try again.');
+        }}
+      />
     );
   }
 
