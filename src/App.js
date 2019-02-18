@@ -101,7 +101,6 @@ class App extends Component {
         feeds={[]}
         tags={[]}
         isAuthenticated={isAuthenticated}
-        isAuthenticating={isAuthenticating}
         username={''}
         handleLogout={() => {
           alert('Error! Try again.');

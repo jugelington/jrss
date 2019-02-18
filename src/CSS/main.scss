@@ -165,10 +165,11 @@ $break-small: 600px;
   .body {
     border-top: $border-dashed;
     padding: 5px;
+    overflow: auto;
     img {
       max-width: 50%;
-      float: left;
       margin-right: 5px;
+      float: left;
       border: $border;
     }
   }

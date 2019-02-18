@@ -142,11 +142,12 @@
 .article-card .body {
   border-top: 0.1px dashed white;
   padding: 5px;
+  overflow: auto;
 }
 .article-card .body img {
   max-width: 50%;
-  float: left;
   margin-right: 5px;
+  float: left;
   border: 1px solid white;
 }
 @media screen and (max-width: 600px) {
