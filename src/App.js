@@ -9,7 +9,7 @@ import FeedView from './Components/FeedView';
 import ManageFeeds from './Components/ManageFeeds';
 import AddFeed from './Components/AddFeed';
 import Login from './Components/Login';
-import { rssParser, activityToggle } from './utilities';
+import { rssParser } from './utilities';
 import SignUp from './Components/SignUp';
 
 class App extends Component {
@@ -55,21 +55,18 @@ class App extends Component {
               path="/"
               articles={articles}
               loading={loading}
-              toggleActiveArticle={this.toggleActiveArticle}
             />
             <FeedView
               isAuthenticated={isAuthenticated}
               path="/feeds/:feedName"
               articles={articles}
               loading={loading}
-              toggleActiveArticle={this.toggleActiveArticle}
             />
             <FeedView
               isAuthenticated={isAuthenticated}
               path="/tags/:tagName"
               articles={articles}
               loading={loading}
-              toggleActiveArticle={this.toggleActiveArticle}
             />
             <ManageFeeds
               isAuthenticated={isAuthenticated}
@@ -185,11 +182,6 @@ class App extends Component {
   handleLogout = async () => {
     await Auth.signOut();
     this.setState({ isAuthenticated: false });
-  };
-
-  toggleActiveArticle = title => {
-    const articles = activityToggle(title, this.state.articles, 'title');
-    this.setState({ articles });
   };
 }
 
