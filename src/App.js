@@ -21,6 +21,7 @@ class App extends Component {
     tags: [],
     isAuthenticated: false,
     isAuthenticating: true,
+    activeArticle: null,
   };
 
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
       isAuthenticated,
       isAuthenticating,
       username,
+      activeArticle,
     } = this.state;
     return !isAuthenticating ? (
       <main className="App">
@@ -55,18 +57,24 @@ class App extends Component {
               path="/"
               articles={articles}
               loading={loading}
+              activeArticle={activeArticle}
+              activateArticle={this.activateArticle}
             />
             <FeedView
               isAuthenticated={isAuthenticated}
               path="/feeds/:feedName"
               articles={articles}
               loading={loading}
+              activeArticle={activeArticle}
+              activateArticle={this.activateArticle}
             />
             <FeedView
               isAuthenticated={isAuthenticated}
               path="/tags/:tagName"
               articles={articles}
               loading={loading}
+              activeArticle={activeArticle}
+              activateArticle={this.activateArticle}
             />
             <ManageFeeds
               isAuthenticated={isAuthenticated}
@@ -182,6 +190,10 @@ class App extends Component {
   handleLogout = async () => {
     await Auth.signOut();
     this.setState({ isAuthenticated: false });
+  };
+
+  activateArticle = title => {
+    this.setState({ activeArticle: title });
   };
 }
 

@@ -4,7 +4,15 @@ import ReactLoading from 'react-loading';
 import _ from 'lodash';
 // components
 import ArticleCard from './ArticleCard';
-const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
+const FeedView = ({
+  articles,
+  loading,
+  feedName,
+  tagName,
+  openModal,
+  activeArticle,
+  activateArticle,
+}) => {
   const filteredArticles = _.uniqBy(
     articles.filter(article => {
       if (!article) return false;
@@ -31,6 +39,8 @@ const FeedView = ({ articles, loading, feedName, tagName, openModal }) => {
             key={article.link}
             article={article}
             openModal={openModal}
+            activeArticle={activeArticle}
+            activateArticle={activateArticle}
           />
         ))
       )}
