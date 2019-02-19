@@ -193,7 +193,9 @@ class App extends Component {
   };
 
   activateArticle = title => {
-    this.setState({ activeArticle: title });
+    this.setState({
+      activeArticle: title === this.state.activeArticle ? null : title,
+    });
   };
 }
 
