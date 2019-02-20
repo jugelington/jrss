@@ -9,8 +9,7 @@ const NavigationBar = ({
 }) => {
   feeds.sort(
     (a, b) =>
-      a.displayName.replace(' ', '_').toUpperCase() >
-      b.displayName.replace(' ', '_').toUpperCase(),
+      a.replace(' ', '_').toUpperCase() > b.replace(' ', '_').toUpperCase(),
   );
   tags.sort(
     (a, b) =>
@@ -37,8 +36,8 @@ const NavigationBar = ({
         <button className="dropbtn ">Feeds</button>
         <div className="dropdown-content">
           {feeds.map(feed => (
-            <a key={feed.displayName} href={`/feeds/${feed.displayName}`}>
-              {feed.displayName}
+            <a key={feed} href={`/feeds/${feed}`}>
+              {feed}
             </a>
           ))}
         </div>

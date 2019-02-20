@@ -39,7 +39,7 @@ class App extends Component {
       <main className="App">
         <header className="App-header" />
         <NavigationBar
-          feeds={feeds}
+          feeds={feeds.map(feed => feed.displayName)}
           tags={tags}
           isAuthenticated={isAuthenticated}
           handleLogout={this.handleLogout}
