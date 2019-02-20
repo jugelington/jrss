@@ -120,13 +120,13 @@ class App extends Component {
   async componentDidMount() {
     await this.authorize();
     const feeds = await this.getFeeds();
+    const tags = this.getTags(feeds);
     const currUser = await Auth.currentAuthenticatedUser();
-    this.setState({ feeds, username: currUser.attributes.email });
+    this.setState({ feeds, tags, username: currUser.attributes.email });
     this.fetchFeeds();
-    this.getTags();
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (JSON.stringify(prevState) !== JSON.stringify(this.state)) {
       this.authorize();
     }
@@ -178,9 +178,8 @@ class App extends Component {
     return API.get('jrss-api', '/feeds');
   };
 
-  getTags = () => {
-    const tags = _.flatten(this.state.feeds.map(feed => feed.tags));
-    this.setState({ tags: _.uniq(tags) });
+  getTags = feeds => {
+    return _.uniq(_.flatten(feeds.map(feed => feed.tags)));
   };
 
   userHasAuthenticated = authenticated => {
